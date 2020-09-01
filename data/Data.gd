@@ -185,25 +185,50 @@ func get_vanilla():
 
 
 		"object" : {
-
 			'dronecarrier' : {
+				'instance' : 'drone',
 				'mesh' : [],
 				'data' : {}
 			},
 			'dronefighter' : {
+				'instance' : 'drone',
 				'mesh' : [],
 				'data' : {}
 			},
 			'dronescout' : {
+				'instance' : 'drone',
 				'mesh' : [],
 				'data' : {}
 			},
 			'player' : {
+				'instance' : 'player',
 				'mesh' : [],
 				'data' : {}
 			},
 
+#			'' : {
+#				'instance' : 'food',
+#				'mesh' : [],
+#				'data' : {
+#					'weight' : 0.0,
+#					'calorie' : 0.0,
+#					'sat_fat' : 0.0,
+#					'pol_fat' : 0.0,
+#					'mon_fat' : 0.0,
+#					'cholesterol' : 0.0,
+#					'sodium' : 0.0,
+#					'fiber' : 0.0,
+#					'sugar' : 0.0,
+#					'protein' : 0.0,
+#					'calcium' : 0.0,
+#					'potassium' : 0.0,
+#					'iron' : 0.0,
+#					'vitamin_a' : 0.0,
+#					'vitamin_c' : 0.0
+#				}
+#			},
 			'apple' : {
+				'instance' : 'food',
 				'mesh' : ["res://mesh/food/apple.obj"],
 				'data' : {
 					'weight' : 0.0,
@@ -224,6 +249,7 @@ func get_vanilla():
 				}
 			},
 			'blackberry' : {
+				'instance' : 'food',
 				'mesh' : ["res://mesh/food/blackberry.obj"],
 				'data' : {
 					'weight' : 0.0,
@@ -243,6 +269,7 @@ func get_vanilla():
 					'vitamin_c' : 0.0}
 			},
 			'blueberry' : {
+				'instance' : 'food',
 				'mesh' : ["res://mesh/food/blueberry.obj"],
 				'data' : {
 					'weight' : 0.0,
@@ -262,6 +289,7 @@ func get_vanilla():
 					'vitamin_c' : 0.0}
 			},
 			'carrot' : {
+				'instance' : 'food',
 				'mesh' : ["res://mesh/food/carrot.obj"],
 				'data' : {
 					'weight' : 0.0,
@@ -281,6 +309,7 @@ func get_vanilla():
 					'vitamin_c' : 0.0}
 			},
 			'greenonion' : {
+				'instance' : 'food',
 				'mesh' : ["res://mesh/food/greenonion.obj"],
 				'data' : {
 					'weight' : 0.0,
@@ -300,6 +329,7 @@ func get_vanilla():
 					'vitamin_c' : 0.0}
 			},
 			'potato' : {
+				'instance' : 'food',
 				'mesh' : ["res://mesh/food/potato.obj"],
 				'data' : {
 					'weight' : 0.0,
@@ -319,6 +349,7 @@ func get_vanilla():
 					'vitamin_c' : 0.0}
 			},
 			'raspberry' : {
+				'instance' : 'food',
 				'mesh' : ["res://mesh/food/raspberry.obj"],
 				'data' : {
 					'weight' : 0.0,
@@ -339,151 +370,299 @@ func get_vanilla():
 			},
 
 			'acorn' : {
+				'instance' : 'material',
 				'mesh' : ["res://mesh/material/acorn.obj"],
-				'data' : {}
+				'data' : {'weight' : 0.0}
 				},
 			'boulder' : {
+				'instance' : 'material',
 				'mesh' : ["res://mesh/material/boulder0.obj",
 					"res://mesh/material/boulder1.obj",
 					"res://mesh/material/boulder2.obj",
 					"res://mesh/material/boulder3.obj"],
-				'data' : {}
+				'data' : {'weight' : 0.0}
 				},
 			'hive' : {
+				'instance' : 'material',
 				'mesh' : ["res://mesh/material/hive.obj"],
-				'data' : {}
+				'data' : {'weight' : 0.0}
 				},
 			'pinecone' : {
+				'instance' : 'material',
 				'mesh' : ["res://mesh/material/pinecone.obj"],
-				'data' : {}
+				'data' : {'weight' : 0.0}
 				},
 			'stone' : {
+				'instance' : 'material',
 				'mesh' : ["res://mesh/material/stone0.obj",
 					"res://mesh/material/stone1.obj",
 					"res://mesh/material/stone2.obj",
 					"res://mesh/material/stone3.obj"],
-				'data' : {}
+				'data' : {'weight' : 0.0}
 				},
 
 			'amaranth' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/amaranth.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
-			'bush0' : {
+			'bush' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/bush0.obj",
 					"res://mesh/plant/bush1.obj",
 					"res://mesh/plant/bush2.obj",
 					"res://mesh/plant/bush3.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 			'cattail' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/cattail.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 			'clover' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/clover.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 			'purslane' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/purslane.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 			'treeash' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/tree-ash0.obj",
 					"res://mesh/plant/tree-ash1.obj",
 					"res://mesh/plant/tree-ash2.obj",
 					"res://mesh/plant/tree-ash3.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 			'treeoak' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/tree-oak0.obj",
 					"res://mesh/plant/tree-oak1.obj",
 					"res://mesh/plant/tree-oak2.obj",
 					"res://mesh/plant/tree-oak3.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 			'treepine' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/tree-pine0.obj",
 					"res://mesh/plant/tree-pine1.obj",
 					"res://mesh/plant/tree-pine2.obj",
 					"res://mesh/plant/tree-pine3.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 			'watercress' : {
+				'instance' : 'plant',
 				'mesh' : ["res://mesh/plant/watercress.obj"],
-				'data' : {}
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 
 			'anvil' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/anvil.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'axeiron' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/axe-iron.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'axestone' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/axe-stone.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'bowlclay' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/bowl-clay.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'cupclay' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/cup-clay.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'firepit' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/firepit.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'hammeriron' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/hammer-iron.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'hammerstone' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/hammerstone.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'handaxe' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/handaxe.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'knifestone' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/knife-stone.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'pickaxeiron' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/pickaxe-iron.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'plateclay' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/plate-clay.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'spearstone' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/spear-stone.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 			'torch' : {
+				'instance' : 'tool',
 				'mesh' : ["res://mesh/tool/torch.obj"],
-				'data' : {}
+				'data' : {
+					'weight' : 0.0,
+					'HP' : 0.0,
+					'hp' : 0.0
+					}
 				},
 
 			'arrowiron' : {
+				'instance' : 'projectile',
 				'mesh' : ["res://mesh/weapon/arrow-iron.obj"],
 				'data' : {}
 				},
 			'arrowstone' : {
+				'instance' : 'projectile',
 				'mesh' : ["res://mesh/weapon/arrow-stone.obj"],
 				'data' : {}
 				},
 			'pulsecannon' : {
+				'instance' : 'weapon',
 				'mesh' : ["res://mesh/weapon/pulse-cannon.obj"],
-				'data' : {}
+				'data' : {
+					'damage' : 0,
+					'weight' : 0,
+					'range' : 0,
+					'HP' : 0,
+					'hp' : 0,
+					}
 				},
 			'pulsecharge' : {
+				'instance' : 'fuel',
 				'mesh' : ["res://mesh/weapon/pulse-cannon_charge.obj"],
 				'data' : {}
 				},
