@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tree-oak1.obj-9a32782847bb4bc6238c9a17cfb97e04.mesh"
+
+[deps]
+
+files=[ "res://.import/tree-oak1.obj-9a32782847bb4bc6238c9a17cfb97e04.mesh" ]
+
+source_file="res://mesh/plant/tree-oak1.obj"
+dest_files=[ "res://.import/tree-oak1.obj-9a32782847bb4bc6238c9a17cfb97e04.mesh", "res://.import/tree-oak1.obj-9a32782847bb4bc6238c9a17cfb97e04.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

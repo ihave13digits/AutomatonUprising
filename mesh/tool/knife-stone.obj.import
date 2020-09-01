@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/knife-stone.obj-902ecacc8c5eecf5b7ee7c8e77fc671c.mesh"
+
+[deps]
+
+files=[ "res://.import/knife-stone.obj-902ecacc8c5eecf5b7ee7c8e77fc671c.mesh" ]
+
+source_file="res://mesh/tool/knife-stone.obj"
+dest_files=[ "res://.import/knife-stone.obj-902ecacc8c5eecf5b7ee7c8e77fc671c.mesh", "res://.import/knife-stone.obj-902ecacc8c5eecf5b7ee7c8e77fc671c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

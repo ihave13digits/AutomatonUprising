@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/pulse-cannon_charge.obj-b6b57d883a754bd67c746f2122537f3a.mesh"
+
+[deps]
+
+files=[ "res://.import/pulse-cannon_charge.obj-b6b57d883a754bd67c746f2122537f3a.mesh" ]
+
+source_file="res://mesh/weapon/pulse-cannon_charge.obj"
+dest_files=[ "res://.import/pulse-cannon_charge.obj-b6b57d883a754bd67c746f2122537f3a.mesh", "res://.import/pulse-cannon_charge.obj-b6b57d883a754bd67c746f2122537f3a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

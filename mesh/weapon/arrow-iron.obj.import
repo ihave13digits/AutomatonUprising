@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/arrow-iron.obj-6d12250914cf6e4185fc7650d2e3d677.mesh"
+
+[deps]
+
+files=[ "res://.import/arrow-iron.obj-6d12250914cf6e4185fc7650d2e3d677.mesh" ]
+
+source_file="res://mesh/weapon/arrow-iron.obj"
+dest_files=[ "res://.import/arrow-iron.obj-6d12250914cf6e4185fc7650d2e3d677.mesh", "res://.import/arrow-iron.obj-6d12250914cf6e4185fc7650d2e3d677.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

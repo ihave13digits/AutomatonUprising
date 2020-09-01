@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/raspberry.obj-31b9cd3e1d94d958fed5a5df54dee74b.mesh"
+
+[deps]
+
+files=[ "res://.import/raspberry.obj-31b9cd3e1d94d958fed5a5df54dee74b.mesh" ]
+
+source_file="res://mesh/food/raspberry.obj"
+dest_files=[ "res://.import/raspberry.obj-31b9cd3e1d94d958fed5a5df54dee74b.mesh", "res://.import/raspberry.obj-31b9cd3e1d94d958fed5a5df54dee74b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

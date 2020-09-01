@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bowl-clay.obj-d1ec1bbe98ea7c01b87c16749615ad97.mesh"
+
+[deps]
+
+files=[ "res://.import/bowl-clay.obj-d1ec1bbe98ea7c01b87c16749615ad97.mesh" ]
+
+source_file="res://mesh/tool/bowl-clay.obj"
+dest_files=[ "res://.import/bowl-clay.obj-d1ec1bbe98ea7c01b87c16749615ad97.mesh", "res://.import/bowl-clay.obj-d1ec1bbe98ea7c01b87c16749615ad97.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

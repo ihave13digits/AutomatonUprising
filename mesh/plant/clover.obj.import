@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/clover.obj-4ce0427a299b10aee2b418be3adecdac.mesh"
+
+[deps]
+
+files=[ "res://.import/clover.obj-4ce0427a299b10aee2b418be3adecdac.mesh" ]
+
+source_file="res://mesh/plant/clover.obj"
+dest_files=[ "res://.import/clover.obj-4ce0427a299b10aee2b418be3adecdac.mesh", "res://.import/clover.obj-4ce0427a299b10aee2b418be3adecdac.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

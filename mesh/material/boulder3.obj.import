@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/boulder3.obj-0363cafecfb8c927888627f315c512b9.mesh"
+
+[deps]
+
+files=[ "res://.import/boulder3.obj-0363cafecfb8c927888627f315c512b9.mesh" ]
+
+source_file="res://mesh/material/boulder3.obj"
+dest_files=[ "res://.import/boulder3.obj-0363cafecfb8c927888627f315c512b9.mesh", "res://.import/boulder3.obj-0363cafecfb8c927888627f315c512b9.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

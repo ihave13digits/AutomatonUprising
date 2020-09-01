@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/spear-stone.obj-5a240915b3b57c7a2fcaf273d7601484.mesh"
+
+[deps]
+
+files=[ "res://.import/spear-stone.obj-5a240915b3b57c7a2fcaf273d7601484.mesh" ]
+
+source_file="res://mesh/tool/spear-stone.obj"
+dest_files=[ "res://.import/spear-stone.obj-5a240915b3b57c7a2fcaf273d7601484.mesh", "res://.import/spear-stone.obj-5a240915b3b57c7a2fcaf273d7601484.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/amaranth.obj-bbcfc7ed316a5406baa47608d8d64183.mesh"
+
+[deps]
+
+files=[ "res://.import/amaranth.obj-bbcfc7ed316a5406baa47608d8d64183.mesh" ]
+
+source_file="res://mesh/plant/amaranth.obj"
+dest_files=[ "res://.import/amaranth.obj-bbcfc7ed316a5406baa47608d8d64183.mesh", "res://.import/amaranth.obj-bbcfc7ed316a5406baa47608d8d64183.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

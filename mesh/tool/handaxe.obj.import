@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/handaxe.obj-cda2ba952cc4fd6b9e597a0bc071f914.mesh"
+
+[deps]
+
+files=[ "res://.import/handaxe.obj-cda2ba952cc4fd6b9e597a0bc071f914.mesh" ]
+
+source_file="res://mesh/tool/handaxe.obj"
+dest_files=[ "res://.import/handaxe.obj-cda2ba952cc4fd6b9e597a0bc071f914.mesh", "res://.import/handaxe.obj-cda2ba952cc4fd6b9e597a0bc071f914.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

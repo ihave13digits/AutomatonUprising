@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/purslane.obj-261818606b43e095b2560744a2f2a69f.mesh"
+
+[deps]
+
+files=[ "res://.import/purslane.obj-261818606b43e095b2560744a2f2a69f.mesh" ]
+
+source_file="res://mesh/plant/purslane.obj"
+dest_files=[ "res://.import/purslane.obj-261818606b43e095b2560744a2f2a69f.mesh", "res://.import/purslane.obj-261818606b43e095b2560744a2f2a69f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

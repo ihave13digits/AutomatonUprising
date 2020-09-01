@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/hive.obj-c8662ce18488dda4d7cf92681ed0dc4c.mesh"
+
+[deps]
+
+files=[ "res://.import/hive.obj-c8662ce18488dda4d7cf92681ed0dc4c.mesh" ]
+
+source_file="res://mesh/material/hive.obj"
+dest_files=[ "res://.import/hive.obj-c8662ce18488dda4d7cf92681ed0dc4c.mesh", "res://.import/hive.obj-c8662ce18488dda4d7cf92681ed0dc4c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

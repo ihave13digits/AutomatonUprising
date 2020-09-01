@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/arrow-stone.obj-b2e0211807bab218b678842f71295b5a.mesh"
+
+[deps]
+
+files=[ "res://.import/arrow-stone.obj-b2e0211807bab218b678842f71295b5a.mesh" ]
+
+source_file="res://mesh/weapon/arrow-stone.obj"
+dest_files=[ "res://.import/arrow-stone.obj-b2e0211807bab218b678842f71295b5a.mesh", "res://.import/arrow-stone.obj-b2e0211807bab218b678842f71295b5a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

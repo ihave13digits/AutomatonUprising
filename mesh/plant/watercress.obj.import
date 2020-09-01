@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/watercress.obj-1ea518a29cd24e0feb5d43e59da2fdfa.mesh"
+
+[deps]
+
+files=[ "res://.import/watercress.obj-1ea518a29cd24e0feb5d43e59da2fdfa.mesh" ]
+
+source_file="res://mesh/plant/watercress.obj"
+dest_files=[ "res://.import/watercress.obj-1ea518a29cd24e0feb5d43e59da2fdfa.mesh", "res://.import/watercress.obj-1ea518a29cd24e0feb5d43e59da2fdfa.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

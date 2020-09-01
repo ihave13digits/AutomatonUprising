@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cup-clay.obj-dc6a6c2e33295548c77a6c3bc66354ea.mesh"
+
+[deps]
+
+files=[ "res://.import/cup-clay.obj-dc6a6c2e33295548c77a6c3bc66354ea.mesh" ]
+
+source_file="res://mesh/tool/cup-clay.obj"
+dest_files=[ "res://.import/cup-clay.obj-dc6a6c2e33295548c77a6c3bc66354ea.mesh", "res://.import/cup-clay.obj-dc6a6c2e33295548c77a6c3bc66354ea.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
