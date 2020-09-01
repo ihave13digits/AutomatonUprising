@@ -643,12 +643,20 @@ func get_vanilla():
 			'arrowiron' : {
 				'instance' : 'projectile',
 				'mesh' : ["res://mesh/weapon/arrow-iron.obj"],
-				'data' : {}
+				'data' : {
+					'damage' : 0.0,
+					'weight' : 0.0,
+					'speed' : 0.0
+				}
 				},
 			'arrowstone' : {
 				'instance' : 'projectile',
 				'mesh' : ["res://mesh/weapon/arrow-stone.obj"],
-				'data' : {}
+				'data' : {
+					'damage' : 0.0,
+					'weight' : 0.0,
+					'speed' : 0.0
+				}
 				},
 			'pulsecannon' : {
 				'instance' : 'weapon',
@@ -664,7 +672,10 @@ func get_vanilla():
 			'pulsecharge' : {
 				'instance' : 'fuel',
 				'mesh' : ["res://mesh/weapon/pulse-cannon_charge.obj"],
-				'data' : {}
+				'data' : {
+					'energy' : 0.0,
+					'weight' : 0.0
+				}
 				},
 			},
 
