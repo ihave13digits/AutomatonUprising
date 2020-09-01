@@ -679,14 +679,14 @@ func get_vanilla():
 
 
 		"instance" : {
-			'drone' : "res://scene/entity/Drone.tscn",
-			'player' : "res://scene/entity/Player.tscn",
-			'food' : "res://scene/food/Food.tscn",
-			'material' : "res://scene/material/Material.tscn",
-			'cluster' : "res://scene/plant/Cluster.tscn",
-			'plant' : "res://scene/plant/Plant.tscn",
-			'tool' : "res://scene/tool/Tool.tscn",
-			'weapon' : "res://scene/weapon/Weapon.tscn",
+			'drone' : "res://scene/instance/Drone.tscn",
+			'player' : "res://scene/instance/Player.tscn",
+			'food' : "res://scene/instance/Food.tscn",
+			'material' : "res://scene/instance/Material.tscn",
+			'cluster' : "res://scene/instance/Cluster.tscn",
+			'plant' : "res://scene/instance/Plant.tscn",
+			'tool' : "res://scene/instance/Tool.tscn",
+			'weapon' : "res://scene/instance/Weapon.tscn",
 			'text' : "res://scene/ui/Text.tscn",
 			},
 

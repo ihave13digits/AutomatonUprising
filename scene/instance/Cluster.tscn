@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scene/plant/Cluster.gd" type="Script" id=1]
+[ext_resource path="res://scene/instance/Cluster.gd" type="Script" id=1]
+
 
 [node name="GrowthCluster" type="StaticBody"]
 script = ExtResource( 1 )
