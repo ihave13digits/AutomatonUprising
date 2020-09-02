@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scene/instance/Light.gd" type="Script" id=1]
+
+[node name="Light" type="OmniLight"]
+script = ExtResource( 1 )

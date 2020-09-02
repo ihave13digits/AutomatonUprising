@@ -209,7 +209,7 @@ func get_vanilla():
 #			'' : {
 #				'instance' : 'food',
 #				'mesh' : [],
-#				'data' : {
+#				'nutrients' : {
 #					'weight' : 0.0,
 #					'calorie' : 0.0,
 #					'sat_fat' : 0.0,
@@ -227,184 +227,27 @@ func get_vanilla():
 #					'vitamin_c' : 0.0
 #				}
 #			},
-			'apple' : {
-				'instance' : 'food',
-				'mesh' : ["res://mesh/food/apple.obj"],
-				'data' : {
-					'weight' : 0.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
-					'cholesterol' : 0.0,
-					'sodium' : 0.0,
-					'fiber' : 0.0,
-					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
-					'potassium' : 0.0,
-					'iron' : 0.0,
-					'vitamin_a' : 0.0,
-					'vitamin_c' : 0.0
-				}
-			},
-			'blackberry' : {
-				'instance' : 'food',
-				'mesh' : ["res://mesh/food/blackberry.obj"],
-				'data' : {
-					'weight' : 0.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
-					'cholesterol' : 0.0,
-					'sodium' : 0.0,
-					'fiber' : 0.0,
-					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
-					'potassium' : 0.0,
-					'iron' : 0.0,
-					'vitamin_a' : 0.0,
-					'vitamin_c' : 0.0}
-			},
-			'blueberry' : {
-				'instance' : 'food',
-				'mesh' : ["res://mesh/food/blueberry.obj"],
-				'data' : {
-					'weight' : 0.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
-					'cholesterol' : 0.0,
-					'sodium' : 0.0,
-					'fiber' : 0.0,
-					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
-					'potassium' : 0.0,
-					'iron' : 0.0,
-					'vitamin_a' : 0.0,
-					'vitamin_c' : 0.0}
-			},
-			'carrot' : {
-				'instance' : 'food',
-				'mesh' : ["res://mesh/food/carrot.obj"],
-				'data' : {
-					'weight' : 0.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
-					'cholesterol' : 0.0,
-					'sodium' : 0.0,
-					'fiber' : 0.0,
-					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
-					'potassium' : 0.0,
-					'iron' : 0.0,
-					'vitamin_a' : 0.0,
-					'vitamin_c' : 0.0}
-			},
-			'greenonion' : {
-				'instance' : 'food',
-				'mesh' : ["res://mesh/food/greenonion.obj"],
-				'data' : {
-					'weight' : 0.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
-					'cholesterol' : 0.0,
-					'sodium' : 0.0,
-					'fiber' : 0.0,
-					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
-					'potassium' : 0.0,
-					'iron' : 0.0,
-					'vitamin_a' : 0.0,
-					'vitamin_c' : 0.0}
-			},
-			'potato' : {
-				'instance' : 'food',
-				'mesh' : ["res://mesh/food/potato.obj"],
-				'data' : {
-					'weight' : 0.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
-					'cholesterol' : 0.0,
-					'sodium' : 0.0,
-					'fiber' : 0.0,
-					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
-					'potassium' : 0.0,
-					'iron' : 0.0,
-					'vitamin_a' : 0.0,
-					'vitamin_c' : 0.0}
-			},
-			'raspberry' : {
-				'instance' : 'food',
-				'mesh' : ["res://mesh/food/raspberry.obj"],
-				'data' : {
-					'weight' : 0.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
-					'cholesterol' : 0.0,
-					'sodium' : 0.0,
-					'fiber' : 0.0,
-					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
-					'potassium' : 0.0,
-					'iron' : 0.0,
-					'vitamin_a' : 0.0,
-					'vitamin_c' : 0.0}
-			},
-
-			'acorn' : {
-				'instance' : 'material',
-				'mesh' : ["res://mesh/material/acorn.obj"],
-				'data' : {'weight' : 0.0}
-				},
-			'boulder' : {
-				'instance' : 'material',
-				'mesh' : ["res://mesh/material/boulder0.obj",
-					"res://mesh/material/boulder1.obj",
-					"res://mesh/material/boulder2.obj",
-					"res://mesh/material/boulder3.obj"],
-				'data' : {'weight' : 0.0}
-				},
-			'hive' : {
-				'instance' : 'material',
-				'mesh' : ["res://mesh/material/hive.obj"],
-				'data' : {'weight' : 0.0}
-				},
-			'pinecone' : {
-				'instance' : 'material',
-				'mesh' : ["res://mesh/material/pinecone.obj"],
-				'data' : {'weight' : 0.0}
-				},
-			'stone' : {
-				'instance' : 'material',
-				'mesh' : ["res://mesh/material/stone0.obj",
-					"res://mesh/material/stone1.obj",
-					"res://mesh/material/stone2.obj",
-					"res://mesh/material/stone3.obj"],
-				'data' : {'weight' : 0.0}
-				},
-
 			'amaranth' : {
-				'instance' : 'plant',
+				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/plant/amaranth.obj"],
-				'data' : {
+				'nutrients' : {
+					'weight' : 200000.0,
+					'calorie' : 93.0,
+					'sat_fat' : 100.0,
+					'pol_fat' : 100.0,
+					'mon_fat' : 100.0,
+					'cholesterol' : 0.0,
+					'sodium' : 2.0,
+					'fiber' : 430.0,
+					'sugar' : 18600.0,
+					'protein' : 500.0,
+					'calcium' : 11.0,
+					'potassium' : 192.0,
+					'iron' : 1.0,
+					'vitamin_a' : 98.0,
+					'vitamin_c' : 8.0
+				},
+				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
 					'weight' : 0,
@@ -412,13 +255,279 @@ func get_vanilla():
 					'hp' : 0
 					}
 				},
+			'apple' : {
+				'instance' : ['food'],
+				'mesh' : ["res://mesh/food/apple.obj"],
+				'nutrients' : {
+					'weight' : 200000.0,
+					'calorie' : 93.0,
+					'sat_fat' : 100.0,
+					'pol_fat' : 100.0,
+					'mon_fat' : 100.0,
+					'cholesterol' : 0.0,
+					'sodium' : 2.0,
+					'fiber' : 430.0,
+					'sugar' : 18600.0,
+					'protein' : 500.0,
+					'calcium' : 11.0,
+					'potassium' : 192.0,
+					'iron' : 1.0,
+					'vitamin_a' : 98.0,
+					'vitamin_c' : 8.0
+				}
+			},
+			'blackberry' : {
+				'instance' : ['food'],
+				'mesh' : ["res://mesh/food/blackberry.obj"],
+				'nutrients' : {
+					'weight' : 1500.0,
+					'calorie' : 0.43,
+					'sat_fat' : 10.0,
+					'pol_fat' : 10.0,
+					'mon_fat' : 10.0,
+					'cholesterol' : 0.0,
+					'sodium' : 1.0,
+					'fiber' : 50.0,
+					'sugar' : 50.0,
+					'protein' : 10.0,
+					'calcium' : 0.3,
+					'potassium' : 1.6,
+					'iron' : 0.1,
+					'vitamin_a' : 2.2,
+					'vitamin_c' : 0.2}
+			},
+			'blueberry' : {
+				'instance' : ['food'],
+				'mesh' : ["res://mesh/food/blueberry.obj"],
+				'nutrients' : {
+					'weight' : 1250.0,
+					'calorie' : 0.6,
+					'sat_fat' : 10.0,
+					'pol_fat' : 10.0,
+					'mon_fat' : 10.0,
+					'cholesterol' : 0.0,
+					'sodium' : 0.1,
+					'fiber' : 20.0,
+					'sugar' : 1000.0,
+					'protein' : 10.0,
+					'calcium' : 1.0,
+					'potassium' : 0.8,
+					'iron' : 1.0,
+					'vitamin_a' : 6.0,
+					'vitamin_c' : 1.0}
+			},
+			'carrot' : {
+				'instance' : ['food', 'plant'],
+				'mesh' : ["res://mesh/food/carrot.obj"],
+				'nutrients' : {
+					'weight' : 85000.0,
+					'calorie' : 31.0,
+					'sat_fat' : 100.0,
+					'pol_fat' : 0.0,
+					'mon_fat' : 100.0,
+					'cholesterol' : 0.0,
+					'sodium' : 52.0,
+					'fiber' : 2100.0,
+					'sugar' : 3400.0,
+					'protein' : 700.0,
+					'calcium' : 25.0,
+					'potassium' : 242.0,
+					'iron' : 1.0,
+					'vitamin_a' : 12725.0,
+					'vitamin_c' : 4.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+			},
+			'clover' : {
+				'instance' : ['food', 'plant'],
+				'mesh' : ["res://mesh/plant/clover.obj"],
+				'nutrients' : {
+					'weight' : 0.0,
+					'calorie' : 0.0,
+					'sat_fat' : 0.0,
+					'pol_fat' : 0.0,
+					'mon_fat' : 0.0,
+					'cholesterol' : 0.0,
+					'sodium' : 0.0,
+					'fiber' : 0.0,
+					'sugar' : 0.0,
+					'protein' : 0.0,
+					'calcium' : 0.0,
+					'potassium' : 0.0,
+					'iron' : 0.0,
+					'vitamin_a' : 0.0,
+					'vitamin_c' : 0.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'greenonion' : {
+				'instance' : ['food', 'plant'],
+				'mesh' : ["res://mesh/food/greenonion.obj"],
+				'nutrients' : {
+					'weight' : 915.0,
+					'calorie' : 0.0,
+					'sat_fat' : 0.0,
+					'pol_fat' : 0.0,
+					'mon_fat' : 0.0,
+					'cholesterol' : 0.0,
+					'sodium' : 2.0,
+					'fiber' : 300.0,
+					'sugar' : 300.0,
+					'protein' : 200.0,
+					'calcium' : 10.0,
+					'potassium' : 0.0,
+					'iron' : 1.0,
+					'vitamin_a' : 100.0,
+					'vitamin_c' : 2.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+			},
+			'potato' : {
+				'instance' : ['food', 'plant'],
+				'mesh' : ["res://mesh/food/potato.obj"],
+				'nutrients' : {
+					'weight' : 173000.0,
+					'calorie' : 168.0,
+					'sat_fat' : 100.0,
+					'pol_fat' : 100.0,
+					'mon_fat' : 100.0,
+					'cholesterol' : 0.0,
+					'sodium' : 14.0,
+					'fiber' : 4000.0,
+					'sugar' : 1900.0,
+					'protein' : 4500.0,
+					'calcium' : 31.0,
+					'potassium' : 952.0,
+					'iron' : 2.0,
+					'vitamin_a' : 17.0,
+					'vitamin_c' : 22.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+			},
+			'raspberry' : {
+				'instance' : ['food'],
+				'mesh' : ["res://mesh/food/raspberry.obj"],
+				'nutrients' : {
+					'weight' : 1000.0,
+					'calorie' : 0.5,
+					'sat_fat' : 100.0,
+					'pol_fat' : 100.0,
+					'mon_fat' : 100.0,
+					'cholesterol' : 0.0,
+					'sodium' : 1.0,
+					'fiber' : 700.0,
+					'sugar' : 400.0,
+					'protein' : 100.0,
+					'calcium' : 3.0,
+					'potassium' : 15.0,
+					'iron' : 1.0,
+					'vitamin_a' : 4.0,
+					'vitamin_c' : 3.0}
+			},
+			'watercress' : {
+				'instance' : ['food', 'plant'],
+				'mesh' : ["res://mesh/plant/watercress.obj"],
+				'nutrients' : {
+					'weight' : 0.0,
+					'calorie' : 0.0,
+					'sat_fat' : 0.0,
+					'pol_fat' : 0.0,
+					'mon_fat' : 0.0,
+					'cholesterol' : 0.0,
+					'sodium' : 0.0,
+					'fiber' : 0.0,
+					'sugar' : 0.0,
+					'protein' : 0.0,
+					'calcium' : 0.0,
+					'potassium' : 0.0,
+					'iron' : 0.0,
+					'vitamin_a' : 0.0,
+					'vitamin_c' : 0.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+
+			'acorn' : {
+				'instance' : ['food', 'material'],
+				'mesh' : ["res://mesh/material/acorn.obj"],
+				'nutrients' : {
+					'weight' : 10.0,
+					'calorie' : 0.0,
+					'sat_fat' : 0.0,
+					'pol_fat' : 0.0,
+					'mon_fat' : 0.0,
+					'cholesterol' : 0.0,
+					'sodium' : 0.0,
+					'fiber' : 0.0,
+					'sugar' : 0.0,
+					'protein' : 0.0,
+					'calcium' : 0.0,
+					'potassium' : 0.0,
+					'iron' : 0.0,
+					'vitamin_a' : 0.0,
+					'vitamin_c' : 0.0},
+					'material' : {'weight' : 10.0}
+				},
+				
+			'boulder' : {
+				'instance' : ['material'],
+				'mesh' : ["res://mesh/material/boulder0.obj",
+					"res://mesh/material/boulder1.obj",
+					"res://mesh/material/boulder2.obj",
+					"res://mesh/material/boulder3.obj"],
+				'material' : {'weight' : 100000.0}
+				},
+			'hive' : {
+				'instance' : ['material'],
+				'mesh' : ["res://mesh/material/hive.obj"],
+				'material' : {'weight' : 100.0}
+				},
+			'pinecone' : {
+				'instance' : ['material'],
+				'mesh' : ["res://mesh/material/pinecone.obj"],
+				'material' : {'weight' : 100.0}
+				},
+			'stone' : {
+				'instance' : ['material'],
+				'mesh' : ["res://mesh/material/stone0.obj",
+					"res://mesh/material/stone1.obj",
+					"res://mesh/material/stone2.obj",
+					"res://mesh/material/stone3.obj"],
+				'material' : {'weight' : 1000.0}
+				},
+
 			'bush' : {
-				'instance' : 'plant',
+				'instance' : ['plant'],
 				'mesh' : ["res://mesh/plant/bush0.obj",
 					"res://mesh/plant/bush1.obj",
 					"res://mesh/plant/bush2.obj",
 					"res://mesh/plant/bush3.obj"],
-				'data' : {
+				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
 					'weight' : 0,
@@ -427,20 +536,9 @@ func get_vanilla():
 					}
 				},
 			'cattail' : {
-				'instance' : 'plant',
+				'instance' : ['plant'],
 				'mesh' : ["res://mesh/plant/cattail.obj"],
-				'data' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
-				},
-			'clover' : {
-				'instance' : 'plant',
-				'mesh' : ["res://mesh/plant/clover.obj"],
-				'data' : {
+				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
 					'weight' : 0,
@@ -449,9 +547,9 @@ func get_vanilla():
 					}
 				},
 			'purslane' : {
-				'instance' : 'plant',
+				'instance' : ['plant'],
 				'mesh' : ["res://mesh/plant/purslane.obj"],
-				'data' : {
+				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
 					'weight' : 0,
@@ -460,7 +558,7 @@ func get_vanilla():
 					}
 				},
 			'treeash' : {
-				'instance' : 'plant',
+				'instance' : ['plant'],
 				'mesh' : ["res://mesh/plant/tree-ash0.obj",
 					"res://mesh/plant/tree-ash1.obj",
 					"res://mesh/plant/tree-ash2.obj",
@@ -474,7 +572,7 @@ func get_vanilla():
 					}
 				},
 			'treeoak' : {
-				'instance' : 'plant',
+				'instance' : ['plant'],
 				'mesh' : ["res://mesh/plant/tree-oak0.obj",
 					"res://mesh/plant/tree-oak1.obj",
 					"res://mesh/plant/tree-oak2.obj",
@@ -488,7 +586,7 @@ func get_vanilla():
 					}
 				},
 			'treepine' : {
-				'instance' : 'plant',
+				'instance' : ['plant'],
 				'mesh' : ["res://mesh/plant/tree-pine0.obj",
 					"res://mesh/plant/tree-pine1.obj",
 					"res://mesh/plant/tree-pine2.obj",
@@ -501,147 +599,150 @@ func get_vanilla():
 					'hp' : 0
 					}
 				},
-			'watercress' : {
-				'instance' : 'plant',
-				'mesh' : ["res://mesh/plant/watercress.obj"],
-				'data' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
-				},
 
 			'anvil' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/anvil.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['repair', 'craft']
 				},
 			'axeiron' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/axe-iron.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy', 'harvest', 'craft']
 				},
 			'axestone' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/axe-stone.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy', 'harvest', 'craft']
 				},
 			'bowlclay' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/bowl-clay.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['consume', 'destroy', 'harvest']
 				},
 			'cupclay' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/cup-clay.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['consume', 'destroy', 'harvest']
 				},
 			'firepit' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/firepit.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy', 'craft', 'light']
 				},
 			'hammeriron' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/hammer-iron.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy', 'harvest', 'repair', 'build', 'craft']
 				},
 			'hammerstone' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/hammerstone.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy', 'harvest', 'repair', 'build', 'craft']
 				},
 			'handaxe' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/handaxe.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy', 'harvest', 'craft']
 				},
 			'knifestone' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/knife-stone.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy', 'harvest', 'craft']
 				},
 			'pickaxeiron' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/pickaxe-iron.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy', 'harvest']
 				},
 			'plateclay' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/plate-clay.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['consume', 'destroy', 'harvest', 'craft']
 				},
 			'spearstone' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/spear-stone.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['destroy']
 				},
 			'torch' : {
-				'instance' : 'tool',
+				'instance' : ['tool'],
 				'mesh' : ["res://mesh/tool/torch.obj"],
 				'data' : {
 					'weight' : 0.0,
 					'HP' : 0.0,
 					'hp' : 0.0
-					}
+					},
+				'use' : ['light']
 				},
 
 			'arrowiron' : {
-				'instance' : 'projectile',
+				'instance' : ['projectile'],
 				'mesh' : ["res://mesh/weapon/arrow-iron.obj"],
 				'data' : {
 					'damage' : 0.0,
@@ -650,7 +751,7 @@ func get_vanilla():
 				}
 				},
 			'arrowstone' : {
-				'instance' : 'projectile',
+				'instance' : ['projectile'],
 				'mesh' : ["res://mesh/weapon/arrow-stone.obj"],
 				'data' : {
 					'damage' : 0.0,
@@ -659,7 +760,7 @@ func get_vanilla():
 				}
 				},
 			'pulsecannon' : {
-				'instance' : 'weapon',
+				'instance' : ['weapon'],
 				'mesh' : ["res://mesh/weapon/pulse-cannon.obj"],
 				'data' : {
 					'damage' : 0,
@@ -670,7 +771,7 @@ func get_vanilla():
 					}
 				},
 			'pulsecharge' : {
-				'instance' : 'fuel',
+				'instance' : ['fuel'],
 				'mesh' : ["res://mesh/weapon/pulse-cannon_charge.obj"],
 				'data' : {
 					'energy' : 0.0,

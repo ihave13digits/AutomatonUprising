@@ -7,14 +7,13 @@ var mesh = {
 }
 
 var use = {
+	'consume' : false,
 	'destroy' : false,
 	'harvest' : false,
 	'repair' : false,
-	'travel' : false,
 	'build' : false,
 	'craft' : false,
-	'light' : false,
-	'throw' : false
+	'light' : false
 }
 
 var data = {
