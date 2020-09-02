@@ -206,7 +206,7 @@ func get_vanilla():
 			},
 			'player' : {
 				'instance' : 'player',
-				'mesh' : [],
+				'mesh' : [''],
 				'data' : {}
 			},
 
@@ -795,6 +795,7 @@ func get_vanilla():
 
 
 		"controls" : {
+			'menu' : 'Escape',
 			'move_forward' : 'W',
 			'move_backward' : 'S',
 			'move_left' : 'A',
@@ -820,6 +821,7 @@ func get_vanilla():
 		"settings" : {
 			'game_seed' : '',
 			'font_name' : '',
+			'max_pitch' : 60.0,
 			'mouse_sensitivity' : 0.25,
 			'wheel_sensitivity' : 0.25,
 			'message_font' : 16,
