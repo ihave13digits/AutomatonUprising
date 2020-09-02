@@ -231,21 +231,21 @@ func get_vanilla():
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/plant/amaranth.obj"],
 				'nutrients' : {
-					'weight' : 200000.0,
-					'calorie' : 93.0,
-					'sat_fat' : 100.0,
-					'pol_fat' : 100.0,
+					'weight' : 10000.0,
+					'calorie' : 37.0,
+					'sat_fat' : 200.0,
+					'pol_fat' : 300.0,
 					'mon_fat' : 100.0,
 					'cholesterol' : 0.0,
 					'sodium' : 2.0,
-					'fiber' : 430.0,
-					'sugar' : 18600.0,
-					'protein' : 500.0,
-					'calcium' : 11.0,
-					'potassium' : 192.0,
+					'fiber' : 900.0,
+					'sugar' : 0.0,
+					'protein' : 1400.0,
+					'calcium' : 15.0,
+					'potassium' : 37.0,
 					'iron' : 1.0,
-					'vitamin_a' : 98.0,
-					'vitamin_c' : 8.0
+					'vitamin_a' : 0.0,
+					'vitamin_c' : 1.0
 				},
 				'plant' : {
 					'growthrate' : 0,
@@ -347,21 +347,21 @@ func get_vanilla():
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/plant/clover.obj"],
 				'nutrients' : {
-					'weight' : 0.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
+					'weight' : 85000.0,
+					'calorie' : 25.0,
+					'sat_fat' : 200.0,
+					'pol_fat' : 100.0,
+					'mon_fat' : 100.0,
 					'cholesterol' : 0.0,
-					'sodium' : 0.0,
-					'fiber' : 0.0,
+					'sodium' : 5.0,
+					'fiber' : 2000.0,
 					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
+					'protein' : 3000.0,
+					'calcium' : 20.4,
 					'potassium' : 0.0,
-					'iron' : 0.0,
+					'iron' : 0.7,
 					'vitamin_a' : 0.0,
-					'vitamin_c' : 0.0},
+					'vitamin_c' : 6.0},
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
@@ -477,19 +477,19 @@ func get_vanilla():
 				'mesh' : ["res://mesh/material/acorn.obj"],
 				'nutrients' : {
 					'weight' : 10.0,
-					'calorie' : 0.0,
-					'sat_fat' : 0.0,
-					'pol_fat' : 0.0,
-					'mon_fat' : 0.0,
+					'calorie' : 39.0,
+					'sat_fat' : 300.0,
+					'pol_fat' : 500.0,
+					'mon_fat' : 1500.0,
 					'cholesterol' : 0.0,
 					'sodium' : 0.0,
-					'fiber' : 0.0,
-					'sugar' : 0.0,
-					'protein' : 0.0,
-					'calcium' : 0.0,
-					'potassium' : 0.0,
-					'iron' : 0.0,
-					'vitamin_a' : 0.0,
+					'fiber' : 2500.0,
+					'sugar' : 500.0,
+					'protein' : 600.0,
+					'calcium' : 4.0,
+					'potassium' : 54.0,
+					'iron' : 1.0,
+					'vitamin_a' : 4.0,
 					'vitamin_c' : 0.0},
 					'material' : {'weight' : 10.0}
 				},
@@ -500,17 +500,17 @@ func get_vanilla():
 					"res://mesh/material/boulder1.obj",
 					"res://mesh/material/boulder2.obj",
 					"res://mesh/material/boulder3.obj"],
-				'material' : {'weight' : 100000.0}
+				'material' : {'weight' : 10000000.0}
 				},
 			'hive' : {
 				'instance' : ['material'],
 				'mesh' : ["res://mesh/material/hive.obj"],
-				'material' : {'weight' : 100.0}
+				'material' : {'weight' : 10000.0}
 				},
 			'pinecone' : {
 				'instance' : ['material'],
 				'mesh' : ["res://mesh/material/pinecone.obj"],
-				'material' : {'weight' : 100.0}
+				'material' : {'weight' : 5000.0}
 				},
 			'stone' : {
 				'instance' : ['material'],
@@ -518,7 +518,7 @@ func get_vanilla():
 					"res://mesh/material/stone1.obj",
 					"res://mesh/material/stone2.obj",
 					"res://mesh/material/stone3.obj"],
-				'material' : {'weight' : 1000.0}
+				'material' : {'weight' : 100000.0}
 				},
 
 			'bush' : {
