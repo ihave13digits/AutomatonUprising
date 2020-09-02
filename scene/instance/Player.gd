@@ -18,7 +18,6 @@ var data = {
 }
 
 var inventory = {
-	'axestone' : 1,
 }
 
 var nutrients = {
@@ -59,3 +58,23 @@ func _process(delta):
 
 func control(_delta):
 	pass
+
+func _input(event):
+	if event is InputEventMouseButton:
+		pass
+	
+	if event is InputEventMouseMotion:
+		pass
+	
+	if event is InputEventKey:
+		var key = OS.get_scancode_string(event.scancode)
+		
+		if key == Data.controls['move_forward']:
+			pass
+		elif key == Data.controls['move_backward']:
+			pass
+
+		if key == Data.controls['move_left']:
+			pass
+		elif key == Data.controls['move_right']:
+			pass

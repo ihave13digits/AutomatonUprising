@@ -5,6 +5,7 @@ var biome = {}
 var effect = {}
 var object = {}
 var recipe = {}
+var controls = {}
 var instance = {}
 var settings = {}
 var allowance = {}
@@ -25,18 +26,20 @@ func load_game_data(mod_dir):
 	data['biome'] = parse_json(file.get_line())
 	data['object'] = parse_json(file.get_line())
 	data['recipe'] = parse_json(file.get_line())
+	data['controls'] = parse_json(file.get_line())
 	data['instance'] = parse_json(file.get_line())
 	data['settings'] = parse_json(file.get_line())
 	data['allowance'] = parse_json(file.get_line())
 	file.close()
 	
-	if data != get_vanilla():
+	if data.size() != get_vanilla().size():
 		print("Game modded")
 	
 	load_mod(time, data['time'])
 	load_mod(biome, data['biome'])
 	load_mod(object, data['object'])
 	load_mod(recipe, data['recipe'])
+	load_mod(controls, data['controls'])
 	load_mod(instance, data['instance'])
 	load_mod(settings, data['settings'])
 	load_mod(allowance, data['allowance'])
@@ -55,6 +58,7 @@ func store_vanilla():
 	f.store_line(to_json(get_vanilla()['biome']))
 	f.store_line(to_json(get_vanilla()['object']))
 	f.store_line(to_json(get_vanilla()['recipe']))
+	f.store_line(to_json(get_vanilla()['controls']))
 	f.store_line(to_json(get_vanilla()['instance']))
 	f.store_line(to_json(get_vanilla()['settings']))
 	f.store_line(to_json(get_vanilla()['allowance']))
@@ -787,6 +791,15 @@ func get_vanilla():
 				'give' : {},
 				'need' : {}},
 			},
+
+
+
+		"controls" : {
+			'move_forward' : 'W',
+			'move_backward' : 'S',
+			'move_left' : 'A',
+			'move_right' : 'D',
+		},
 
 
 

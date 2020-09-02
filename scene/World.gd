@@ -16,7 +16,14 @@ func set_noise_values(n, sd, pd, oc, la, pr):
 	n.lacunarity = la
 	n.persistence = pr
 
-func generate_chunk(x, y):
-	var fissure = noise_fissure.get_noise_2d(x, y)
-	var moisture = noise_moisture.get_noise_2d(x, y)
-	var temperature = noise_temperature.get_noise_2d(x, y)
+func generate_chunk(x, z):
+	var fissure = noise_fissure.get_noise_2d(x, z)
+	var moisture = noise_moisture.get_noise_2d(x, z)
+	var temperature = noise_temperature.get_noise_2d(x, z)
+	
+	print(get_biome(fissure, 'fissure'))
+
+func get_biome(v, t):
+	for b in Data.biome:
+		if v > Data.biome[b]['noise'][t]:
+			return b
