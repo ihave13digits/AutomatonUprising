@@ -63,13 +63,10 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.mesh = load(mesh['hand'])
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
-func _process(delta):
-	control(delta)
-
-func control(_delta):
-	pass
-
 func _input(event):
+	control(event)
+
+func control(event):
 	if event is InputEventMouseButton:
 		
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:

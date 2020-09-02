@@ -9,7 +9,7 @@ func duration(t:float, b):
 	stack = b
 
 func prepare_text(txt, aln, size):
-	text = (txt)
+	text = str(txt)
 	align_text(aln)
 	var name
 	var font
@@ -24,13 +24,13 @@ func prepare_text(txt, aln, size):
 func align_text(aln):
 	match aln:
 		'center':
-			align = Label.ALIGN_CENTER; grow_horizontal = Control.GROW_DIRECTION_BOTH
+			align = Label.ALIGN_CENTER; grow_horizontal = Control.GROW_DIRECTION_BOTH;
 		'fill':
-			align = Label.ALIGN_FILL; grow_horizontal = Control.GROW_DIRECTION_BOTH
+			align = Label.ALIGN_FILL; grow_horizontal = Control.GROW_DIRECTION_BOTH;
 		'left':
-			align = Label.ALIGN_LEFT; grow_horizontal = Control.GROW_DIRECTION_BEGIN
+			align = Label.ALIGN_LEFT; grow_horizontal = Control.GROW_DIRECTION_BEGIN;
 		'right':
-			align = Label.ALIGN_RIGHT; grow_horizontal = Control.GROW_DIRECTION_END
+			align = Label.ALIGN_RIGHT; grow_horizontal = Control.GROW_DIRECTION_END;
 
 func _on_Anim_animation_finished(_anim_name):
 	queue_free()
