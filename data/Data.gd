@@ -5,6 +5,7 @@ var biome = {}
 var effect = {}
 var object = {}
 var recipe = {}
+var texture = {}
 var controls = {}
 var instance = {}
 var settings = {}
@@ -26,6 +27,7 @@ func load_game_data(mod_dir):
 	data['biome'] = parse_json(file.get_line())
 	data['object'] = parse_json(file.get_line())
 	data['recipe'] = parse_json(file.get_line())
+	data['texture'] = parse_json(file.get_line())
 	data['controls'] = parse_json(file.get_line())
 	data['instance'] = parse_json(file.get_line())
 	data['settings'] = parse_json(file.get_line())
@@ -39,6 +41,7 @@ func load_game_data(mod_dir):
 	load_mod(biome, data['biome'])
 	load_mod(object, data['object'])
 	load_mod(recipe, data['recipe'])
+	load_mod(texture, data['texture'])
 	load_mod(controls, data['controls'])
 	load_mod(instance, data['instance'])
 	load_mod(settings, data['settings'])
@@ -58,6 +61,7 @@ func store_vanilla():
 	f.store_line(to_json(get_vanilla()['biome']))
 	f.store_line(to_json(get_vanilla()['object']))
 	f.store_line(to_json(get_vanilla()['recipe']))
+	f.store_line(to_json(get_vanilla()['texture']))
 	f.store_line(to_json(get_vanilla()['controls']))
 	f.store_line(to_json(get_vanilla()['instance']))
 	f.store_line(to_json(get_vanilla()['settings']))
@@ -782,6 +786,13 @@ func get_vanilla():
 					'weight' : 0.0
 				}
 				},
+			},
+
+
+
+		"texture" : {
+			'cursor_texture' : "res://image/ui/cursor.png",
+			'menu_texture' : "res://image/ui/menu.png",
 			},
 
 

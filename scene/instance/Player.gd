@@ -72,6 +72,7 @@ func control(event):
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			has_control = true
+			emit_signal("update_hud")
 		
 		if cursor.get_collider() != null:
 			print(cursor.get_collider().id)

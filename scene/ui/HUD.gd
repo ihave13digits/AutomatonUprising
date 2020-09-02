@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-onready var cursor = $CursorImg
+onready var cursor = $Cursor/Img
 
 var size
 var message_count
