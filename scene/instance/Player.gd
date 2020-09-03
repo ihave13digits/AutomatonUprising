@@ -3,7 +3,10 @@ extends KinematicBody
 signal update_hud
 
 onready var cursor = $Y/X/Cam/Cursor
+
 var has_control = true
+
+var velocity = Vector3()
 
 var _yaw = 0.0
 var _pitch = 0.0
@@ -19,6 +22,7 @@ var data = {
 	# Stats
 	'HP' : 0.0,
 	'hp' : 0.0,
+	'speed' : 100.0,
 	# Specified
 	'gender' : 0.0,
 	'height' : 1.8,
@@ -64,9 +68,18 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
 func _input(event):
-	control(event)
+	_control(event)
 
-func control(event):
+func _process(delta):
+	velocity *= 0.1
+	
+	if velocity.length() > 0.01:
+		velocity /= velocity.length()
+
+		var motion = velocity * (data['speed'] * delta)
+		motion = move_and_slide(motion)
+
+func _control(event):
 	if event is InputEventMouseButton:
 		
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
@@ -75,7 +88,7 @@ func control(event):
 			emit_signal("update_hud")
 		
 		if cursor.get_collider() != null:
-			print(cursor.get_collider().id)
+			get_parent().hud.display_message(cursor.get_collider().id)
 			
 	if has_control:
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -93,17 +106,22 @@ func control(event):
 		if event is InputEventKey:
 			var key = OS.get_scancode_string(event.scancode)
 			
-			if key == Data.controls['move_forward']:
-				pass
-			elif key == Data.controls['move_backward']:
-				pass
-	
-			if key == Data.controls['move_left']:
-				pass
-			elif key == Data.controls['move_right']:
-				pass
-	
 			if key == Data.controls['menu']:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				has_control = false
-			emit_signal("update_hud")
+				emit_signal("update_hud")
+			
+			if key == Data.controls['boost_speed']:
+				if event.pressed:
+					data['speed'] *= 2
+				elif !event.pressed:
+					data['speed'] /= 2
+
+			if key == Data.controls['move_forward']:
+				velocity -= $Y.get_transform().basis.z
+			elif key == Data.controls['move_backward']:
+				velocity += $Y.get_transform().basis.z
+			if key == Data.controls['move_left']:
+				velocity -= $Y.get_transform().basis.x
+			elif key == Data.controls['move_right']:
+				velocity += $Y.get_transform().basis.x

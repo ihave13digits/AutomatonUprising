@@ -807,6 +807,7 @@ func get_vanilla():
 
 		"controls" : {
 			'menu' : 'Escape',
+			'boost_speed' : 'Shift',
 			'move_forward' : 'W',
 			'move_backward' : 'S',
 			'move_left' : 'A',

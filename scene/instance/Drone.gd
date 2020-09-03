@@ -1,6 +1,6 @@
 extends KinematicBody
 
-var id = ''
+var id = 'drone'
 
 var data = {
 	'weight' : 0,

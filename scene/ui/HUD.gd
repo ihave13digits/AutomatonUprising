@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-onready var cursor = $Cursor/Img
+onready var center_img = $Center/Img
 
 var size
 var message_count
@@ -8,6 +8,11 @@ var message_count
 func _ready():
 	size = Data.settings['message_font']
 	message_count = 0
+
+func update_center_image(sz, ps, tx):
+	center_img.rect_size = sz
+	center_img.rect_position = ps
+	center_img.texture = load(tx)
 
 func popup(pos, dir, txt, aln, dur, stack):
 	var text = load(Data.instance['text']).instance()

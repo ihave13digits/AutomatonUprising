@@ -7,7 +7,6 @@ var player
 func _ready():
 	add_player()
 	hud = $HUD
-	#hud.cursor.position = OS.get_real_window_size() / 2
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up"): hud.display_message('stacked popup test')
@@ -16,10 +15,9 @@ func _process(_delta):
 
 func _update_hud():
 	if player.has_control:
-		hud.cursor.texture = load(Data.texture['cursor_texture'])
+		hud.update_center_image(Vector2(48, 48), Vector2(-24, -24), Data.texture['cursor_texture'])
 	else:
-		hud.cursor.texture = load(Data.texture['menu_texture'])
-	hud.cursor.position = Vector2()
+		hud.update_center_image(Vector2(128, 256), Vector2(-64, -128), Data.texture['menu_texture'])
 
 func add_player():
 	player = spawn('player')
