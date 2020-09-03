@@ -7,6 +7,7 @@ var player
 func _ready():
 	add_player()
 	hud = $HUD
+	world = $World
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up"): hud.display_message('stacked popup test')

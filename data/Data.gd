@@ -2,7 +2,6 @@ extends Node
 
 var time = {}
 var biome = {}
-var effect = {}
 var object = {}
 var recipe = {}
 var texture = {}
@@ -833,11 +832,14 @@ func get_vanilla():
 		"settings" : {
 			'game_seed' : '',
 			'font_name' : '',
-			'max_pitch' : 60.0,
+			
+			'message_font' : 16,
+			
 			'mouse_sensitivity' : 0.25,
 			'wheel_sensitivity' : 0.25,
-			'message_font' : 16,
+			'max_pitch' : 60.0,
 			'effects' : 0.0,
+			'gravity' : 0.0,
 			'music' : 0.0,
 			},
 
