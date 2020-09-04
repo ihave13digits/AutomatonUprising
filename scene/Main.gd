@@ -23,14 +23,23 @@ func _update_hud():
 func add_player():
 	player = spawn('player')
 	player.mesh['body'] = Data.object['player']['mesh'][0]
-	#player.set_held(Data.object['axestone']['mesh'][0])
+	player.set_held(Data.object['axestone']['mesh'][0])
 	player.ready()
 	add_child(player)
 	player.connect('update_hud', self, '_update_hud')
 
-func mesh(m):
+func mesh(m, pos=null):
 	var M = load(Data.object[m]['mesh'][0])
-	return M
+	if !pos:
+		return M
+	else:
+		var mdt = MeshDataTool.new()
+		mdt.create_from_surface(M, 0)
+		for v in range(mdt.get_vertex_count()):
+			var vrt = mdt.get_vertex(v)
+			vrt.set_vertex_uv(pos)
+		mdt.commit_to_surface(M)
+		return M
 
 func spawn(i):
 	var I = load(Data.instance[i])

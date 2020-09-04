@@ -22,7 +22,7 @@ var data = {
 	# Stats
 	'HP' : 0.0,
 	'hp' : 0.0,
-	'speed' : 1000.0,
+	'speed' : 500.0,
 	# Specified
 	'gender' : 0.0,
 	'height' : 1.8,
