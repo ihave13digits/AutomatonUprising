@@ -9,3 +9,4 @@ Scope:
     research tree
     agriculture
     crafting
+    modding
