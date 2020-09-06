@@ -237,7 +237,7 @@ func get_vanilla():
 			'amaranth' : {
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/plant/amaranth.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 10000.0,
 					'calorie' : 37.0,
 					'sat_fat' : 200.0,
@@ -265,7 +265,7 @@ func get_vanilla():
 			'apple' : {
 				'instance' : ['food'],
 				'mesh' : ["res://mesh/food/apple.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 200000.0,
 					'calorie' : 93.0,
 					'sat_fat' : 100.0,
@@ -286,7 +286,7 @@ func get_vanilla():
 			'blackberry' : {
 				'instance' : ['food'],
 				'mesh' : ["res://mesh/food/blackberry.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 1500.0,
 					'calorie' : 0.43,
 					'sat_fat' : 10.0,
@@ -306,7 +306,7 @@ func get_vanilla():
 			'blueberry' : {
 				'instance' : ['food'],
 				'mesh' : ["res://mesh/food/blueberry.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 1250.0,
 					'calorie' : 0.6,
 					'sat_fat' : 10.0,
@@ -326,7 +326,7 @@ func get_vanilla():
 			'carrot' : {
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/food/carrot.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 85000.0,
 					'calorie' : 31.0,
 					'sat_fat' : 100.0,
@@ -353,7 +353,7 @@ func get_vanilla():
 			'clover' : {
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/plant/clover.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 85000.0,
 					'calorie' : 25.0,
 					'sat_fat' : 200.0,
@@ -380,7 +380,7 @@ func get_vanilla():
 			'greenonion' : {
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/food/greenonion.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 915.0,
 					'calorie' : 0.0,
 					'sat_fat' : 0.0,
@@ -407,7 +407,7 @@ func get_vanilla():
 			'potato' : {
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/food/potato.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 173000.0,
 					'calorie' : 168.0,
 					'sat_fat' : 100.0,
@@ -434,7 +434,7 @@ func get_vanilla():
 			'raspberry' : {
 				'instance' : ['food'],
 				'mesh' : ["res://mesh/food/raspberry.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 1000.0,
 					'calorie' : 0.5,
 					'sat_fat' : 100.0,
@@ -454,7 +454,7 @@ func get_vanilla():
 			'watercress' : {
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/plant/watercress.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 0.0,
 					'calorie' : 0.0,
 					'sat_fat' : 0.0,
@@ -482,7 +482,7 @@ func get_vanilla():
 			'acorn' : {
 				'instance' : ['food', 'material'],
 				'mesh' : ["res://mesh/material/acorn.obj"],
-				'nutrients' : {
+				'food' : {
 					'weight' : 10.0,
 					'calorie' : 39.0,
 					'sat_fat' : 300.0,
@@ -825,22 +825,24 @@ func get_vanilla():
 			'tool' : "res://scene/instance/Tool.tscn",
 			'weapon' : "res://scene/instance/Weapon.tscn",
 			'text' : "res://scene/ui/Text.tscn",
+			'setter' : "res://scene/ui/SettingSetter.tscn",
 			},
 
 
 
 		"settings" : {
-			'game_seed' : '',
-			'font_name' : '',
+			'game_seed' : {'value' : '', 'min' : 0, 'max' : 16},
+			'font_name' : {'value' : '', 'min' : 0, 'max' : 128},
 			
-			'message_font' : 16,
+			'message_font' : {'value' : 16, 'min' : 0, 'max' : 0},
 			
-			'mouse_sensitivity' : 0.25,
-			'wheel_sensitivity' : 0.25,
-			'max_pitch' : 60.0,
-			'effects' : 0.0,
-			'gravity' : 0.0,
-			'music' : 0.0,
+			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0, 'max' : 0},
+			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0, 'max' : 0},
+			'hud_opacity' : {'value' : 0.75, 'min' : 0, 'max' : 0},
+			'max_pitch' : {'value' : 60.0, 'min' : 0, 'max' : 0},
+			'effects' : {'value' : 0.0, 'min' : 0, 'max' : 0},
+			'gravity' : {'value' : 0.0, 'min' : 0, 'max' : 0},
+			'music' : {'value' : 0.0, 'min' : 0, 'max' : 0},
 			},
 
 

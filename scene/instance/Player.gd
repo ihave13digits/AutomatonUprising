@@ -71,7 +71,7 @@ func _physics_process(delta):
 	if !has_control:
 		return
 		
-	velocity -= Vector3(0, Data.settings['gravity'], 0)
+	velocity -= Vector3(0, Data.settings['gravity']['value'], 0)
 	if velocity.length() > 0.01:
 		velocity /= velocity.length()
 
@@ -92,13 +92,13 @@ func _input(event):
 	if !has_control:
 		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		_yaw -= event.relative.x * Data.settings['mouse_sensitivity']
-		_pitch += event.relative.y * Data.settings['mouse_sensitivity']
+		_yaw -= event.relative.x * Data.settings['mouse_sensitivity']['value']
+		_pitch += event.relative.y * Data.settings['mouse_sensitivity']['value']
 		
-		if _pitch > Data.settings['max_pitch']:
-			_pitch = Data.settings['max_pitch']
-		elif _pitch < -Data.settings['max_pitch']:
-			_pitch = -Data.settings['max_pitch']
+		if _pitch > Data.settings['max_pitch']['value']:
+			_pitch = Data.settings['max_pitch']['value']
+		elif _pitch < -Data.settings['max_pitch']['value']:
+			_pitch = -Data.settings['max_pitch']['value']
 			
 		$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 		$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))

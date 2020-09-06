@@ -19,11 +19,12 @@ func _update_hud():
 		hud.update_center_image(Vector2(48, 48), Vector2(-24, -24), Data.texture['cursor_texture'])
 	else:
 		hud.update_center_image(Vector2(128, 256), Vector2(-64, -128), Data.texture['menu_texture'])
+	hud.center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value'])
 
 func add_player():
 	player = spawn('player')
 	player.mesh['body'] = Data.object['player']['mesh'][0]
-	player.set_held(Data.object['axestone']['mesh'][0])
+	#player.set_held(Data.object['axestone']['mesh'][0])
 	player.ready()
 	add_child(player)
 	player.connect('update_hud', self, '_update_hud')

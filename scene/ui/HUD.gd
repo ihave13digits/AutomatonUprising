@@ -1,12 +1,13 @@
 extends CanvasLayer
 
-onready var center_img = $Center/Img
-
+var center_img
 var size
 var message_count
 
 func _ready():
-	size = Data.settings['message_font']
+	center_img = $Center/Img
+	center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value'])
+	size = Data.settings['message_font']['value']
 	message_count = 0
 
 func update_center_image(sz, ps, tx):
