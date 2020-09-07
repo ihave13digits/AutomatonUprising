@@ -29,11 +29,3 @@ func add_player(pos):
 	player.ready()
 	add_child(player)
 	player.connect('update_hud', self, '_update_hud')
-
-func spawn(t, pos):
-	var target = Data.object[t]
-	var inst = target['instance'][0]
-	var I = load(Data.instance[inst]).instance()
-	I.translation = pos
-	I.mesh['body'] = Data.object[t]['mesh'][0]
-	add_child(I)

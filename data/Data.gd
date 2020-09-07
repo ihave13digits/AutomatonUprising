@@ -845,9 +845,11 @@ func get_vanilla():
 
 
 		"physics" : {
-			"world_size" : 2,
+			"world_size" : 1,#64,
+			"chunk_size" : 16,
+			"tile_size" : 2,
 			
-			"max_height" : 1000.0,
+			"max_height" : 50.0,
 			"gravity" : 0.25,
 			},
 
