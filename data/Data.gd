@@ -4,6 +4,7 @@ var time = {}
 var biome = {}
 var object = {}
 var recipe = {}
+var physics = {}
 var texture = {}
 var controls = {}
 var instance = {}
@@ -26,6 +27,7 @@ func load_game_data(mod_dir):
 	data['biome'] = parse_json(file.get_line())
 	data['object'] = parse_json(file.get_line())
 	data['recipe'] = parse_json(file.get_line())
+	data['physics'] = parse_json(file.get_line())
 	data['texture'] = parse_json(file.get_line())
 	data['controls'] = parse_json(file.get_line())
 	data['instance'] = parse_json(file.get_line())
@@ -40,6 +42,7 @@ func load_game_data(mod_dir):
 	load_mod(biome, data['biome'])
 	load_mod(object, data['object'])
 	load_mod(recipe, data['recipe'])
+	load_mod(physics, data['physics'])
 	load_mod(texture, data['texture'])
 	load_mod(controls, data['controls'])
 	load_mod(instance, data['instance'])
@@ -60,6 +63,7 @@ func store_vanilla():
 	f.store_line(to_json(get_vanilla()['biome']))
 	f.store_line(to_json(get_vanilla()['object']))
 	f.store_line(to_json(get_vanilla()['recipe']))
+	f.store_line(to_json(get_vanilla()['physics']))
 	f.store_line(to_json(get_vanilla()['texture']))
 	f.store_line(to_json(get_vanilla()['controls']))
 	f.store_line(to_json(get_vanilla()['instance']))
@@ -785,6 +789,28 @@ func get_vanilla():
 					'weight' : 0.0
 				}
 				},
+
+			'tileflat' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/tile_0.obj"],
+				'data' : {
+					
+				}
+				},
+			'tileside' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/side_0.obj"],
+				'data' : {
+					
+				}
+				},
+			'tilecorner' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/corner_0.obj"],
+				'data' : {
+					
+				}
+				},
 			},
 
 
@@ -804,9 +830,19 @@ func get_vanilla():
 
 
 
+		"physics" : {
+			"world_size" : 2,
+			
+			"max_height" : 1000.0,
+			"gravity" : 0.25,
+			},
+
+
+
 		"controls" : {
 			'menu' : 'Escape',
-			'boost_speed' : 'Shift',
+			'run' : 'Control',
+			'jog' : 'Shift',
 			'move_forward' : 'W',
 			'move_backward' : 'S',
 			'move_left' : 'A',
@@ -824,6 +860,8 @@ func get_vanilla():
 			'plant' : "res://scene/instance/Plant.tscn",
 			'tool' : "res://scene/instance/Tool.tscn",
 			'weapon' : "res://scene/instance/Weapon.tscn",
+			'tile' : "res://scene/instance/Tile.tscn",
+			
 			'text' : "res://scene/ui/Text.tscn",
 			'setter' : "res://scene/ui/SettingSetter.tscn",
 			},
@@ -841,7 +879,6 @@ func get_vanilla():
 			'hud_opacity' : {'value' : 0.75, 'min' : 0, 'max' : 0},
 			'max_pitch' : {'value' : 60.0, 'min' : 0, 'max' : 0},
 			'effects' : {'value' : 0.0, 'min' : 0, 'max' : 0},
-			'gravity' : {'value' : 0.25, 'min' : 0, 'max' : 0},
 			'music' : {'value' : 0.0, 'min' : 0, 'max' : 0},
 			},
 

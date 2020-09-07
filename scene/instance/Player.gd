@@ -72,12 +72,12 @@ func _physics_process(delta):
 	if !has_control or is_paused:
 		return
 		
-	velocity -= Vector3(0, Data.settings['gravity']['value'], 0)
+	velocity -= Vector3(0, Data.physics['gravity'], 0)
 	if velocity.length() > 0.01:
 		velocity /= velocity.length()
 
 		var motion = velocity * (data['speed'] * delta)
-		motion = move_and_slide(motion, Vector3.UP, true, 4, 0.78, false)
+		motion = move_and_slide(motion, Vector3.UP, false, 4, 0.78, true)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -108,8 +108,12 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				has_control = false
 				emit_signal("update_hud")
-			if key == Data.controls['boost_speed']:
+				
+			if key == Data.controls['jog']:
 					data['speed'] *= 2
+			elif key == Data.controls['run']:
+					data['speed'] *= 3
+			
 			if key == Data.controls['move_forward']:
 				velocity = -$Y.get_transform().basis.z
 			elif key == Data.controls['move_backward']:
@@ -118,8 +122,10 @@ func _input(event):
 				velocity = -$Y.get_transform().basis.x
 			elif key == Data.controls['move_right']:
 				velocity = $Y.get_transform().basis.x
+			
 			$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 			$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))
+		
 		if !event.pressed:
-			if key == Data.controls['boost_speed']:
-				data['speed'] /= 2
+			if key == Data.controls['jog'] or key == Data.controls['run']:
+				data['speed'] = 500

@@ -8,6 +8,7 @@ func _ready():
 	add_player(Vector3(0, 0, 0))
 	hud = $HUD
 	world = $World
+	spawn('tileflat', Vector3(0, -10, 0))
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up"): hud.display_message('stacked popup test')

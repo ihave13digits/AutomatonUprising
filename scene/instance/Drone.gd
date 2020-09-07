@@ -2,6 +2,10 @@ extends KinematicBody
 
 var id = 'drone'
 
+var mesh = {
+	'body' : "",
+}
+
 var data = {
 	'weight' : 0,
 	'HP' : 0,
