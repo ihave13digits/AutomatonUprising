@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sidecave.obj-c8878c32a78c07a35d1a79b897117f55.mesh"
+
+[deps]
+
+files=[ "res://.import/sidecave.obj-c8878c32a78c07a35d1a79b897117f55.mesh" ]
+
+source_file="res://mesh/tile/sidecave.obj"
+dest_files=[ "res://.import/sidecave.obj-c8878c32a78c07a35d1a79b897117f55.mesh", "res://.import/sidecave.obj-c8878c32a78c07a35d1a79b897117f55.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

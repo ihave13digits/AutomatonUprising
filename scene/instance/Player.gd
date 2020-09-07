@@ -71,7 +71,7 @@ func set_held(obj=null):
 func _physics_process(delta):
 	if !has_control or is_paused:
 		return
-		
+
 	velocity -= Vector3(0, Data.physics['gravity'], 0)
 	if velocity.length() > 0.01:
 		velocity /= velocity.length()
@@ -108,7 +108,10 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				has_control = false
 				emit_signal("update_hud")
-				
+			
+			if key == Data.controls['jump']:
+				velocity = $Y.get_transform().basis.y
+			
 			if key == Data.controls['jog']:
 					data['speed'] *= 2
 			elif key == Data.controls['run']:

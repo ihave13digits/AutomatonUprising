@@ -792,21 +792,35 @@ func get_vanilla():
 
 			'tileflat' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/tile_0.obj"],
+				'mesh' : ["res://mesh/tile/flat.obj"],
 				'data' : {
 					
 				}
 				},
-			'tileside' : {
+			'tilesidecave' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/side_0.obj"],
+				'mesh' : ["res://mesh/tile/sidecave.obj"],
 				'data' : {
 					
 				}
 				},
-			'tilecorner' : {
+			'tilesidevex' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/corner_0.obj"],
+				'mesh' : ["res://mesh/tile/sidevex.obj"],
+				'data' : {
+					
+				}
+				},
+			'tilecave' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/cave.obj"],
+				'data' : {
+					
+				}
+				},
+			'tilevex' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/vex.obj"],
 				'data' : {
 					
 				}
@@ -843,6 +857,7 @@ func get_vanilla():
 			'menu' : 'Escape',
 			'run' : 'Control',
 			'jog' : 'Shift',
+			'jump' : 'Space',
 			'move_forward' : 'W',
 			'move_backward' : 'S',
 			'move_left' : 'A',
