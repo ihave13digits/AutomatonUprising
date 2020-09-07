@@ -54,7 +54,7 @@ var nutrients = {
 func ready():
 	#$Mesh.mesh = load(mesh['body'])
 	$Y/X/Hand.translation.y -= data['height'] * 0.25
-	$Y.translation.y = data['height']
+	$Y.translation.y = data['height'] - data['height']*0.1
 	$Box.shape.height = data['height'] / 2
 	$Box.translation.y = data['height'] / 2
 
@@ -77,53 +77,49 @@ func _physics_process(delta):
 		velocity /= velocity.length()
 
 		var motion = velocity * (data['speed'] * delta)
-		motion = move_and_slide(motion)
+		motion = move_and_slide(motion, Vector3.UP, true, 4, 0.78, false)
 
 func _input(event):
 	if event is InputEventMouseButton:
-		
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			has_control = true
 			emit_signal("update_hud")
-		
 		if cursor.get_collider() != null:
 			get_parent().hud.display_message(cursor.get_collider().id)
-			
+
 	if !has_control or is_paused:
 		return
+
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		_yaw -= event.relative.x * Data.settings['mouse_sensitivity']['value']
 		_pitch += event.relative.y * Data.settings['mouse_sensitivity']['value']
-		
 		if _pitch > Data.settings['max_pitch']['value']:
 			_pitch = Data.settings['max_pitch']['value']
 		elif _pitch < -Data.settings['max_pitch']['value']:
 			_pitch = -Data.settings['max_pitch']['value']
-			
 		$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 		$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))
-	
+
 	if event is InputEventKey:
 		var key = OS.get_scancode_string(event.scancode)
-		
-		if key == Data.controls['menu']:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			has_control = false
-			emit_signal("update_hud")
-		
-		if key == Data.controls['boost_speed']:
-			if event.pressed:
-				data['speed'] *= 2
-			elif !event.pressed:
+		if event.pressed:
+			if key == Data.controls['menu']:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				has_control = false
+				emit_signal("update_hud")
+			if key == Data.controls['boost_speed']:
+					data['speed'] *= 2
+			if key == Data.controls['move_forward']:
+				velocity = -$Y.get_transform().basis.z
+			elif key == Data.controls['move_backward']:
+				velocity = $Y.get_transform().basis.z
+			if key == Data.controls['move_left']:
+				velocity = -$Y.get_transform().basis.x
+			elif key == Data.controls['move_right']:
+				velocity = $Y.get_transform().basis.x
+			$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
+			$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))
+		if !event.pressed:
+			if key == Data.controls['boost_speed']:
 				data['speed'] /= 2
-
-		if key == Data.controls['move_forward']:
-			velocity -= $Y.get_transform().basis.z
-		elif key == Data.controls['move_backward']:
-			velocity += $Y.get_transform().basis.z
-		if key == Data.controls['move_left']:
-			velocity -= $Y.get_transform().basis.x
-		elif key == Data.controls['move_right']:
-			velocity += $Y.get_transform().basis.x
-		print(velocity)
