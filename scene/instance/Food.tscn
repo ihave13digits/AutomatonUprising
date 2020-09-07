@@ -2,7 +2,6 @@
 
 [ext_resource path="res://scene/instance/Food.gd" type="Script" id=1]
 
-
 [node name="Food" type="StaticBody"]
 script = ExtResource( 1 )
 

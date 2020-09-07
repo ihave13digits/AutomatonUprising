@@ -1,9 +1,10 @@
 extends HSlider
 
-func prepare(low, high, val, pos, size):
-	min_value = low
-	max_value = high
-	value = val
+func prepare(_min, _max, _val, _step, pos, size):
+	min_value = _min
+	max_value = _max
+	value = _val
+	step = _step
 	
 	rect_position = pos
 	rect_size = size

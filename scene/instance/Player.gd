@@ -5,6 +5,7 @@ signal update_hud
 onready var cursor = $Y/X/Cam/Cursor
 
 var has_control = true
+var is_paused = false
 
 var velocity = Vector3()
 
@@ -68,7 +69,7 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
 func _physics_process(delta):
-	if !has_control:
+	if !has_control or is_paused:
 		return
 		
 	velocity -= Vector3(0, Data.settings['gravity']['value'], 0)
@@ -89,7 +90,7 @@ func _input(event):
 		if cursor.get_collider() != null:
 			get_parent().hud.display_message(cursor.get_collider().id)
 			
-	if !has_control:
+	if !has_control or is_paused:
 		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		_yaw -= event.relative.x * Data.settings['mouse_sensitivity']['value']
@@ -125,3 +126,4 @@ func _input(event):
 			velocity -= $Y.get_transform().basis.x
 		elif key == Data.controls['move_right']:
 			velocity += $Y.get_transform().basis.x
+		print(velocity)

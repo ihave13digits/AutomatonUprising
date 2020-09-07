@@ -23,3 +23,7 @@ var data = {
 	'vitamin_a' : 0.0,
 	'vitamin_c' : 0.0
 }
+
+func _ready():
+	$Mesh.mesh = load(mesh['body'])
+	$Mesh.material_override = load("res://skin/global_material.tres")

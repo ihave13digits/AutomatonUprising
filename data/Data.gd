@@ -841,7 +841,7 @@ func get_vanilla():
 			'hud_opacity' : {'value' : 0.75, 'min' : 0, 'max' : 0},
 			'max_pitch' : {'value' : 60.0, 'min' : 0, 'max' : 0},
 			'effects' : {'value' : 0.0, 'min' : 0, 'max' : 0},
-			'gravity' : {'value' : 0.0, 'min' : 0, 'max' : 0},
+			'gravity' : {'value' : 10.0, 'min' : 0, 'max' : 0},
 			'music' : {'value' : 0.0, 'min' : 0, 'max' : 0},
 			},
 
