@@ -110,7 +110,7 @@ func _input(event):
 				emit_signal("update_hud")
 			
 			if key == Data.controls['jump']:
-				velocity = $Y.get_transform().basis.y
+				velocity = $Y.get_transform().basis.y * 10
 			
 			if key == Data.controls['jog']:
 					data['speed'] *= 2

@@ -67,45 +67,27 @@ func generate_chunk(X, Z):
 			if n and s and e and w:
 
 				if n < Y and s >= Y and e >= Y and w >= Y:
-					tile = 'tilesidecave'; rot.y = 90; type = "cave"
+					tile = 'tileside'; rot.y = 90; type = "vex"
 				elif n >= Y and s < Y and e >= Y and w >= Y:
-					tile = 'tilesidecave'; rot.y = 270; type = "cave"
+					tile = 'tileside'; rot.y = 270; type = "vex"
 				elif n >= Y and s >= Y and e < Y and w >= Y:
-					tile = 'tilesidecave'; rot.y = 0; type = "cave"
+					tile = 'tileside'; rot.y = 180; type = "vex"
 				elif n >= Y and s >= Y and e >= Y and w < Y:
-					tile = 'tilesidecave'; rot.y = 180; type = "cave"
-				
-				elif n < Y and s > Y and e > Y and w > Y:
-					tile = 'tilesidevex'; rot.y = 270; type = "vex"
-				elif n > Y and s < Y and e > Y and w > Y:
-					tile = 'tilesidevex'; rot.y = 90; type = "vex"
-				elif n > Y and s > Y and e < Y and w > Y:
-					tile = 'tilesidevex'; rot.y = 180; type = "vex"
-				elif n > Y and s > Y and e > Y and w < Y:
-					tile = 'tilesidevex'; rot.y = 0; type = "vex"
-				
-				elif n < Y and s >= Y and e < Y and w >= Y:
-					tile = 'tilecave'; rot.y = 180; type = "cave"
-				elif n < Y and s >= Y and e >= Y and w < Y:
-					tile = 'tilecave'; rot.y = 90; type = "cave"
-				elif n >= Y and s < Y and e < Y and w >= Y:
-					tile = 'tilecave'; rot.y = 270; type = "cave"
-				elif n >= Y and s < Y and e >= Y and w < Y:
-					tile = 'tilecave'; rot.y = 0; type = "cave"
+					tile = 'tileside'; rot.y = 0; type = "vex"
 					
-				elif n < Y and s > Y and e < Y and w > Y:
+				elif n < Y and s >= Y and e < Y and w >= Y:
 					tile = 'tilevex'; rot.y = 180; type = "vex"
-				elif n < Y and s > Y and e > Y and w < Y:
+				elif n < Y and s >= Y and e >= Y and w < Y:
 					tile = 'tilevex'; rot.y = 90; type = "vex"
-				elif n > Y and s < Y and e < Y and w > Y:
+				elif n >= Y and s < Y and e < Y and w >= Y:
 					tile = 'tilevex'; rot.y = 270; type = "vex"
-				elif n > Y and s < Y and e > Y and w < Y:
+				elif n >= Y and s < Y and e >= Y and w < Y:
 					tile = 'tilevex'; rot.y = 0; type = "vex"
 				
 				else:
-					tile = 'tileflat'; rot.y = 0; type = "cave"
+					tile = 'tileflat'; rot.y = 0; type = "vex"
 			else:
-				tile = 'tileflat'; rot.y = 0; type = "cave"
+				tile = 'tileflat'; rot.y = 0; type = "vex"
 			spawn(tile, type, Vector3(x*tile_size, Y, z*tile_size), rot)
 
 func get_height(x, z):

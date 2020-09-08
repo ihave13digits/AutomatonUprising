@@ -797,16 +797,9 @@ func get_vanilla():
 					
 				}
 				},
-			'tilesidecave' : {
+			'tileside' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/sidecave.obj"],
-				'data' : {
-					
-				}
-				},
-			'tilesidevex' : {
-				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/sidevex.obj"],
+				'mesh' : ["res://mesh/tile/side.obj"],
 				'data' : {
 					
 				}
