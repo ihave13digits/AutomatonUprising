@@ -1,5 +1,10 @@
 extends Spatial
 
+var max_height
+var world_size
+var chunk_size
+var tile_size
+
 var noise_fissure = OpenSimplexNoise.new()
 var noise_moisture = OpenSimplexNoise.new()
 var noise_temperature = OpenSimplexNoise.new()
@@ -7,11 +12,18 @@ var noise_temperature = OpenSimplexNoise.new()
 var data = {}
 
 func _ready():
+	max_height = Data.physics['max_height']
+	world_size = Data.physics['world_size']
+	chunk_size = Data.physics['chunk_size']
+	tile_size = Data.physics['tile_size']
+	
 	set_noise_values(noise_fissure, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	set_noise_values(noise_moisture, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	set_noise_values(noise_temperature, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	generate_world_data()
-	generate_chunk(0, 0)
+	for x in range(Data.physics['world_size']):
+		for z in range(Data.physics['world_size']):
+			generate_chunk(x, z)
 
 func set_noise_values(n, sd, pd, oc, la, pr):
 	n.seed = sd
@@ -20,18 +32,19 @@ func set_noise_values(n, sd, pd, oc, la, pr):
 	n.lacunarity = la
 	n.persistence = pr
 
-func spawn(t, pos, rot):
+func spawn(t, type, pos, rot):
 	var target = Data.object[t]
 	var inst = target['instance'][0]
 	var I = load(Data.instance[inst]).instance()
 	I.translation = pos
 	I.rotation_degrees = rot
 	I.mesh['body'] = Data.object[t]['mesh'][0]
+	I.type = type
 	add_child(I)
 
 func generate_world_data():
-	for x in range(Data.physics['world_size']*Data.physics['chunk_size']):
-		for z in range(Data.physics['world_size']*Data.physics['chunk_size']):
+	for x in range(world_size*chunk_size):
+		for z in range(world_size*chunk_size):
 			data['%s-%s' % [x, z]] = [
 			noise_fissure.get_noise_2d(x, z),
 			noise_moisture.get_noise_2d(x, z),
@@ -39,52 +52,66 @@ func generate_world_data():
 			]
 
 func generate_chunk(X, Z):
-	var chunk = Data.physics['chunk_size']
-	var size = Data.physics['tile_size']
-	
-	for x in range(chunk):
-		for z in range(chunk):
+	for x in range(int(X*chunk_size), int((X*chunk_size)+chunk_size)):
+		for z in range(int(Z*chunk_size), int((Z*chunk_size)+chunk_size)):
 			var Y = get_height(x, z)
-			var offset = Vector2(X*chunk, Z*chunk)
-			var tile
+			var type = ""
+			var tile = ""
 			var rot = Vector3()
+		
+			var n = get_height(x, z-1)
+			var s = get_height(x, z+1)
+			var e = get_height(x-1, z)
+			var w = get_height(x+1, z)
 			
-			var n = get_height(x+offset.x, z-1+offset.y)
-			var s = get_height(x+offset.x, z+1+offset.y)
-			var e = get_height(x-1+offset.x, z+offset.y)
-			var w = get_height(x+1+offset.x, z+offset.y)
-			var ne = get_height(x-1+offset.x, z-1+offset.y)
-			var nw = get_height(x+1+offset.x, z-1+offset.y)
-			var se = get_height(x-1+offset.x, z+1+offset.y)
-			var sw = get_height(x+1+offset.x, z+1+offset.y)
-			
-			if n and n > Y:
-				tile = 'tilesidecave'; rot.y = 0
-			elif s and s > Y:
-				tile = 'tilesidevex'; rot.y = 180
-			elif e and e > Y:
-				tile = 'tilesidecave'; rot.y = 90
-			elif w and w > Y:
-				tile = 'tilesidevex'; rot.y = 270
-			
-			elif ne and ne > Y:
-				tile = 'tilecave'; rot.y = 0
-			elif nw and nw > Y:
-				tile = 'tilevex'; rot.y = 180
-			elif se and se > Y:
-				tile = 'tilecave'; rot.y = 90
-			elif sw and sw > Y:
-				tile = 'tilevex'; rot.y = 270
-			
+			if n and s and e and w:
+
+				if n < Y and s >= Y and e >= Y and w >= Y:
+					tile = 'tilesidecave'; rot.y = 90; type = "cave"
+				elif n >= Y and s < Y and e >= Y and w >= Y:
+					tile = 'tilesidecave'; rot.y = 270; type = "cave"
+				elif n >= Y and s >= Y and e < Y and w >= Y:
+					tile = 'tilesidecave'; rot.y = 0; type = "cave"
+				elif n >= Y and s >= Y and e >= Y and w < Y:
+					tile = 'tilesidecave'; rot.y = 180; type = "cave"
+				
+				elif n < Y and s > Y and e > Y and w > Y:
+					tile = 'tilesidevex'; rot.y = 270; type = "vex"
+				elif n > Y and s < Y and e > Y and w > Y:
+					tile = 'tilesidevex'; rot.y = 90; type = "vex"
+				elif n > Y and s > Y and e < Y and w > Y:
+					tile = 'tilesidevex'; rot.y = 180; type = "vex"
+				elif n > Y and s > Y and e > Y and w < Y:
+					tile = 'tilesidevex'; rot.y = 0; type = "vex"
+				
+				elif n < Y and s >= Y and e < Y and w >= Y:
+					tile = 'tilecave'; rot.y = 180; type = "cave"
+				elif n < Y and s >= Y and e >= Y and w < Y:
+					tile = 'tilecave'; rot.y = 90; type = "cave"
+				elif n >= Y and s < Y and e < Y and w >= Y:
+					tile = 'tilecave'; rot.y = 270; type = "cave"
+				elif n >= Y and s < Y and e >= Y and w < Y:
+					tile = 'tilecave'; rot.y = 0; type = "cave"
+					
+				elif n < Y and s > Y and e < Y and w > Y:
+					tile = 'tilevex'; rot.y = 180; type = "vex"
+				elif n < Y and s > Y and e > Y and w < Y:
+					tile = 'tilevex'; rot.y = 90; type = "vex"
+				elif n > Y and s < Y and e < Y and w > Y:
+					tile = 'tilevex'; rot.y = 270; type = "vex"
+				elif n > Y and s < Y and e > Y and w < Y:
+					tile = 'tilevex'; rot.y = 0; type = "vex"
+				
+				else:
+					tile = 'tileflat'; rot.y = 0; type = "cave"
 			else:
-				tile = 'tileflat'; rot.y = 0
-			
-			spawn(tile, Vector3((X*chunk)+(x*size), Y, (Z*chunk)+(z*size)), rot)
+				tile = 'tileflat'; rot.y = 0; type = "cave"
+			spawn(tile, type, Vector3(x*tile_size, Y, z*tile_size), rot)
 
 func get_height(x, z):
 	if '%s-%s' % [x, z] in data:
-		var y = data['%s-%s' % [x, z]][0] * Data.physics['max_height']
-		y = clamp(y, -Data.physics['max_height'], Data.physics['max_height'])
+		var y = data['%s-%s' % [x, z]][0] * max_height
+		#y = clamp(y, -max_height, max_height)
 		return round(y)
 
 func get_biome(v, t):

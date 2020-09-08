@@ -5,7 +5,8 @@ var world
 var player
 
 func _ready():
-	add_player(Vector3(0, 0, 0))
+	add_player(Vector3(0, 10, 0))
+	player.has_control = false
 	hud = $HUD
 	world = $World
 

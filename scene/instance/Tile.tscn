@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scene/instance/Tile.gd" type="Script" id=1]
 
-[sub_resource type="ConvexPolygonShape" id=1]
+[sub_resource type="ConcavePolygonShape" id=1]
 
 [node name="Tile" type="StaticBody"]
 collision_layer = 3
