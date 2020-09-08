@@ -93,7 +93,6 @@ func generate_chunk(X, Z):
 func get_height(x, z):
 	if '%s-%s' % [x, z] in data:
 		var y = data['%s-%s' % [x, z]][0] * max_height
-		#y = clamp(y, -max_height, max_height)
 		return round(y)
 
 func get_biome(v, t):
