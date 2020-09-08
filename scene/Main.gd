@@ -10,10 +10,11 @@ func _ready():
 	hud = $HUD
 	world = $World
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_up"): hud.display_message('stacked popup test')
-	if Input.is_action_just_pressed("ui_left"): hud.display_stats(player.data)
-	if Input.is_action_just_pressed("ui_right"): hud.display_nutrition(player.nutrients)
+func _update_cursor():
+	if player.cursor.get_collider() != null:
+		hud.center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value'])
+	else:
+		hud.center_img.modulate = Color(0.5, 0.5, 0.5, Data.settings['hud_opacity']['value'])
 
 func _update_hud():
 	if player.has_control:
@@ -30,3 +31,4 @@ func add_player(pos):
 	player.ready()
 	add_child(player)
 	player.connect('update_hud', self, '_update_hud')
+	player.connect('update_cursor', self, '_update_cursor')

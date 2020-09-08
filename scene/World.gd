@@ -65,7 +65,7 @@ func generate_chunk(X, Z):
 			var w = get_height(x+1, z)
 			
 			if n and s and e and w:
-
+				# Sides
 				if n < Y and s >= Y and e >= Y and w >= Y:
 					tile = 'tileside'; rot.y = 90; type = "vex"
 				elif n >= Y and s < Y and e >= Y and w >= Y:
@@ -74,14 +74,41 @@ func generate_chunk(X, Z):
 					tile = 'tileside'; rot.y = 180; type = "vex"
 				elif n >= Y and s >= Y and e >= Y and w < Y:
 					tile = 'tileside'; rot.y = 0; type = "vex"
-					
+				# Inner Corner
 				elif n < Y and s >= Y and e < Y and w >= Y:
-					tile = 'tilevex'; rot.y = 180; type = "vex"
+					tile = 'tilecave'; rot.y = 180; type = "vex"
 				elif n < Y and s >= Y and e >= Y and w < Y:
-					tile = 'tilevex'; rot.y = 90; type = "vex"
+					tile = 'tilecave'; rot.y = 90; type = "vex"
 				elif n >= Y and s < Y and e < Y and w >= Y:
-					tile = 'tilevex'; rot.y = 270; type = "vex"
+					tile = 'tilecave'; rot.y = 270; type = "vex"
 				elif n >= Y and s < Y and e >= Y and w < Y:
+					tile = 'tilecave'; rot.y = 0; type = "vex"
+				
+				elif n < Y and s >= Y and e < Y and w >= Y:
+					tile = 'tilecave'; rot.y = 180; type = "vex"
+				elif n < Y and s >= Y and e >= Y and w < Y:
+					tile = 'tilecave'; rot.y = 90; type = "vex"
+				elif n >= Y and s < Y and e < Y and w >= Y:
+					tile = 'tilecave'; rot.y = 270; type = "vex"
+				elif n >= Y and s < Y and e >= Y and w < Y:
+					tile = 'tilecave'; rot.y = 0; type = "vex"
+				# Outer Corner
+				elif n <= Y and s > Y and e <= Y and w > Y:
+					tile = 'tilevex'; rot.y = 180; type = "vex"
+				elif n <= Y and s > Y and e > Y and w <= Y:
+					tile = 'tilevex'; rot.y = 90; type = "vex"
+				elif n > Y and s <= Y and e <= Y and w > Y:
+					tile = 'tilevex'; rot.y = 270; type = "vex"
+				elif n > Y and s <= Y and e > Y and w <= Y:
+					tile = 'tilevex'; rot.y = 0; type = "vex"
+				
+				elif n <= Y and s > Y and e <= Y and w > Y:
+					tile = 'tilevex'; rot.y = 180; type = "vex"
+				elif n <= Y and s > Y and e > Y and w <= Y:
+					tile = 'tilevex'; rot.y = 90; type = "vex"
+				elif n > Y and s <= Y and e <= Y and w > Y:
+					tile = 'tilevex'; rot.y = 270; type = "vex"
+				elif n > Y and s <= Y and e > Y and w <= Y:
 					tile = 'tilevex'; rot.y = 0; type = "vex"
 				
 				else:

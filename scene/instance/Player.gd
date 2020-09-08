@@ -1,5 +1,6 @@
 extends KinematicBody
 
+signal update_cursor
 signal update_hud
 
 onready var cursor = $Y/X/Cam/Cursor
@@ -86,7 +87,7 @@ func _input(event):
 			has_control = true
 			emit_signal("update_hud")
 		if cursor.get_collider() != null:
-			get_parent().hud.display_message(cursor.get_collider().id)
+			get_parent().hud.display_message(cursor.get_collider().translation)#.id)
 
 	if !has_control or is_paused:
 		return
@@ -100,6 +101,7 @@ func _input(event):
 			_pitch = -Data.settings['max_pitch']['value']
 		$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 		$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))
+		emit_signal("update_cursor")
 
 	if event is InputEventKey:
 		var key = OS.get_scancode_string(event.scancode)
