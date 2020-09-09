@@ -30,3 +30,5 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1, 0
 shape = SubResource( 1 )
 
 [node name="Mesh" type="MeshInstance" parent="."]
+
+[node name="Tween" type="Tween" parent="."]

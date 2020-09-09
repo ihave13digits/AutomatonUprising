@@ -20,6 +20,7 @@ func _ready():
 	set_noise_values(noise_fissure, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	set_noise_values(noise_moisture, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	set_noise_values(noise_temperature, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
+	
 	generate_world_data()
 	for x in range(Data.physics['world_size']):
 		for z in range(Data.physics['world_size']):
@@ -54,68 +55,71 @@ func generate_world_data():
 func generate_chunk(X, Z):
 	for x in range(int(X*chunk_size), int((X*chunk_size)+chunk_size)):
 		for z in range(int(Z*chunk_size), int((Z*chunk_size)+chunk_size)):
-			var Y = get_height(x, z)
-			var type = ""
-			var tile = ""
-			var rot = Vector3()
-		
-			var n = get_height(x, z-1)
-			var s = get_height(x, z+1)
-			var e = get_height(x-1, z)
-			var w = get_height(x+1, z)
-			
-			if n and s and e and w:
-				# Sides
-				if n < Y and s >= Y and e >= Y and w >= Y:
-					tile = 'tileside'; rot.y = 90; type = "vex"
-				elif n >= Y and s < Y and e >= Y and w >= Y:
-					tile = 'tileside'; rot.y = 270; type = "vex"
-				elif n >= Y and s >= Y and e < Y and w >= Y:
-					tile = 'tileside'; rot.y = 180; type = "vex"
-				elif n >= Y and s >= Y and e >= Y and w < Y:
-					tile = 'tileside'; rot.y = 0; type = "vex"
-				# Inner Corner
-				elif n < Y and s >= Y and e < Y and w >= Y:
-					tile = 'tilecave'; rot.y = 180; type = "vex"
-				elif n < Y and s >= Y and e >= Y and w < Y:
-					tile = 'tilecave'; rot.y = 90; type = "vex"
-				elif n >= Y and s < Y and e < Y and w >= Y:
-					tile = 'tilecave'; rot.y = 270; type = "vex"
-				elif n >= Y and s < Y and e >= Y and w < Y:
-					tile = 'tilecave'; rot.y = 0; type = "vex"
-				
-				elif n < Y and s >= Y and e < Y and w >= Y:
-					tile = 'tilecave'; rot.y = 180; type = "vex"
-				elif n < Y and s >= Y and e >= Y and w < Y:
-					tile = 'tilecave'; rot.y = 90; type = "vex"
-				elif n >= Y and s < Y and e < Y and w >= Y:
-					tile = 'tilecave'; rot.y = 270; type = "vex"
-				elif n >= Y and s < Y and e >= Y and w < Y:
-					tile = 'tilecave'; rot.y = 0; type = "vex"
-				# Outer Corner
-				elif n <= Y and s > Y and e <= Y and w > Y:
-					tile = 'tilevex'; rot.y = 180; type = "vex"
-				elif n <= Y and s > Y and e > Y and w <= Y:
-					tile = 'tilevex'; rot.y = 90; type = "vex"
-				elif n > Y and s <= Y and e <= Y and w > Y:
-					tile = 'tilevex'; rot.y = 270; type = "vex"
-				elif n > Y and s <= Y and e > Y and w <= Y:
-					tile = 'tilevex'; rot.y = 0; type = "vex"
-				
-				elif n <= Y and s > Y and e <= Y and w > Y:
-					tile = 'tilevex'; rot.y = 180; type = "vex"
-				elif n <= Y and s > Y and e > Y and w <= Y:
-					tile = 'tilevex'; rot.y = 90; type = "vex"
-				elif n > Y and s <= Y and e <= Y and w > Y:
-					tile = 'tilevex'; rot.y = 270; type = "vex"
-				elif n > Y and s <= Y and e > Y and w <= Y:
-					tile = 'tilevex'; rot.y = 0; type = "vex"
-				
-				else:
-					tile = 'tileflat'; rot.y = 0; type = "vex"
-			else:
-				tile = 'tileflat'; rot.y = 0; type = "vex"
-			spawn(tile, type, Vector3(x*tile_size, Y, z*tile_size), rot)
+			generate_tile(x, z)
+
+func generate_tile(x, z):
+	var Y = get_height(x, z)
+	var type = ""
+	var tile = ""
+	var rot = Vector3()
+
+	var n = get_height(x, z-1)
+	var s = get_height(x, z+1)
+	var e = get_height(x-1, z)
+	var w = get_height(x+1, z)
+	
+	if n and s and e and w:
+
+		if n < Y and s >= Y and e >= Y and w >= Y:
+			tile = 'tileside'; rot.y = 90; type = "vex"
+		elif n >= Y and s < Y and e >= Y and w >= Y:
+			tile = 'tileside'; rot.y = 270; type = "vex"
+		elif n >= Y and s >= Y and e < Y and w >= Y:
+			tile = 'tileside'; rot.y = 180; type = "vex"
+		elif n >= Y and s >= Y and e >= Y and w < Y:
+			tile = 'tileside'; rot.y = 0; type = "vex"
+
+		elif n < Y and s >= Y and e < Y and w >= Y:
+			tile = 'tilecave'; rot.y = 180; type = "vex"
+		elif n < Y and s >= Y and e >= Y and w < Y:
+			tile = 'tilecave'; rot.y = 90; type = "vex"
+		elif n >= Y and s < Y and e < Y and w >= Y:
+			tile = 'tilecave'; rot.y = 270; type = "vex"
+		elif n >= Y and s < Y and e >= Y and w < Y:
+			tile = 'tilecave'; rot.y = 0; type = "vex"
+
+		elif n < Y and s > Y and e < Y and w > Y:
+			tile = 'tilecave'; rot.y = 180; type = "vex"
+		elif n < Y and s > Y and e > Y and w < Y:
+			tile = 'tilecave'; rot.y = 90; type = "vex"
+		elif n > Y and s < Y and e < Y and w > Y:
+			tile = 'tilecave'; rot.y = 270; type = "vex"
+		elif n > Y and s < Y and e > Y and w < Y:
+			tile = 'tilecave'; rot.y = 0; type = "vex"
+
+		elif n <= Y and s > Y and e <= Y and w > Y:
+			tile = 'tilevex'; rot.y = 180; type = "vex"
+		elif n <= Y and s > Y and e > Y and w <= Y:
+			tile = 'tilevex'; rot.y = 90; type = "vex"
+		elif n > Y and s <= Y and e <= Y and w > Y:
+			tile = 'tilevex'; rot.y = 270; type = "vex"
+		elif n > Y and s <= Y and e > Y and w <= Y:
+			tile = 'tilevex'; rot.y = 0; type = "vex"
+
+		elif n < Y and s > Y and e < Y and w > Y:
+			tile = 'tilevex'; rot.y = 180; type = "vex"
+		elif n < Y and s > Y and e > Y and w < Y:
+			tile = 'tilevex'; rot.y = 90; type = "vex"
+		elif n > Y and s < Y and e < Y and w > Y:
+			tile = 'tilevex'; rot.y = 270; type = "vex"
+		elif n > Y and s < Y and e > Y and w < Y:
+			tile = 'tilevex'; rot.y = 0; type = "vex"
+
+		else:
+			tile = 'tileflat'; rot.y = 0; type = "vex"
+	else:
+		tile = 'tileflat'; rot.y = 0; type = "vex"
+	spawn(tile, type, Vector3(x*tile_size, Y, z*tile_size), rot)
 
 func get_height(x, z):
 	if '%s-%s' % [x, z] in data:

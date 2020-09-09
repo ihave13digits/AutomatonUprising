@@ -111,9 +111,6 @@ func _input(event):
 				has_control = false
 				emit_signal("update_hud")
 			
-			if key == Data.controls['jump']:
-				velocity = $Y.get_transform().basis.y * 10
-			
 			if key == Data.controls['jog']:
 					data['speed'] *= 2
 			elif key == Data.controls['run']:
@@ -127,6 +124,18 @@ func _input(event):
 				velocity = -$Y.get_transform().basis.x
 			elif key == Data.controls['move_right']:
 				velocity = $Y.get_transform().basis.x
+			
+			if key == Data.controls['jump']:
+				if is_on_floor():
+					var tween = get_node("Tween")
+					tween.interpolate_property(
+					self, "translation",
+					translation,
+					Vector3(translation.x, translation.y+1.5, translation.z),
+					0.3,
+					Tween.TRANS_BOUNCE
+					)
+					tween.start()
 			
 			$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 			$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))
