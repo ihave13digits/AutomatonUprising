@@ -25,6 +25,7 @@ var data = {
 	'HP' : 0.0,
 	'hp' : 0.0,
 	'speed' : 500.0,
+	'boost' : 1.0,
 	# Specified
 	'gender' : 0.0,
 	'height' : 1.8,
@@ -77,8 +78,45 @@ func _physics_process(delta):
 	if velocity.length() > 0.01:
 		velocity /= velocity.length()
 
-		var motion = velocity * (data['speed'] * delta)
+		var motion = velocity * ((data['speed']*data['boost']) * delta)
 		motion = move_and_slide(motion, Vector3.UP, false, 4, 0.78, true)
+
+func _process(_delta):
+	if Input.is_action_just_pressed("menu"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		has_control = false
+		emit_signal("update_hud")
+	
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			var tween = get_node("Tween")
+			tween.interpolate_property(
+			self, "translation",
+			translation,
+			Vector3(translation.x, translation.y+1.5, translation.z),
+			0.3,
+			Tween.TRANS_BOUNCE
+			)
+			tween.start()
+	
+	if Input.is_action_just_pressed("jog"):
+		data['boost'] = 1.5
+	if Input.is_action_just_released("jog"):
+		data['boost'] = 1.0
+	
+	if Input.is_action_just_pressed("run"):
+		data['boost'] = 2.0
+	if Input.is_action_just_released("run"):
+		data['boost'] = 1.0
+	
+	if Input.is_action_pressed("move_forward"):
+		velocity = -$Y.get_transform().basis.z
+	if Input.is_action_pressed("move_backward"):
+		velocity = $Y.get_transform().basis.z
+	if Input.is_action_pressed("move_left"):
+		velocity = -$Y.get_transform().basis.x
+	if Input.is_action_pressed("move_right"):
+		velocity = $Y.get_transform().basis.x
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -102,44 +140,3 @@ func _input(event):
 		$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 		$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))
 		emit_signal("update_cursor")
-
-	if event is InputEventKey:
-		var key = OS.get_scancode_string(event.scancode)
-		if event.pressed:
-			if key == Data.controls['menu']:
-				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-				has_control = false
-				emit_signal("update_hud")
-			
-			if key == Data.controls['jog']:
-					data['speed'] *= 2
-			elif key == Data.controls['run']:
-					data['speed'] *= 3
-			
-			if key == Data.controls['move_forward']:
-				velocity = -$Y.get_transform().basis.z
-			elif key == Data.controls['move_backward']:
-				velocity = $Y.get_transform().basis.z
-			if key == Data.controls['move_left']:
-				velocity = -$Y.get_transform().basis.x
-			elif key == Data.controls['move_right']:
-				velocity = $Y.get_transform().basis.x
-			
-			if key == Data.controls['jump']:
-				if is_on_floor():
-					var tween = get_node("Tween")
-					tween.interpolate_property(
-					self, "translation",
-					translation,
-					Vector3(translation.x, translation.y+1.5, translation.z),
-					0.3,
-					Tween.TRANS_BOUNCE
-					)
-					tween.start()
-			
-			$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
-			$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))
-		
-		if !event.pressed:
-			if key == Data.controls['jog'] or key == Data.controls['run']:
-				data['speed'] = 500

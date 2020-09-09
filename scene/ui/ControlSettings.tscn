@@ -14,57 +14,57 @@ __meta__ = {
 }
 
 [node name="Menu" parent="." instance=ExtResource( 2 )]
-margin_left = -18.0
-margin_right = 18.0
+margin_left = -50.0
+margin_right = -14.0
 margin_bottom = 14.0
 text = "Menu"
 
 [node name="Jog" parent="." instance=ExtResource( 2 )]
-margin_left = -9.0
+margin_left = -41.0
 margin_top = 16.0
-margin_right = 9.0
+margin_right = -23.0
 margin_bottom = 30.0
 text = "Jog"
 
 [node name="Run" parent="." instance=ExtResource( 2 )]
-margin_left = -12.0
+margin_left = -44.0
 margin_top = 32.0
-margin_right = 12.0
+margin_right = -20.0
 margin_bottom = 46.0
 text = "Run"
 
 [node name="Jump" parent="." instance=ExtResource( 2 )]
-margin_left = -16.0
+margin_left = -48.0
 margin_top = 48.0
-margin_right = 16.0
+margin_right = -16.0
 margin_bottom = 62.0
 text = "Jump"
 
 [node name="MoveForward" parent="." instance=ExtResource( 2 )]
-margin_left = -44.5
+margin_left = -76.5
 margin_top = 64.0
-margin_right = 44.5
+margin_right = 12.5
 margin_bottom = 78.0
 text = "Move Forward"
 
 [node name="MoveBackward" parent="." instance=ExtResource( 2 )]
-margin_left = -49.5
+margin_left = -81.5
 margin_top = 80.0
-margin_right = 49.5
+margin_right = 17.5
 margin_bottom = 94.0
 text = "Move Backward"
 
 [node name="MoveLeft" parent="." instance=ExtResource( 2 )]
-margin_left = -31.5
+margin_left = -63.5
 margin_top = 96.0
-margin_right = 31.5
+margin_right = -0.5
 margin_bottom = 110.0
 text = "Move Left"
 
 [node name="MoveRight" parent="." instance=ExtResource( 2 )]
-margin_left = -35.5
+margin_left = -67.5
 margin_top = 112.0
-margin_right = 35.5
+margin_right = 3.5
 margin_bottom = 126.0
 text = "Move Right"
 
@@ -74,6 +74,56 @@ margin_top = 144.0
 margin_right = 17.0
 margin_bottom = 158.0
 text = "Done"
+
+[node name="LabelMenu" type="Label" parent="."]
+margin_left = 32.0
+margin_right = 72.0
+margin_bottom = 14.0
+
+[node name="LabelJog" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 72.0
+margin_bottom = 30.0
+
+[node name="LabelRun" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 72.0
+margin_bottom = 46.0
+
+[node name="LabelJump" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 72.0
+margin_bottom = 62.0
+
+[node name="LabelMoveForward" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 64.0
+margin_right = 72.0
+margin_bottom = 78.0
+
+[node name="LabelMoveBackward" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 80.0
+margin_right = 72.0
+margin_bottom = 94.0
+
+[node name="LabelMoveLeft" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 96.0
+margin_right = 72.0
+margin_bottom = 110.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelMoveRight" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 112.0
+margin_right = 72.0
+margin_bottom = 126.0
 [connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Jog" to="." method="_on_Jog_pressed"]
 [connection signal="pressed" from="Run" to="." method="_on_Run_pressed"]

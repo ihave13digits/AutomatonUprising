@@ -4,6 +4,7 @@
 [ext_resource path="res://mesh/tile/cave.obj" type="ArrayMesh" id=2]
 
 [sub_resource type="ConcavePolygonShape" id=1]
+margin = 0.001
 
 [node name="Tile" type="StaticBody"]
 collision_layer = 3
