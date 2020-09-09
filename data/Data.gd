@@ -874,6 +874,7 @@ func get_vanilla():
 			
 			'text' : "res://scene/ui/Text.tscn",
 			'setter' : "res://scene/ui/SettingSetter.tscn",
+			'controls' : "res://scene/ui/ControlSettings.tscn",
 			},
 
 

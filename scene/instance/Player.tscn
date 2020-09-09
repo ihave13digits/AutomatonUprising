@@ -32,3 +32,9 @@ shape = SubResource( 1 )
 [node name="Mesh" type="MeshInstance" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Create" type="Timer" parent="."]
+
+[node name="Destroy" type="Timer" parent="."]
+[connection signal="timeout" from="Create" to="." method="_on_Create_timeout"]
+[connection signal="timeout" from="Destroy" to="." method="_on_Destroy_timeout"]

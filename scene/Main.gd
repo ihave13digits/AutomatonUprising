@@ -6,15 +6,20 @@ var player
 
 func _ready():
 	add_player(Vector3(0, 10, 0))
-	#player.has_control = false
+	player.has_control = false
 	hud = $HUD
 	world = $World
+	
+	world.generate_world_data()
+	for x in range(Data.physics['world_size']):
+		for z in range(Data.physics['world_size']):
+			world.generate_chunk(x, z)
 
 func _update_cursor():
 	if player.cursor.get_collider() != null:
 		hud.center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value'])
 	else:
-		hud.center_img.modulate = Color(0.5, 0.5, 0.5, Data.settings['hud_opacity']['value'])
+		hud.center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value']*0.5)
 
 func _update_hud():
 	if player.has_control:

@@ -14,59 +14,75 @@ __meta__ = {
 }
 
 [node name="Menu" parent="." instance=ExtResource( 2 )]
-margin_left = -50.0
-margin_right = -14.0
+margin_left = -112.0
+margin_right = -76.0
 margin_bottom = 14.0
+grow_horizontal = 1
 text = "Menu"
+align = 0
 
 [node name="Jog" parent="." instance=ExtResource( 2 )]
-margin_left = -41.0
+margin_left = -112.0
 margin_top = 16.0
-margin_right = -23.0
+margin_right = -94.0
 margin_bottom = 30.0
+grow_horizontal = 1
 text = "Jog"
+align = 0
 
 [node name="Run" parent="." instance=ExtResource( 2 )]
-margin_left = -44.0
+margin_left = -112.0
 margin_top = 32.0
-margin_right = -20.0
+margin_right = -88.0
 margin_bottom = 46.0
+grow_horizontal = 1
 text = "Run"
+align = 0
 
 [node name="Jump" parent="." instance=ExtResource( 2 )]
-margin_left = -48.0
+margin_left = -112.0
 margin_top = 48.0
-margin_right = -16.0
+margin_right = -80.0
 margin_bottom = 62.0
+grow_horizontal = 1
 text = "Jump"
+align = 0
 
 [node name="MoveForward" parent="." instance=ExtResource( 2 )]
-margin_left = -76.5
+margin_left = -112.0
 margin_top = 64.0
-margin_right = 12.5
+margin_right = -23.0
 margin_bottom = 78.0
+grow_horizontal = 1
 text = "Move Forward"
+align = 0
 
 [node name="MoveBackward" parent="." instance=ExtResource( 2 )]
-margin_left = -81.5
+margin_left = -112.0
 margin_top = 80.0
-margin_right = 17.5
+margin_right = -13.0
 margin_bottom = 94.0
+grow_horizontal = 1
 text = "Move Backward"
+align = 0
 
 [node name="MoveLeft" parent="." instance=ExtResource( 2 )]
-margin_left = -63.5
+margin_left = -112.0
 margin_top = 96.0
-margin_right = -0.5
+margin_right = -49.0
 margin_bottom = 110.0
+grow_horizontal = 1
 text = "Move Left"
+align = 0
 
 [node name="MoveRight" parent="." instance=ExtResource( 2 )]
-margin_left = -67.5
+margin_left = -112.0
 margin_top = 112.0
-margin_right = 3.5
+margin_right = -41.0
 margin_bottom = 126.0
+grow_horizontal = 1
 text = "Move Right"
+align = 0
 
 [node name="Done" parent="." instance=ExtResource( 2 )]
 margin_left = -17.0
@@ -76,54 +92,70 @@ margin_bottom = 158.0
 text = "Done"
 
 [node name="LabelMenu" type="Label" parent="."]
-margin_left = 32.0
-margin_right = 72.0
+margin_left = 64.0
+margin_right = 104.0
 margin_bottom = 14.0
+grow_horizontal = 0
+align = 2
 
 [node name="LabelJog" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 64.0
 margin_top = 16.0
-margin_right = 72.0
+margin_right = 104.0
 margin_bottom = 30.0
+grow_horizontal = 0
+align = 2
 
 [node name="LabelRun" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 64.0
 margin_top = 32.0
-margin_right = 72.0
+margin_right = 104.0
 margin_bottom = 46.0
+grow_horizontal = 0
+align = 2
 
 [node name="LabelJump" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 64.0
 margin_top = 48.0
-margin_right = 72.0
+margin_right = 104.0
 margin_bottom = 62.0
+grow_horizontal = 0
+align = 2
 
 [node name="LabelMoveForward" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 64.0
 margin_top = 64.0
-margin_right = 72.0
+margin_right = 104.0
 margin_bottom = 78.0
+grow_horizontal = 0
+align = 2
 
 [node name="LabelMoveBackward" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 64.0
 margin_top = 80.0
-margin_right = 72.0
+margin_right = 104.0
 margin_bottom = 94.0
+grow_horizontal = 0
+align = 2
 
 [node name="LabelMoveLeft" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 64.0
 margin_top = 96.0
-margin_right = 72.0
+margin_right = 104.0
 margin_bottom = 110.0
+grow_horizontal = 0
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LabelMoveRight" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 64.0
 margin_top = 112.0
-margin_right = 72.0
+margin_right = 104.0
 margin_bottom = 126.0
+grow_horizontal = 0
+align = 2
 [connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Jog" to="." method="_on_Jog_pressed"]
 [connection signal="pressed" from="Run" to="." method="_on_Run_pressed"]

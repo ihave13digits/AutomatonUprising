@@ -15,6 +15,11 @@ var _pitch = 0.0
 
 var id = 'player'
 
+var can = {
+	'create' : true,
+	'destroy' : true,
+}
+
 var mesh = {
 	'body' : "",
 	'hand' : ""
@@ -24,6 +29,8 @@ var data = {
 	# Stats
 	'HP' : 0.0,
 	'hp' : 0.0,
+	'create_rate' : 0.0,
+	'destroy_rate' : 0.0,
 	'speed' : 500.0,
 	'boost' : 1.0,
 	# Specified
@@ -87,7 +94,7 @@ func _process(_delta):
 		has_control = false
 		emit_signal("update_hud")
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_pressed("jump"):
 		if is_on_floor():
 			var tween = get_node("Tween")
 			tween.interpolate_property(
@@ -95,16 +102,16 @@ func _process(_delta):
 			translation,
 			Vector3(translation.x, translation.y+1.5, translation.z),
 			0.3,
-			Tween.TRANS_BOUNCE
+			Tween.TRANS_SINE
 			)
 			tween.start()
 	
-	if Input.is_action_just_pressed("jog"):
+	if Input.is_action_pressed("jog"):
 		data['boost'] = 1.5
 	if Input.is_action_just_released("jog"):
 		data['boost'] = 1.0
 	
-	if Input.is_action_just_pressed("run"):
+	if Input.is_action_pressed("run"):
 		data['boost'] = 2.0
 	if Input.is_action_just_released("run"):
 		data['boost'] = 1.0
@@ -118,15 +125,26 @@ func _process(_delta):
 	if Input.is_action_pressed("move_right"):
 		velocity = $Y.get_transform().basis.x
 
-func _input(event):
-	if event is InputEventMouseButton:
+	if Input.is_action_pressed("create") and can['create']:
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			has_control = true
 			emit_signal("update_hud")
 		if cursor.get_collider() != null:
-			get_parent().hud.display_message(cursor.get_collider().translation)#.id)
+			get_parent().hud.display_message(cursor.get_collider().translation)
+		can['create'] = false
+		$Create.start()
+	if Input.is_action_pressed("destroy") and can['destroy']:
+		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			has_control = true
+			emit_signal("update_hud")
+		if cursor.get_collider() != null:
+			get_parent().hud.display_message(cursor.get_collider().id)
+		can['destroy'] = false
+		$Destroy.start()
 
+func _input(event):
 	if !has_control or is_paused:
 		return
 
@@ -140,3 +158,6 @@ func _input(event):
 		$Y.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 		$Y.rotate($Y.get_transform().basis.x.normalized(), -deg2rad(_pitch))
 		emit_signal("update_cursor")
+
+func _on_Create_timeout(): can['create'] = true
+func _on_Destroy_timeout(): can['destroy'] = true

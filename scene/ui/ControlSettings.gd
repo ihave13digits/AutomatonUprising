@@ -11,7 +11,18 @@ func _input(event):
 	if event is InputEventKey:
 		var key = OS.get_scancode_string(event.scancode)
 		if event.pressed:
-			Data.controls[action_string] = key
+			if key and action_string in Data.controls:
+				Data.controls[action_string] = key
+				_change_key(event)
+				update_labels()
+	if event is InputEventMouseButton:
+		var button
+		if event.is_action_pressed("button_1") or event.is_action_released("button_1"):
+			button = 'button_1'
+		if event.is_action_pressed("button_2") or event.is_action_released("button_2"):
+			button = 'button_2'
+		if button and action_string in Data.controls:
+			Data.controls[action_string] = button
 			_change_key(event)
 			update_labels()
 

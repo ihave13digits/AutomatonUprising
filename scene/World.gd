@@ -20,11 +20,6 @@ func _ready():
 	set_noise_values(noise_fissure, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	set_noise_values(noise_moisture, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	set_noise_values(noise_temperature, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
-	
-	generate_world_data()
-	for x in range(Data.physics['world_size']):
-		for z in range(Data.physics['world_size']):
-			generate_chunk(x, z)
 
 func set_noise_values(n, sd, pd, oc, la, pr):
 	n.seed = sd
@@ -88,14 +83,14 @@ func generate_tile(x, z):
 		elif n >= Y and s < Y and e >= Y and w < Y:
 			tile = 'tilecave'; rot.y = 0; type = "vex"
 
-		elif n < Y and s > Y and e < Y and w > Y:
-			tile = 'tilecave'; rot.y = 180; type = "vex"
-		elif n < Y and s > Y and e > Y and w < Y:
-			tile = 'tilecave'; rot.y = 90; type = "vex"
-		elif n > Y and s < Y and e < Y and w > Y:
-			tile = 'tilecave'; rot.y = 270; type = "vex"
-		elif n > Y and s < Y and e > Y and w < Y:
-			tile = 'tilecave'; rot.y = 0; type = "vex"
+#		elif n < Y and s > Y and e < Y and w > Y:
+#			tile = 'tilecave'; rot.y = 180; type = "vex"
+#		elif n < Y and s > Y and e > Y and w < Y:
+#			tile = 'tilecave'; rot.y = 90; type = "vex"
+#		elif n > Y and s < Y and e < Y and w > Y:
+#			tile = 'tilecave'; rot.y = 270; type = "vex"
+#		elif n > Y and s < Y and e > Y and w < Y:
+#			tile = 'tilecave'; rot.y = 0; type = "vex"
 
 		elif n <= Y and s > Y and e <= Y and w > Y:
 			tile = 'tilevex'; rot.y = 180; type = "vex"
@@ -106,14 +101,14 @@ func generate_tile(x, z):
 		elif n > Y and s <= Y and e > Y and w <= Y:
 			tile = 'tilevex'; rot.y = 0; type = "vex"
 
-		elif n < Y and s > Y and e < Y and w > Y:
-			tile = 'tilevex'; rot.y = 180; type = "vex"
-		elif n < Y and s > Y and e > Y and w < Y:
-			tile = 'tilevex'; rot.y = 90; type = "vex"
-		elif n > Y and s < Y and e < Y and w > Y:
-			tile = 'tilevex'; rot.y = 270; type = "vex"
-		elif n > Y and s < Y and e > Y and w < Y:
-			tile = 'tilevex'; rot.y = 0; type = "vex"
+#		elif n < Y and s > Y and e < Y and w > Y:
+#			tile = 'tilevex'; rot.y = 180; type = "vex"
+#		elif n < Y and s > Y and e > Y and w < Y:
+#			tile = 'tilevex'; rot.y = 90; type = "vex"
+#		elif n > Y and s < Y and e < Y and w > Y:
+#			tile = 'tilevex'; rot.y = 270; type = "vex"
+#		elif n > Y and s < Y and e > Y and w < Y:
+#			tile = 'tilevex'; rot.y = 0; type = "vex"
 
 		else:
 			tile = 'tileflat'; rot.y = 0; type = "vex"
