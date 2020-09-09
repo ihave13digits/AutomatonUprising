@@ -63,7 +63,10 @@ func generate_tile(x, z):
 	
 	if n and s and e and w:
 
-		if n < Y and s >= Y and e >= Y and w >= Y:
+		if n == Y and s == Y and e == Y and w == Y:
+			tile = 'tileflat'; rot.y = 0
+
+		elif n < Y and s >= Y and e >= Y and w >= Y:
 			tile = 'tileside'; rot.y = 90
 		elif n >= Y and s < Y and e >= Y and w >= Y:
 			tile = 'tileside'; rot.y = 270
@@ -71,6 +74,15 @@ func generate_tile(x, z):
 			tile = 'tileside'; rot.y = 180
 		elif n >= Y and s >= Y and e >= Y and w < Y:
 			tile = 'tileside'; rot.y = 0
+
+#		elif n < Y and s >= Y and e < Y and w >= Y:
+#			tile = 'tilevert'; rot.y = 0
+#		elif n < Y and s >= Y and e >= Y and w < Y:
+#			tile = 'tilevert'; rot.y = 270
+#		elif n >= Y and s < Y and e < Y and w >= Y:
+#			tile = 'tilevert'; rot.y = 90
+#		elif n >= Y and s < Y and e <= Y and w < Y:
+#			tile = 'tilevert'; rot.y = 180
 
 		elif n < Y and s >= Y and e < Y and w >= Y:
 			tile = 'tilecave'; rot.y = 180
@@ -90,36 +102,6 @@ func generate_tile(x, z):
 		elif n > Y and s <= Y and e > Y and w <= Y:
 			tile = 'tilevex'; rot.y = 0
 
-
-#		elif n > Y and s == Y and e > Y and w == Y:
-#			tile = 'tileflat'; rot.y = 0
-#		elif n > Y and s == Y and e == Y and w > Y:
-#			tile = 'tileflat'; rot.y = 0
-#		elif n == Y and s > Y and e > Y and w == Y:
-#			tile = 'tileflat'; rot.y = 0
-#		elif n == Y and s > Y and e == Y and w > Y:
-#			tile = 'tileflat'; rot.y = 0
-		
-#		elif n < Y and s == Y and e < Y and w == Y:
-#			tile = 'tilecave'; rot.y = 180
-#		elif n < Y and s == Y and e == Y and w < Y:
-#			tile = 'tilecave'; rot.y = 90
-#		elif n == Y and s < Y and e < Y and w == Y:
-#			tile = 'tilecave'; rot.y = 270
-#		elif n == Y and s < Y and e == Y and w < Y:
-#			tile = 'tilecave'; rot.y = 0
-		
-#		elif n < Y and s == Y and e < Y and w == Y:
-#			tile = 'tilevex'; rot.y = 180
-#		elif n == Y and s > Y and e == Y and w < Y:
-#			tile = 'tilevex'; rot.y = 90
-#		elif n > Y and s == Y and e == Y and w > Y:
-#			tile = 'tilevex'; rot.y = 270
-#		elif n == Y and s < Y and e > Y and w == Y:
-#			tile = 'tilevex'; rot.y = 0
-
-	else:
-		tile = 'tileflat'; rot.y = 0
 	spawn(tile, Vector3(x*tile_size, Y, z*tile_size), rot)
 
 func get_height(x, z):

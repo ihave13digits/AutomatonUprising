@@ -811,6 +811,13 @@ func get_vanilla():
 					
 				}
 				},
+			'tilevert' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/vert.obj"],
+				'data' : {
+					
+				}
+				},
 			'tilevex' : {
 				'instance' : ['tile'],
 				'mesh' : ["res://mesh/tile/vex.obj"],
