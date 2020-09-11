@@ -11,8 +11,8 @@ func _ready():
 	world = $World
 	
 	world.generate_world_data()
-	for x in range(Data.physics['world_size']):
-		for z in range(Data.physics['world_size']):
+	for x in range(-Data.physics['world_size'], Data.physics['world_size']):
+		for z in range(-Data.physics['world_size'], Data.physics['world_size']):
 			world.generate_chunk(x, z)
 
 func _update_cursor():
