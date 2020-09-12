@@ -849,7 +849,7 @@ func get_vanilla():
 			"chunk_size" : 4,
 			"tile_size" : 2,
 			
-			"max_height" : 16.0,
+			"max_height" : 12.0,
 			"gravity" : 0.25#0.8,
 			},
 

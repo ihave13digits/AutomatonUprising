@@ -14,6 +14,7 @@ func _ready():
 	for x in range(-Data.physics['world_size'], Data.physics['world_size']):
 		for z in range(-Data.physics['world_size'], Data.physics['world_size']):
 			world.generate_chunk(x, z)
+#	world.generate_tile(0, 0)
 
 func _update_cursor():
 	if player.cursor.get_collider() != null:
