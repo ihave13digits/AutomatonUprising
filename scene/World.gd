@@ -12,199 +12,21 @@ var noise_temperature = OpenSimplexNoise.new()
 var data = {}
 
 var mask = {
-		'0 -1 0 1 1 1 1 1' : {'tile' : 'tilecave', 'rot' : 90},
-		'0 -1 0 1 0 1 1 1' : {'tile' : 'tilecave', 'rot' : 90},
-		'0 -1 0 1 1 1 0 1' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -2 -1 0 0 0 0 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -2 -1 0 0 1 0 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -2 -1 0 1 1 0 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -2 -1 0 0 1 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -2 -1 0 1 1 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -2 -1 0 1 2 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 0 0 0 0 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 0 0 1 0 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 0 1 1 0 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 0 0 1 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 0 1 1 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 0 1 2 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 -1 0 1 0 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 0 0 1 0 -1' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 -1 0 0 0 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 -1 -1 -1 1 1 1 1' : {'tile' : 'tilecave', 'rot' : 90},
-		
-		'1 0 -1 0 1 1 1 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 0 -1 0 1 0 1 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 0 -1 0 1 1 1 0' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 0 -1 -2 -1 0 0 0' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 0 -1 -2 -1 0 0 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 0 -1 -2 -1 0 1 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 0 -1 -2 -1 0 0 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 0 -1 -2 -1 0 1 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 0 -1 -2 -1 0 1 2' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 0 -1 -1 -1 0 0 0' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 0 -1 -1 -1 0 0 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 0 -1 -1 -1 0 1 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 0 -1 -1 -1 0 0 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 0 -1 -1 -1 0 1 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 0 -1 -1 -1 0 1 2' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 -1 -1 -1 -1 0 0 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 0 -1 -1 -1 -1 0 1' : {'tile' : 'tilecave', 'rot' : 180},
-		'0 -1 -1 -1 -1 0 0 0' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 -1 -1 -1 -1 1 1 1' : {'tile' : 'tilecave', 'rot' : 180},
-		
-		'1 1 0 -1 0 1 1 1' : {'tile' : 'tilecave', 'rot' : 270},
-		'1 1 0 -1 0 1 0 1' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 1 0 -1 0 1 1 1' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 0 0 0 -1 -2 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 1 0 0 -1 -2 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'1 1 0 0 -1 -2 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 1 1 0 -1 -2 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'1 1 1 0 -1 -2 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'1 2 1 0 -1 -2 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 0 0 0 -1 -1 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 1 0 0 -1 -1 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'1 1 0 0 -1 -1 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 1 1 0 -1 -1 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'1 1 1 0 -1 -1 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'1 2 1 0 -1 -1 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 1 0 -1 -1 -1 -1 0' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 1 0 0 -1 -1 -1 -1' : {'tile' : 'tilecave', 'rot' : 270},
-		'0 0 -1 -1 -1 -1 0 0' : {'tile' : 'tilecave', 'rot' : 180},
-		'1 1 -1 -1 -1 -1 1 1' : {'tile' : 'tilecave', 'rot' : 180},
-		
-		'-1 0 1 1 1 1 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 0 1 0 1 1 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 0 1 1 1 0 1 0' : {'tile' : 'tilecave', 'rot' : 90},
-		'-1 0 0 0 0 0 -1 -2' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 0 1 0 0 -1 -2' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 1 1 0 0 -1 -2' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 0 1 1 0 -1 -2' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 1 1 1 0 -1 -2' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 1 2 1 0 -1 -2' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 0 0 0 0 -1 -1' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 0 1 0 0 -1 -1' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 1 1 0 0 -1 -1' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 0 1 1 0 -1 -1' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 1 1 1 0 -1 -1' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 1 2 1 0 -1 -1' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 0 0 1 0 -1 -1 -1' : {'tile' : 'tilecave', 'rot' : 0},
-		'-1 -1 0 1 0 0 -1 -1' : {'tile' : 'tilecave', 'rot' : 0},
-		'0 0 0 -1 -1 -1 -1 0' : {'tile' : 'tilecave', 'rot' : 0},
-		'1 1 1 -1 -1 -1 -1 1' : {'tile' : 'tilecave', 'rot' : 0},
-
-
-
-		'1 1 1 1 0 -1 0 0' : {'tile' : 'tileside', 'rot' : 270},
-		'1 1 1 1 0 0 0 0' : {'tile' : 'tileside', 'rot' : 270},
-		'0 1 1 1 1 0 0 0' : {'tile' : 'tileside', 'rot' : 270},
-		'0 1 1 1 0 0 0 0' : {'tile' : 'tileside', 'rot' : 270},
-		'0 1 1 1 0 0 -1 0' : {'tile' : 'tileside', 'rot' : 270},
-		'0 1 1 1 0 -1 -1 0' : {'tile' : 'tileside', 'rot' : 270},
-		'0 1 1 1 0 0 -1 -1' : {'tile' : 'tileside', 'rot' : 270},
-		'0 1 1 1 0 -1 -1 -1' : {'tile' : 'tileside', 'rot' : 270},
-		'1 1 1 1 -1 -1 -1 0' : {'tile' : 'tileside', 'rot' : 270},
-		'0 1 1 1 -1 -1 -1 1' : {'tile' : 'tileside', 'rot' : 270},
-		
-		'0 0 1 1 1 1 0 -1' : {'tile' : 'tileside', 'rot' : 0},
-		'0 0 1 1 1 1 0 0' : {'tile' : 'tileside', 'rot' : 0},
-		'0 0 0 1 1 1 1 0' : {'tile' : 'tileside', 'rot' : 0},
-		'0 0 0 1 1 1 0 0' : {'tile' : 'tileside', 'rot' : 0},
-		'-1 0 0 1 1 1 0 0' : {'tile' : 'tileside', 'rot' : 0},
-		'-1 0 0 1 1 1 0 -1' : {'tile' : 'tileside', 'rot' : 0},
-		'-1 -1 0 1 1 1 0 0' : {'tile' : 'tileside', 'rot' : 0},
-		'-1 -1 0 1 1 1 0 -1' : {'tile' : 'tileside', 'rot' : 0},
-		'-1 -1 1 1 1 1 0 -1' : {'tile' : 'tileside', 'rot' : 0},
-		'-1 -1 0 1 1 1 1 -1' : {'tile' : 'tileside', 'rot' : 0},
-		
-		'0 0 -1 0 1 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'0 0 0 0 1 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'1 0 0 0 0 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'0 0 0 0 0 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'0 0 -1 0 0 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'0 -1 -1 0 0 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'0 0 -1 -1 0 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'0 -1 -1 -1 0 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'0 -1 -1 -1 1 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		'1 -1 -1 -1 0 1 1 1' : {'tile' : 'tileside', 'rot' : 90},
-		
-		'1 1 0 0 -1 0 1 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 0 0 0 0 1 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 1 0 0 0 0 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 0 0 0 0 0 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 0 0 -1 0 0 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 0 -1 -1 0 0 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 0 0 -1 -1 0 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 0 -1 -1 -1 0 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 0 -1 -1 -1 1 1' : {'tile' : 'tileside', 'rot' : 180},
-		'1 1 1 -1 -1 -1 0 1' : {'tile' : 'tileside', 'rot' : 180},
-
-
-
-		'-1 -1 -1 0 2 2 2 0' : {'tile' : 'tilevert', 'rot' : 90},
-		'-1 -1 -1 0 1 2 2 0' : {'tile' : 'tilevert', 'rot' : 90},
-		'-1 -1 -1 0 2 1 2 0' : {'tile' : 'tilevert', 'rot' : 90},
-		'-1 -1 -1 0 2 2 1 0' : {'tile' : 'tilevert', 'rot' : 90},
-		'-1 -2 -1 0 2 2 2 0' : {'tile' : 'tilevert', 'rot' : 90},
-		'-1 -2 -1 0 1 2 2 0' : {'tile' : 'tilevert', 'rot' : 90},
-		'-1 -2 -1 0 2 1 2 0' : {'tile' : 'tilevert', 'rot' : 90},
-		'-1 -2 -1 0 2 2 1 0' : {'tile' : 'tilevert', 'rot' : 90},
-		
-		'2 0 -1 -1 -1 0 2 2' : {'tile' : 'tilevert', 'rot' : 180},
-		'2 0 -1 -1 -1 0 1 2' : {'tile' : 'tilevert', 'rot' : 180},
-		'2 0 -1 -1 -1 0 2 1' : {'tile' : 'tilevert', 'rot' : 180},
-		'1 0 -1 -1 -1 0 2 2' : {'tile' : 'tilevert', 'rot' : 180},
-		'2 0 -1 -2 -1 0 2 2' : {'tile' : 'tilevert', 'rot' : 180},
-		'2 0 -1 -2 -1 0 1 2' : {'tile' : 'tilevert', 'rot' : 180},
-		'2 0 -1 -2 -1 0 2 1' : {'tile' : 'tilevert', 'rot' : 180},
-		'1 0 -1 -2 -1 0 2 2' : {'tile' : 'tilevert', 'rot' : 180},
-		
-		'2 2 2 0 -1 -1 -1 0' : {'tile' : 'tilevert', 'rot' : 270},
-		'1 2 2 0 -1 -1 -1 0' : {'tile' : 'tilevert', 'rot' : 270},
-		'2 1 2 0 -1 -1 -1 0' : {'tile' : 'tilevert', 'rot' : 270},
-		'2 2 1 0 -1 -1 -1 0' : {'tile' : 'tilevert', 'rot' : 270},
-		'2 2 2 0 -1 -2 -1 0' : {'tile' : 'tilevert', 'rot' : 270},
-		'1 2 2 0 -1 -2 -1 0' : {'tile' : 'tilevert', 'rot' : 270},
-		'2 1 2 0 -1 -2 -1 0' : {'tile' : 'tilevert', 'rot' : 270},
-		'2 2 1 0 -1 -2 -1 0' : {'tile' : 'tilevert', 'rot' : 270},
-		
-		'-1 0 2 2 2 0 -1 -1' : {'tile' : 'tilevert', 'rot' : 0},
-		'-1 0 1 2 2 0 -1 -1' : {'tile' : 'tilevert', 'rot' : 0},
-		'-1 0 2 1 2 0 -1 -1' : {'tile' : 'tilevert', 'rot' : 0},
-		'-1 0 2 2 1 0 -1 -1' : {'tile' : 'tilevert', 'rot' : 0},
-		'-1 0 2 2 2 0 -1 -2' : {'tile' : 'tilevert', 'rot' : 0},
-		'-1 0 1 2 2 0 -1 -2' : {'tile' : 'tilevert', 'rot' : 0},
-		'-1 0 2 1 2 0 -1 -2' : {'tile' : 'tilevert', 'rot' : 0},
-		'-1 0 2 2 1 0 -1 -2' : {'tile' : 'tilevert', 'rot' : 0},
-
-
-
-		'1 2 1 0 0 0 0 0' : {'tile' : 'tilevex', 'rot' : 270},
-		'1 1 1 0 0 0 0 0' : {'tile' : 'tilevex', 'rot' : 270},
-		'1 1 1 0 0 -1 0 0' : {'tile' : 'tilevex', 'rot' : 270},
-		'1 1 1 0 -1 -1 0 0' : {'tile' : 'tilevex', 'rot' : 270},
-		'1 1 1 0 0 -1 -1 0' : {'tile' : 'tilevex', 'rot' : 270},
-		'1 2 1 0 0 -1 -1 0' : {'tile' : 'tilevex', 'rot' : 270},
-		
-		'0 0 1 2 1 0 0 0' : {'tile' : 'tilevex', 'rot' : 0},
-		'0 0 1 1 1 0 0 0' : {'tile' : 'tilevex', 'rot' : 0},
-		'0 0 1 1 1 0 0 -1' : {'tile' : 'tilevex', 'rot' : 0},
-		'0 0 1 1 1 0 -1 -1' : {'tile' : 'tilevex', 'rot' : 0},
-		'-1 0 1 1 1 0 0 -1' : {'tile' : 'tilevex', 'rot' : 0},
-		'-1 0 1 2 1 0 0 -1' : {'tile' : 'tilevex', 'rot' : 0},
-		
-		'0 0 0 0 1 2 1 0' : {'tile' : 'tilevex', 'rot' : 90},
-		'0 0 0 0 1 1 1 0' : {'tile' : 'tilevex', 'rot' : 90},
-		'0 -1 0 0 1 1 1 0' : {'tile' : 'tilevex', 'rot' : 90},
-		'-1 -1 0 0 1 1 1 0' : {'tile' : 'tilevex', 'rot' : 90},
-		'0 -1 -1 0 1 1 1 0' : {'tile' : 'tilevex', 'rot' : 90},
-		'0 -1 -1 0 1 2 1 0' : {'tile' : 'tilevex', 'rot' : 90},
-		
-		'1 0 0 0 0 0 1 2' : {'tile' : 'tilevex', 'rot' : 180},
-		'1 0 0 0 0 0 1 1' : {'tile' : 'tilevex', 'rot' : 180},
-		'1 0 0 -1 0 0 1 1' : {'tile' : 'tilevex', 'rot' : 180},
-		'1 0 -1 -1 0 0 1 1' : {'tile' : 'tilevex', 'rot' : 180},
-		'1 0 0 -1 -1 0 1 1' : {'tile' : 'tilevex', 'rot' : 180},
-		'1 0 0 -1 -1 0 1 2' : {'tile' : 'tilevex', 'rot' : 180},
+		'tilecave' : {
+			'0' : [ 1, 1, 0, 0, 0, 0, 0, 1 ],
+			},
+		'tileflat' : {
+			'0' : [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+			},
+		'tileside' : {
+			'0' : [ 0, 0, 0,-1, 0, 0, 0, 1 ],
+			},
+		'tilevert' : {
+			'0' : [ 2, 2, 0, 0, 0, 0, 0, 2 ],
+			},
+		'tilevex' : {
+			'0' : [-2,-1, 0, 0, 0, 0, 0,-1 ],
+			},
 	}
 
 func _ready():
@@ -212,7 +34,6 @@ func _ready():
 	world_size = Data.physics['world_size']
 	chunk_size = Data.physics['chunk_size']
 	tile_size = Data.physics['tile_size']
-	
 	set_noise_values(noise_fissure, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	set_noise_values(noise_moisture, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
 	set_noise_values(noise_temperature, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
@@ -251,7 +72,35 @@ func generate_tile(x, z):
 	var Y = get_height(x, z)
 	var tile = "tileflat"
 	var rot = Vector3(0, 0, 0)
+	
+	var nbrs = get_neighbors(x, z)
+	
+	for t in mask:
+		for c in mask[t]:
+			for i in range(8):
+				var to_check = rotate_mask(mask[t][c], i)
+				if nbrs == to_check:
+					tile = t
+					rot.y = int(i * 90)
 
+	spawn(tile, Vector3(x*tile_size, Y, z*tile_size), rot)
+
+func rotate_mask(nbrs, rot):
+	var new_nbrs = nbrs.duplicate()
+	var nbr
+	
+	for _i in range(rot):
+		nbr = new_nbrs[0]
+		new_nbrs.remove(0)
+		new_nbrs.append(nbr)
+	
+	return '%s %s %s %s %s %s %s %s' % [
+		new_nbrs[0], new_nbrs[1], new_nbrs[2], new_nbrs[3],
+		new_nbrs[4], new_nbrs[5], new_nbrs[6], new_nbrs[7],
+	]
+
+func get_neighbors(x, z):
+	var Y = get_height(x, z)
 	var n = get_height(x, z-1)
 	var s = get_height(x, z+1)
 	var e = get_height(x-1, z)
@@ -261,32 +110,16 @@ func generate_tile(x, z):
 	var se = get_height(x-1, z+1)
 	var sw = get_height(x+1, z+1)
 
-	if !n: n = 0
-	else: n -= Y
-	if !s: s = 0
-	else: s -= Y
-	if !e: e = 0
-	else: e -= Y
-	if !w: w = 0
-	else: w -= Y
-	if !ne: ne = 0
-	else: ne -= Y
-	if !nw: nw = 0
-	else: nw -= Y
-	if !se: se = 0
-	else: se -= Y
-	if !sw: sw = 0
-	else: sw -= Y
-
-	var nbrs = '%s %s %s %s %s %s %s %s' % [w, nw, n, ne, e, se, s, sw]
+	if !n: n=0; else: n-=Y
+	if !s: s=0; else: s-=Y
+	if !e: e=0; else: e-=Y
+	if !w: w=0; else: w-=Y
+	if !ne: ne=0; else: ne-=Y
+	if !nw: nw=0; else: nw-=Y
+	if !se: se=0; else: se-=Y
+	if !sw: sw=0; else: sw-=Y
 	
-	for b in mask:
-		match nbrs:
-			b :
-				tile = mask[b]['tile']
-				rot.y = mask[b]['rot']
-
-	spawn(tile, Vector3(x*tile_size, Y, z*tile_size), rot)
+	return "%s %s %s %s %s %s %s %s" % [nw,n,ne,e,se,s,sw,w]
 
 func get_height(x, z):
 	if '%s-%s' % [x, z] in data:
