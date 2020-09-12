@@ -13,7 +13,7 @@ var data = {}
 
 var mask = {
 		'tilecave' : {
-			'0' : [ 1, 1, 0, 0, 0, 0, 0, 1 ],
+			'0' : [ 0,-1,-1,-1, 0, 0, 0, 0 ],
 			},
 		'tileflat' : {
 			'0' : [ 0, 0, 0, 0, 0, 0, 0, 0 ],
@@ -22,10 +22,10 @@ var mask = {
 			'0' : [ 0, 0, 0,-1, 0, 0, 0, 1 ],
 			},
 		'tilevert' : {
-			'0' : [ 2, 2, 0, 0, 0, 0, 0, 2 ],
+			'0' : [ 0,-1,-1,-1, 0, 1, 1, 1 ],
 			},
 		'tilevex' : {
-			'0' : [-2,-1, 0, 0, 0, 0, 0,-1 ],
+			'0' : [ 0, 0, 0, 0, 0, 1, 1, 1 ],
 			},
 	}
 
@@ -70,34 +70,30 @@ func generate_chunk(X, Z):
 
 func generate_tile(x, z):
 	var Y = get_height(x, z)
+	var nbrs = get_neighbors(x, z)
 	var tile = "tileflat"
 	var rot = Vector3(0, 0, 0)
 	
-	var nbrs = get_neighbors(x, z)
-	
 	for t in mask:
 		for c in mask[t]:
-			for i in range(8):
+			for i in range(4):
 				var to_check = rotate_mask(mask[t][c], i)
 				if nbrs == to_check:
 					tile = t
-					rot.y = int(i * 90)
+					rot.y = i * 90
 
 	spawn(tile, Vector3(x*tile_size, Y, z*tile_size), rot)
 
 func rotate_mask(nbrs, rot):
 	var new_nbrs = nbrs.duplicate()
-	var nbr
 	
 	for _i in range(rot):
-		nbr = new_nbrs[0]
+		new_nbrs.append(new_nbrs[0])
+		new_nbrs.append(new_nbrs[1])
 		new_nbrs.remove(0)
-		new_nbrs.append(nbr)
-	
-	return '%s %s %s %s %s %s %s %s' % [
-		new_nbrs[0], new_nbrs[1], new_nbrs[2], new_nbrs[3],
-		new_nbrs[4], new_nbrs[5], new_nbrs[6], new_nbrs[7],
-	]
+		new_nbrs.remove(0)
+	print('%s %s %s %s %s %s %s %s' % new_nbrs)
+	return '%s %s %s %s %s %s %s %s' % new_nbrs
 
 func get_neighbors(x, z):
 	var Y = get_height(x, z)
@@ -124,7 +120,7 @@ func get_neighbors(x, z):
 func get_height(x, z):
 	if '%s-%s' % [x, z] in data:
 		var y = data['%s-%s' % [x, z]][0] * max_height
-		return round(y)
+		return floor(y)
 
 func get_biome(v, t):
 	for b in Data.biome:
