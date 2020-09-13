@@ -15,7 +15,7 @@ var mask = {
 	'tilecave' : [-1, 0, 0, 0, 0, 0,-1,-1 ],
 	'tileflat' : [ 0, 0, 0, 0, 0, 0, 0, 0 ],
 	'tileside' : [ 0, 1, 1, 1, 0, 0, 0, 0 ],
-	'tilevert' : [-1, 0, 1, 1, 1, 0,-1,-1 ],
+	'tilevert' : [ 0, 0, 1, 1, 1, 0, 0, 0 ],
 	'tilevex' : [ 0, 0, 1, 1, 1, 0, 0, 0 ]
 	}
 
@@ -67,15 +67,51 @@ func generate_tile(x, z):
 	for t in mask:
 		for i in range(4):
 			var to_check = rotate_mask(mask[t], i)
-			if (
-			to_check[0] == nbrs[0] and
-			to_check[1] == nbrs[1] and
-			to_check[2] == nbrs[2] and
-			to_check[3] == nbrs[3] and
-			to_check[4] == nbrs[4] and
-			to_check[5] == nbrs[5] and
-			to_check[6] == nbrs[6] and
-			to_check[7] == nbrs[7]
+			if ((
+			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
+			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
+			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
+			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
+			or (
+			to_check[0] >= nbrs[0] and to_check[1] == nbrs[1] and
+			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
+			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
+			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
+			or (
+			to_check[0] == nbrs[0] and to_check[1] >= nbrs[1] and
+			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
+			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
+			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
+			or (
+			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
+			to_check[2] >= nbrs[2] and to_check[3] == nbrs[3] and
+			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
+			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
+			or (
+			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
+			to_check[2] == nbrs[2] and to_check[3] >= nbrs[3] and
+			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
+			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
+			or (
+			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
+			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
+			to_check[4] >= nbrs[4] and to_check[5] == nbrs[5] and
+			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
+			or (
+			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
+			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
+			to_check[4] == nbrs[4] and to_check[5] >= nbrs[5] and
+			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
+			or (
+			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
+			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
+			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
+			to_check[6] >= nbrs[6] and to_check[7] == nbrs[7])
+			or (
+			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
+			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
+			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
+			to_check[6] == nbrs[6] and to_check[7] >= nbrs[7])
 			):
 				tile = t; rot.y = (i * 90) + 90
 
