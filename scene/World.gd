@@ -15,7 +15,7 @@ var mask = {
 	'tilecave' : [-1, 0, 0, 0, 0, 0,-1,-1 ],
 	'tileflat' : [ 0, 0, 0, 0, 0, 0, 0, 0 ],
 	'tileside' : [ 0, 1, 1, 1, 0, 0, 0, 0 ],
-	'tilevert' : [ 0, 0, 1, 1, 1, 0, 0, 0 ],
+	'tilevert' : [-1, 0, 1, 1, 1, 0,-1,-1 ],
 	'tilevex' : [ 0, 0, 1, 1, 1, 0, 0, 0 ]
 	}
 
@@ -59,61 +59,39 @@ func generate_chunk(X, Z):
 			generate_tile(x, z)
 
 func generate_tile(x, z):
+	var oriented = false
 	var Y = get_height(x, z)
 	var nbrs = get_neighbors(x, z)
 	var tile = "tileflat"
 	var rot = Vector3(0, 0, 0)
-	
-	for t in mask:
+
+	for i in range(4):
+		var to_check = rotate_mask(mask['tileside'], i)
+		if ((to_check[0]==nbrs[0] && to_check[1]<=nbrs[1] && to_check[2]<=nbrs[2] && to_check[3]<=nbrs[3] &&
+		to_check[4]==nbrs[4] && to_check[5]==nbrs[5] && to_check[6]>=nbrs[6] && to_check[7]==nbrs[7])
+		):
+			tile = 'tileside'; rot.y = (i * 90) + 90; oriented = true
+	if !oriented:
 		for i in range(4):
-			var to_check = rotate_mask(mask[t], i)
-			if ((
-			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
-			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
-			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
-			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
-			or (
-			to_check[0] >= nbrs[0] and to_check[1] == nbrs[1] and
-			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
-			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
-			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
-			or (
-			to_check[0] == nbrs[0] and to_check[1] >= nbrs[1] and
-			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
-			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
-			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
-			or (
-			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
-			to_check[2] >= nbrs[2] and to_check[3] == nbrs[3] and
-			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
-			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
-			or (
-			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
-			to_check[2] == nbrs[2] and to_check[3] >= nbrs[3] and
-			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
-			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
-			or (
-			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
-			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
-			to_check[4] >= nbrs[4] and to_check[5] == nbrs[5] and
-			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
-			or (
-			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
-			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
-			to_check[4] == nbrs[4] and to_check[5] >= nbrs[5] and
-			to_check[6] == nbrs[6] and to_check[7] == nbrs[7])
-			or (
-			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
-			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
-			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
-			to_check[6] >= nbrs[6] and to_check[7] == nbrs[7])
-			or (
-			to_check[0] == nbrs[0] and to_check[1] == nbrs[1] and
-			to_check[2] == nbrs[2] and to_check[3] == nbrs[3] and
-			to_check[4] == nbrs[4] and to_check[5] == nbrs[5] and
-			to_check[6] == nbrs[6] and to_check[7] >= nbrs[7])
+			var to_check = rotate_mask(mask['tilecave'], i)
+			if ((to_check[0]>=nbrs[0] && to_check[1]==nbrs[1] && to_check[2]==nbrs[2] && to_check[3]<=nbrs[3] &&
+			to_check[4]==nbrs[4] && to_check[5]==nbrs[5] && to_check[6]>=nbrs[6] && to_check[7]>=nbrs[7])
 			):
-				tile = t; rot.y = (i * 90) + 90
+				tile = 'tilecave'; rot.y = (i * 90) + 90; oriented = true
+	if !oriented:
+		for i in range(4):
+			var to_check = rotate_mask(mask['tilevex'], i)
+			if ((to_check[0]==nbrs[0] && to_check[1]==nbrs[1] && to_check[2]<=nbrs[2] && to_check[3]<=nbrs[3] &&
+			to_check[4]<=nbrs[4] && to_check[5]==nbrs[5] && to_check[6]>=nbrs[6] && to_check[7]==nbrs[7])
+			):
+				tile = 'tilevex'; rot.y = (i * 90) + 90; oriented = true
+	if !oriented:
+		for i in range(4):
+			var to_check = rotate_mask(mask['tilevert'], i)
+			if ((to_check[0]<=nbrs[0] && to_check[1]==nbrs[1] && to_check[2]>=nbrs[2] && to_check[3]>=nbrs[3] &&
+			to_check[4]>=nbrs[4] && to_check[5]==nbrs[5] && to_check[6]<=nbrs[6] && to_check[7]<=nbrs[7])
+			):
+				tile = 'tilevert'; rot.y = (i * 90) + 90; oriented = true
 
 	spawn(tile, Vector3(x*tile_size, Y, z*tile_size), rot)
 
@@ -146,7 +124,6 @@ func get_neighbors(x, z):
 	if !se: se=0; else: se-=Y
 	if !sw: sw=0; else: sw-=Y
 	
-	#return "%s %s %s %s %s %s %s %s" % [w,sw,s,se,e,ne,n,nw]
 	return [w,sw,s,se,e,ne,n,nw]
 
 func get_height(x, z):
