@@ -845,7 +845,7 @@ func get_vanilla():
 
 
 		"physics" : {
-			"world_size" : 2,
+			"world_size" : 4,
 			"chunk_size" : 8,
 			"tile_size" : 2,
 			
