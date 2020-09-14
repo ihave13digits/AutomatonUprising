@@ -1,7 +1,6 @@
 extends Control
 
 enum ACTIONS {menu, jog, run, jump, move_forward, move_backward, move_left, move_right}
-
 var action_string = ''
 
 func _ready():

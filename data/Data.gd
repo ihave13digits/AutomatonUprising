@@ -880,8 +880,10 @@ func get_vanilla():
 			'tile' : "res://scene/instance/Tile.tscn",
 			
 			'text' : "res://scene/ui/Text.tscn",
+			'pause' : "res://scene/ui/PauseMenu.tscn",
 			'setter' : "res://scene/ui/SettingSetter.tscn",
 			'controls' : "res://scene/ui/ControlSettings.tscn",
+			#'settings' : ,
 			},
 
 

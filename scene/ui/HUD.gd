@@ -4,6 +4,8 @@ var center_img
 var size
 var message_count
 
+var current_menu
+
 func _ready():
 	center_img = $Center/Img
 	center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value'])

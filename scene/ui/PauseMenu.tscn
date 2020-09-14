@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/ui/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/ui/PauseMenu.gd" type="Script" id=2]
+
+[node name="PauseMenu" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuTitle" type="Label" parent="."]
+margin_left = 489.0
+margin_top = 213.0
+margin_right = 535.0
+margin_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" parent="." instance=ExtResource( 1 )]
+margin_left = 483.5
+margin_top = 245.0
+margin_right = 540.5
+margin_bottom = 259.0
+text = "Continue"
+
+[node name="Settings" parent="." instance=ExtResource( 1 )]
+margin_left = 486.5
+margin_top = 277.0
+margin_right = 537.5
+margin_bottom = 291.0
+text = "Settings"
+
+[node name="Controls" parent="." instance=ExtResource( 1 )]
+margin_left = 485.5
+margin_top = 309.0
+margin_right = 538.5
+margin_bottom = 323.0
+text = "Controls"
+
+[node name="MainMenu" parent="." instance=ExtResource( 1 )]
+margin_left = 476.5
+margin_top = 341.0
+margin_right = 547.5
+margin_bottom = 355.0
+text = "Main Menu"
+
+[node name="Exit" parent="." instance=ExtResource( 1 )]
+margin_left = 495.0
+margin_top = 389.0
+margin_right = 529.0
+margin_bottom = 403.0
+text = "Exit"
+[connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Controls" to="." method="_on_Controls_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
