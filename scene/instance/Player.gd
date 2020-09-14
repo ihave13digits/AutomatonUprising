@@ -90,8 +90,12 @@ func _physics_process(delta):
 
 func _process(_delta):
 	if Input.is_action_just_pressed("menu"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		has_control = false
+		if Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			has_control = false
+		elif Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			has_control = true
 		emit_signal("update_hud")
 	
 	if Input.is_action_pressed("jump"):
@@ -126,19 +130,11 @@ func _process(_delta):
 		velocity = $Y.get_transform().basis.x
 
 	if Input.is_action_pressed("create") and can['create']:
-		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			has_control = true
-			emit_signal("update_hud")
 		if cursor.get_collider() != null:
 			get_parent().hud.display_message(cursor.get_collider().translation)
 		can['create'] = false
 		$Create.start()
 	if Input.is_action_pressed("destroy") and can['destroy']:
-		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			has_control = true
-			emit_signal("update_hud")
 		if cursor.get_collider() != null:
 			get_parent().hud.display_message(cursor.get_collider().id)
 		can['destroy'] = false

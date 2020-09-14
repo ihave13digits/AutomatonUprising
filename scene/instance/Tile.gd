@@ -1,6 +1,6 @@
 extends StaticBody
 
-var id = "tile"
+var id = ''
 
 var mesh = {
 	'body' : "",

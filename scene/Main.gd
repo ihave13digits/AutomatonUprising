@@ -5,16 +5,28 @@ var world
 var player
 
 func _ready():
-	add_player(Vector3(0, 10, 0))
-	player.has_control = false
 	hud = $HUD
 	world = $World
-	
 	world.generate_world_data()
-	for x in range(-Data.physics['world_size'], Data.physics['world_size']):
-		for z in range(-Data.physics['world_size'], Data.physics['world_size']):
+	
+	add_player(Vector3(0, 10, 0))
+	player.has_control = false
+	
+	for x in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
+		for z in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
 			world.generate_chunk(x, z)
-#	world.generate_tile(0, 0)
+
+func update_tiles():
+	var despawn = Data.settings['spawn_distance']['value']+1
+	var spawn = Data.settings['spawn_distance']['value']
+	
+	for x in range(-despawn, despawn):
+		for z in range(-despawn, despawn):
+			world.kill_tile(floor(player.translation.x+x), floor(player.translation.z+z))
+			
+	for x in range(-spawn, spawn):
+		for z in range(-spawn, spawn):
+			world.generate_tile(floor(player.translation.x+x), floor(player.translation.z+z))
 
 func _update_cursor():
 	if player.cursor.get_collider() != null:

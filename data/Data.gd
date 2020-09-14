@@ -845,11 +845,11 @@ func get_vanilla():
 
 
 		"physics" : {
-			"world_size" : 4,
+			"world_size" : 16,
 			"chunk_size" : 8,
 			"tile_size" : 2,
 			
-			"max_height" : 12.0,
+			"max_height" : 8.0,
 			"gravity" : 0.25#0.8,
 			},
 
@@ -890,14 +890,15 @@ func get_vanilla():
 			'game_seed' : {'value' : '', 'min' : 0, 'max' : 16},
 			'font_name' : {'value' : '', 'min' : 0, 'max' : 128},
 			
-			'message_font' : {'value' : 16, 'min' : 0, 'max' : 0},
+			'message_font' : {'value' : 16, 'min' : 16, 'max' : 16},
+			'spawn_distance' : {'value' : 1, 'min' : 1, 'max' : 16},
 			
-			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0, 'max' : 0},
-			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0, 'max' : 0},
-			'hud_opacity' : {'value' : 0.75, 'min' : 0, 'max' : 0},
-			'max_pitch' : {'value' : 60.0, 'min' : 0, 'max' : 0},
-			'effects' : {'value' : 0.0, 'min' : 0, 'max' : 0},
-			'music' : {'value' : 0.0, 'min' : 0, 'max' : 0},
+			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
+			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
+			'hud_opacity' : {'value' : 0.75, 'min' : 0.0, 'max' : 0.0},
+			'max_pitch' : {'value' : 80.0, 'min' : 45.0, 'max' : 90.0},
+			'effects' : {'value' : 0.0, 'min' : 0.0, 'max' : 0.0},
+			'music' : {'value' : 0.0, 'min' : 0.0, 'max' : 0.0},
 			},
 
 

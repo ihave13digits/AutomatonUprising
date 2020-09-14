@@ -1,6 +1,6 @@
 extends KinematicBody
 
-var id = ""
+var id = ''
 
 var velocity = Vector3()
 

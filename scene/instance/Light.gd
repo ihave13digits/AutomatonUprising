@@ -1,5 +1,7 @@
 extends OmniLight
 
+var id = ''
+
 var mesh = {
 	'body' : "",
 }
