@@ -7,7 +7,7 @@ func _on_Continue_pressed():
 
 func _on_Settings_pressed(): pass
 
-func _on_Controls_pressed(): pass
+func _on_Controls_pressed(): get_parent().get_parent()._update_hud('controls')
 
 func _on_MainMenu_pressed(): pass
 

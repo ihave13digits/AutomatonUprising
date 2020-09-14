@@ -36,17 +36,21 @@ func _update_cursor():
 	else:
 		hud.center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value']*0.5)
 
-func _update_hud():
+func _update_hud(menu=''):
 	if is_instance_valid(hud.current_menu):
 		hud.current_menu.queue_free()
 	
 	if player.has_control:
 		hud.update_center_image(Vector2(48, 48), Vector2(-24, -24), Data.texture['cursor_texture'])
 	else:
-		#hud.update_center_image(Vector2(256, 256), Vector2(-128, -128), Data.texture['menu_texture'])
-		hud.current_menu = load(Data.instance['pause']).instance()
+		if menu == "":
+			hud.update_center_image(Vector2(128, 256), Vector2(-64, -128), Data.texture['menu_texture'])
+			hud.current_menu = load(Data.instance['pause']).instance()
+		if menu == "controls":
+			hud.update_center_image(Vector2(256, 256), Vector2(-128, -128), Data.texture['menu_texture'])
+			hud.current_menu = load(Data.instance['controls']).instance()
+		
 		hud.add_child(hud.current_menu)
-		hud.update_center_image(Vector2(128, 256), Vector2(-64, -128), Data.texture['menu_texture'])
 	hud.center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value'])
 
 func add_player(pos):

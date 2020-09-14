@@ -5,7 +5,6 @@ var action_string = ''
 
 func _ready():
 	update_labels()
-	$Img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value'])
 
 func _input(event):
 	if event is InputEventKey:
@@ -51,4 +50,7 @@ func _on_MoveLeft_pressed(): action_string = 'move_left'
 func _on_MoveRight_pressed(): action_string = 'move_right'
 
 func _on_Done_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	get_parent().get_parent().player.has_control = true
+	get_parent().get_parent()._update_hud()
 	queue_free()
