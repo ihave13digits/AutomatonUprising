@@ -49,6 +49,9 @@ func _update_hud(menu=''):
 		if menu == "controls":
 			hud.update_center_image(Vector2(256, 256), Vector2(-128, -128), Data.texture['menu_texture'])
 			hud.current_menu = load(Data.instance['controls']).instance()
+		if menu == "settings":
+			hud.update_center_image(Vector2(256, 128), Vector2(-128, -64), Data.texture['menu_texture'])
+			hud.current_menu = load(Data.instance['settings']).instance()
 		
 		hud.add_child(hud.current_menu)
 	hud.center_img.modulate = Color(1.0, 1.0, 1.0, Data.settings['hud_opacity']['value'])

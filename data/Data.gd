@@ -883,7 +883,7 @@ func get_vanilla():
 			'pause' : "res://scene/ui/PauseMenu.tscn",
 			'setter' : "res://scene/ui/SettingSetter.tscn",
 			'controls' : "res://scene/ui/ControlSettings.tscn",
-			#'settings' : ,
+			'settings' : "res://scene/ui/Settings.tscn",
 			},
 
 
@@ -906,20 +906,20 @@ func get_vanilla():
 
 
 		"allowance" : {
-			'calorie' : 2200.0,
-			'sat_fat' : 55000.0,
-			'pol_fat' : 27500.0,
-			'mon_fat' : 27500.0,
-			'cholesterol' : 12000.0,
-			'sodium' : 150.0,
-			'fiber' : 1500.0,
-			'sugar' : 1000.0,
-			'protein' : 1750.0,
-			'calcium' : 1100.0,
-			'potassium' : 4700.0,
-			'iron' : 8.0,
-			'vitamin_a' : 0.8,
-			'vitamin_c' : 80.0
+			'calorie' : 1100.0,
+			'sat_fat' : 27500.0,
+			'pol_fat' : 13750.0,
+			'mon_fat' : 13750.0,
+			'cholesterol' : 6000.0,
+			'sodium' : 75.0,
+			'fiber' : 750.0,
+			'sugar' : 500.0,
+			'protein' : 875.0,
+			'calcium' : 550.0,
+			'potassium' : 2350.0,
+			'iron' : 4.0,
+			'vitamin_a' : 0.4,
+			'vitamin_c' : 40.0
 		}
 
 

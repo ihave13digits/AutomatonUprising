@@ -5,7 +5,7 @@ func _on_Continue_pressed():
 	get_parent().get_parent().player.has_control = true
 	get_parent().get_parent()._update_hud()
 
-func _on_Settings_pressed(): pass
+func _on_Settings_pressed(): get_parent().get_parent()._update_hud('settings')
 
 func _on_Controls_pressed(): get_parent().get_parent()._update_hud('controls')
 
