@@ -895,7 +895,7 @@ func get_vanilla():
 			
 			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
 			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
-			'hud_opacity' : {'value' : 0.75, 'min' : 0.0, 'max' : 0.0},
+			'hud_opacity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
 			'max_pitch' : {'value' : 80.0, 'min' : 45.0, 'max' : 90.0},
 			'effects' : {'value' : 0.0, 'min' : 0.0, 'max' : 0.0},
 			'music' : {'value' : 0.0, 'min' : 0.0, 'max' : 0.0},

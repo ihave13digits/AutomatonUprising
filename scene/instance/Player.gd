@@ -98,6 +98,9 @@ func _process(_delta):
 			has_control = true
 		emit_signal("update_hud")
 	
+	if !has_control or is_paused:
+		return
+	
 	if Input.is_action_pressed("jump"):
 		if is_on_floor():
 			var tween = get_node("Tween")

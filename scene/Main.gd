@@ -12,6 +12,8 @@ func _ready():
 	add_player(Vector3(0, 10, 0))
 	player.has_control = false
 	
+	_update_hud()
+	
 	for x in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
 		for z in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
 			world.generate_chunk(x, z)
