@@ -19,9 +19,9 @@ __meta__ = {
 
 [node name="MenuTitle" type="Label" parent="."]
 margin_left = 489.0
-margin_top = 213.0
+margin_top = 197.0
 margin_right = 535.0
-margin_bottom = 227.0
+margin_bottom = 211.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Paused"
