@@ -34,7 +34,7 @@ var data = {
 	'speed' : 500.0,
 	'boost' : 1.0,
 	# Specified
-	'age' : 20.0,
+	'age' : 10.0,
 	'gender' : 0.0,
 	'height' : 1.8,
 	'weight' : 0.0,
@@ -67,10 +67,6 @@ func ready():
 	$Y.translation.y = data['height'] - data['height']*0.1
 	$Box.shape.height = data['height'] / 2
 	$Box.translation.y = data['height'] / 2
-	print(get_need('protein'))
-
-func get_need(n):
-	return Data.allowance[n] * (data['height']) * (data['age']*0.01)
 
 func set_held(obj=null):
 	if !obj:
