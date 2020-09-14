@@ -114,7 +114,6 @@ func rotate_mask(nbrs, rot):
 	for _i in range(rot*2):
 		new_nbrs.append(new_nbrs[0])
 		new_nbrs.remove(0)
-	#return '%s %s %s %s %s %s %s %s' % new_nbrs
 	return new_nbrs
 
 func get_neighbors(x, z):
@@ -129,7 +128,6 @@ func get_neighbors(x, z):
 	get_height(x, z-1) - Y,
 	get_height(x+1, z-1) - Y,
 	]
-	#return [w,sw,s,se,e,ne,n,nw]
 
 func get_height(x, z):
 	if '%s-%s' % [x, z] in data:
