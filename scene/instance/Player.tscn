@@ -34,7 +34,9 @@ shape = SubResource( 1 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Create" type="Timer" parent="."]
+wait_time = 0.25
 
 [node name="Destroy" type="Timer" parent="."]
+wait_time = 0.25
 [connection signal="timeout" from="Create" to="." method="_on_Create_timeout"]
 [connection signal="timeout" from="Destroy" to="." method="_on_Destroy_timeout"]

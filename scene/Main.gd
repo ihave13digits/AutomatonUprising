@@ -50,7 +50,7 @@ func _update_hud(menu=''):
 			hud.update_center_image(Vector2(256, 256), Vector2(-128, -128), Data.texture['menu_texture'])
 			hud.current_menu = load(Data.instance['controls']).instance()
 		if menu == "settings":
-			hud.update_center_image(Vector2(288, 256), Vector2(-144, -128), Data.texture['menu_texture'])
+			hud.update_center_image(Vector2(288, 240), Vector2(-144, -120), Data.texture['menu_texture'])
 			hud.current_menu = load(Data.instance['settings']).instance()
 		
 		hud.add_child(hud.current_menu)
