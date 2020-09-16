@@ -9,6 +9,7 @@ var has_control = true
 var is_paused = false
 
 var velocity = Vector3()
+var update_position = Vector3()
 
 var _yaw = 0.0
 var _pitch = 0.0
@@ -67,6 +68,12 @@ func ready():
 	$Y.translation.y = data['height'] - data['height']*0.1
 	$Box.shape.height = data['height'] / 2
 	$Box.translation.y = data['height'] / 2
+
+func get_pos():
+	return Vector3(
+		translation.x/Data.physics['tile_size'],
+		translation.y/Data.physics['tile_size'],
+		translation.z/Data.physics['tile_size'])
 
 func set_held(obj=null):
 	if !obj:

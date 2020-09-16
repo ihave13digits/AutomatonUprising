@@ -10,6 +10,7 @@ func _ready():
 	world.generate_world_data()
 	
 	add_player(Vector3(0, 10, 0))
+	player.update_position = player.translation
 	player.has_control = false
 	
 	_update_hud()
@@ -18,17 +19,27 @@ func _ready():
 		for z in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
 			world.generate_chunk(x, z)
 
+#func _process(delta):
+#	var p = player.get_pos()
+#	if (
+#		(p.x >= 10+player.update_position.x or p.z >= 10+player.update_position.z) or
+#		(p.x <= 10-player.update_position.x or p.z <= 10-player.update_position.z)
+#		):
+#		player.update_position = player.translation
+#		update_tiles()
+
 func update_tiles():
+	var p = player.get_pos()
 	var despawn = Data.settings['spawn_distance']['value']+1
 	var spawn = Data.settings['spawn_distance']['value']
 	
-	for x in range(-despawn, despawn):
-		for z in range(-despawn, despawn):
-			world.kill_tile(floor(player.translation.x+x), floor(player.translation.z+z))
+	for dx in range(-despawn, despawn):
+		for dz in range(-despawn, despawn):
+			world.destroy_chunk(floor((p.x)+dx), floor((p.z)+dz))
 			
-	for x in range(-spawn, spawn):
-		for z in range(-spawn, spawn):
-			world.generate_tile(floor(player.translation.x+x), floor(player.translation.z+z))
+	for sx in range(-spawn, spawn):
+		for sz in range(-spawn, spawn):
+			world.generate_chunk(floor((p.x)+sx), floor((p.z)+sz))
 
 func _update_cursor():
 	if player.cursor.get_collider() != null:

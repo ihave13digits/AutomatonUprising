@@ -2,6 +2,8 @@ extends StaticBody
 
 var id = ''
 
+var active = false
+
 var mesh = {
 	'body' : "",
 }

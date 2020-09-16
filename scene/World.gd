@@ -57,12 +57,19 @@ func generate_world_data():
 			noise_temperature.get_noise_2d(x, z)
 			]
 
+func destroy_chunk(X, Z):
+	for x in range(int(X*chunk_size), int((X*chunk_size)+chunk_size)):
+		for z in range(int(Z*chunk_size), int((Z*chunk_size)+chunk_size)):
+			if '%s-%s' % [x/tile_size, z/tile_size] in data and 'tile' in data['%s-%s' % [x/tile_size, z/tile_size]]:
+				if is_instance_valid(data['%s-%s' % [x/tile_size, z/tile_size]]['tile']):
+					data['%s-%s' % [x/tile_size, z/tile_size]]['tile'].call_deferred('free')
+
 func generate_chunk(X, Z):
 	for x in range(int(X*chunk_size), int((X*chunk_size)+chunk_size)):
 		for z in range(int(Z*chunk_size), int((Z*chunk_size)+chunk_size)):
 			generate_tile(x, z)
 
-func kill_tile(x, z):
+func destroy_tile(x, z):
 	if '%s-%s' % [x/tile_size, z/tile_size] in data and 'tile' in data['%s-%s' % [x/tile_size, z/tile_size]]:
 		if is_instance_valid(data['%s-%s' % [x/tile_size, z/tile_size]]['tile']):
 			data['%s-%s' % [x/tile_size, z/tile_size]]['tile'].queue_free()
