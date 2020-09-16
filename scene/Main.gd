@@ -19,16 +19,7 @@ func _ready():
 		for z in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
 			world.generate_chunk(x, z)
 
-#func _process(delta):
-#	var p = player.get_pos()
-#	if (
-#		(p.x >= 10+player.update_position.x or p.z >= 10+player.update_position.z) or
-#		(p.x <= 10-player.update_position.x or p.z <= 10-player.update_position.z)
-#		):
-#		player.update_position = player.translation
-#		update_tiles()
-
-func update_tiles():
+func update_chunks():
 	var p = player.get_pos()
 	var despawn = Data.settings['spawn_distance']['value']+1
 	var spawn = Data.settings['spawn_distance']['value']
@@ -76,3 +67,4 @@ func add_player(pos):
 	add_child(player)
 	player.connect('update_hud', self, '_update_hud')
 	player.connect('update_cursor', self, '_update_cursor')
+	player.connect('update_chunks', self, '_update_chunks')

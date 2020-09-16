@@ -1,5 +1,6 @@
 extends KinematicBody
 
+signal update_chunks
 signal update_cursor
 signal update_hud
 
@@ -85,6 +86,21 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.mesh = load(mesh['hand'])
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
+func update_map_position():
+	if int(round(translation.x - Data.settings['spawn_distance']['value'])) >= int(round(update_position.x)):
+		update_position.x = int(round(translation.x))
+		emit_signal("update_chunks")
+	elif int(round(translation.x + Data.settings['spawn_distance']['value'])) <= int(round(update_position.x)):
+		update_position.x = int(round(translation.x))
+		emit_signal("update_chunks")
+
+	if int(round(translation.z - Data.settings['spawn_distance']['value'])) >= int(round(update_position.z)):
+		update_position.z = int(round(translation.z))
+		emit_signal("update_chunks")
+	elif int(round(translation.z + Data.settings['spawn_distance']['value'])) <= int(round(update_position.z)):
+		update_position.z = int(round(translation.z))
+		emit_signal("update_chunks")
+
 func _physics_process(delta):
 	if !has_control or is_paused:
 		return
@@ -133,12 +149,16 @@ func _process(_delta):
 	
 	if Input.is_action_pressed("move_forward"):
 		velocity = -$Y.get_transform().basis.z
+		update_map_position()
 	if Input.is_action_pressed("move_backward"):
 		velocity = $Y.get_transform().basis.z
+		update_map_position()
 	if Input.is_action_pressed("move_left"):
 		velocity = -$Y.get_transform().basis.x
+		update_map_position()
 	if Input.is_action_pressed("move_right"):
 		velocity = $Y.get_transform().basis.x
+		update_map_position()
 
 	if Input.is_action_pressed("create") and can['create']:
 		if cursor.get_collider() != null:
