@@ -17,20 +17,20 @@ func _ready():
 	
 	for x in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
 		for z in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
-			world.generate_chunk(x, z)
+			world.generate_tile(x, z)
 
-func update_chunks():
+func _update_chunks():
 	var p = player.get_pos()
 	var despawn = Data.settings['spawn_distance']['value']+1
 	var spawn = Data.settings['spawn_distance']['value']
 	
 	for dx in range(-despawn, despawn):
 		for dz in range(-despawn, despawn):
-			world.destroy_chunk(floor((p.x)+dx), floor((p.z)+dz))
+			world.destroy_tile(floor((p.x)+dx), floor((p.z)+dz))
 			
 	for sx in range(-spawn, spawn):
 		for sz in range(-spawn, spawn):
-			world.generate_chunk(floor((p.x)+sx), floor((p.z)+sz))
+			world.generate_tile(floor((p.x)+sx), floor((p.z)+sz))
 
 func _update_cursor():
 	if player.cursor.get_collider() != null:
