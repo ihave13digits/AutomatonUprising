@@ -118,16 +118,8 @@ func rotate_mask(nbrs, rot):
 
 func get_neighbors(x, z):
 	var Y = get_height(x, z)
-	return [
-	get_height(x+1, z) - Y,
-	get_height(x+1, z+1) - Y,
-	get_height(x, z+1) - Y,
-	get_height(x-1, z+1) - Y,
-	get_height(x-1, z) - Y,
-	get_height(x-1, z-1) - Y,
-	get_height(x, z-1) - Y,
-	get_height(x+1, z-1) - Y,
-	]
+	return [get_height(x+1, z)-Y, get_height(x+1, z+1)-Y, get_height(x, z+1)-Y, get_height(x-1, z+1)-Y,
+	get_height(x-1, z)-Y, get_height(x-1, z-1)-Y, get_height(x, z-1)-Y, get_height(x+1, z-1)-Y,]
 
 func get_height(x, z):
 	if '%s-%s' % [x, z] in data:
