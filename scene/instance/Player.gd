@@ -87,6 +87,7 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
 func update_map_position():
+	return
 	if int(round(translation.x - (Data.settings['spawn_distance']['value']))) >= int(round(update_position.x)):
 		update_position.x = int(round(translation.x))
 		emit_signal("update_chunks")
