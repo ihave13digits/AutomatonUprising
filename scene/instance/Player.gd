@@ -87,7 +87,6 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
 func update_map_position():
-	return
 	if int(round(translation.x - (Data.settings['spawn_distance']['value']))) >= int(round(update_position.x)):
 		update_position.x = int(round(translation.x))
 		emit_signal("update_chunks")
@@ -150,16 +149,16 @@ func _process(_delta):
 	
 	if Input.is_action_pressed("move_forward"):
 		velocity = -$Y.get_transform().basis.z
-		update_map_position()
+		#update_map_position()
 	if Input.is_action_pressed("move_backward"):
 		velocity = $Y.get_transform().basis.z
-		update_map_position()
+		#update_map_position()
 	if Input.is_action_pressed("move_left"):
 		velocity = -$Y.get_transform().basis.x
-		update_map_position()
+		#update_map_position()
 	if Input.is_action_pressed("move_right"):
 		velocity = $Y.get_transform().basis.x
-		update_map_position()
+		#update_map_position()
 
 	if Input.is_action_pressed("create") and can['create']:
 		if cursor.get_collider() != null:
