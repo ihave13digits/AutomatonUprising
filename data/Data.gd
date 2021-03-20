@@ -790,39 +790,100 @@ func get_vanilla():
 				}
 				},
 
-			'tileflat' : {
+			'tile0' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/flat.obj"],
+				'mesh' : ["res://mesh/tile/0.obj"],
 				'data' : {
-					
 				}
 				},
-			'tileside' : {
+			'tile1' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/side.obj"],
+				'mesh' : ["res://mesh/tile/1.obj"],
 				'data' : {
-					
 				}
 				},
-			'tilecave' : {
+			'tile2' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/cave.obj"],
+				'mesh' : ["res://mesh/tile/2.obj"],
 				'data' : {
-					
 				}
 				},
-			'tilevert' : {
+			'tile3' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/vert.obj"],
+				'mesh' : ["res://mesh/tile/3.obj"],
 				'data' : {
-					
 				}
 				},
-			'tilevex' : {
+			'tile4' : {
 				'instance' : ['tile'],
-				'mesh' : ["res://mesh/tile/vex.obj"],
+				'mesh' : ["res://mesh/tile/4.obj"],
 				'data' : {
-					
+				}
+				},
+			'tile5' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/5.obj"],
+				'data' : {
+				}
+				},
+			'tile6' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/6.obj"],
+				'data' : {
+				}
+				},
+			'tile7' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/7.obj"],
+				'data' : {
+				}
+				},
+			'tile8' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/8.obj"],
+				'data' : {
+				}
+				},
+			'tile9' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/9.obj"],
+				'data' : {
+				}
+				},
+			'tile10' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/10.obj"],
+				'data' : {
+				}
+				},
+			'tile11' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/11.obj"],
+				'data' : {
+				}
+				},
+			'tile12' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/12.obj"],
+				'data' : {
+				}
+				},
+			'tile13' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/13.obj"],
+				'data' : {
+				}
+				},
+			'tile14' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/14.obj"],
+				'data' : {
+				}
+				},
+			'tile15' : {
+				'instance' : ['tile'],
+				'mesh' : ["res://mesh/tile/15.obj"],
+				'data' : {
 				}
 				},
 			},
@@ -845,12 +906,12 @@ func get_vanilla():
 
 
 		"physics" : {
-			"world_size" : 32,
-			"chunk_size" : 4,
-			"tile_size" : 2,
+			"world_size" : 4,#64,
+			"chunk_size" : 8,
+			"tile_size" : 1,
 			
-			"max_height" : 8.0,
-			"gravity" : 0.25#0.8,
+			"max_height" : 12.0,
+			"gravity" : 0.5,
 			},
 
 
@@ -893,7 +954,7 @@ func get_vanilla():
 			'font_name' : {'value' : '', 'min' : 0, 'max' : 128},
 			
 			'message_font' : {'value' : 16, 'min' : 16, 'max' : 16},
-			'spawn_distance' : {'value' : 4, 'min' : 1, 'max' : 16},
+			'spawn_distance' : {'value' : 16, 'min' : 1, 'max' : 32},
 			
 			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
 			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},

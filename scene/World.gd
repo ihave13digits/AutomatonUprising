@@ -11,14 +11,6 @@ var noise_temperature = OpenSimplexNoise.new()
 
 var data = {}
 
-var mask = {
-	'tilecave' : [-1,-1,-1, 0, 0, 0, 0, 0 ],
-	'tileflat' : [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-	'tileside' : [ 0, 0, 0, 1, 1, 1, 0, 0 ],
-	'tilevert' : [-1,-1,-1, 0, 1, 1, 1, 0 ],
-	'tilevex' : [ 0, 0, 0, 0, 1, 1, 1, 0 ]
-	}
-
 func _ready():
 	max_height = Data.physics['max_height']
 	world_size = Data.physics['world_size']
@@ -35,7 +27,7 @@ func set_noise_values(n, sd, pd, oc, la, pr):
 	n.lacunarity = la
 	n.persistence = pr
 
-func spawn(t, pos, rot):
+func spawn(t, pos, rot=Vector3(0,0,0)):
 	var key = '%s-%s' % [int(pos.x/tile_size), int(pos.z/tile_size)]
 	if data[key]['tile']:
 		if is_instance_valid(data[key]['tile']):
@@ -68,58 +60,46 @@ func destroy_tile(x, z):
 		data['%s-%s' % [x, z]]['tile'].queue_free()
 
 func generate_tile(x, z):
-	var oriented = false
 	var Y = get_height(x, z)
 	var nbrs = get_neighbors(x, z)
-	var tile = "tileflat"
-	var rot = Vector3(0, 0, 0)
-
-	for i in range(4):
-		var to_check = rotate_mask(mask['tileside'], i)
-		if (
-			(to_check[0]==nbrs[0] && to_check[1]<=nbrs[1] && to_check[2]<=nbrs[2] && to_check[3]<=nbrs[3] &&
-			to_check[4]==nbrs[4] && to_check[5]==nbrs[5] && to_check[6]>=nbrs[6] && to_check[7]==nbrs[7])
-		):
-			tile = 'tileside'; rot.y = (i * 90); oriented = true
-	if !oriented:
-		for i in range(4):
-			var to_check = rotate_mask(mask['tilecave'], i)
-			if (
-				(to_check[0]>=nbrs[0] && to_check[1]==nbrs[1] && to_check[2]==nbrs[2] && to_check[3]<=nbrs[3] &&
-				to_check[4]==nbrs[4] && to_check[5]==nbrs[5] && to_check[6]>=nbrs[6] && to_check[7]>=nbrs[7])
-			):
-				tile = 'tilecave'; rot.y = (i * 90); oriented = true
-	if !oriented:
-		for i in range(4):
-			var to_check = rotate_mask(mask['tilevex'], i)
-			if (
-				(to_check[0]==nbrs[0] && to_check[1]==nbrs[1] && to_check[2]<=nbrs[2] && to_check[3]<=nbrs[3] &&
-				to_check[4]<=nbrs[4] && to_check[5]==nbrs[5] && to_check[6]>=nbrs[6] && to_check[7]==nbrs[7])
-			):
-				tile = 'tilevex'; rot.y = (i * 90); oriented = true
-	if !oriented:
-		for i in range(4):
-			var to_check = rotate_mask(mask['tilevert'], i)
-			if (
-				(to_check[0]<=nbrs[0] && to_check[1]==nbrs[1] && to_check[2]>=nbrs[2] && to_check[3]>=nbrs[3] &&
-				to_check[4]>=nbrs[4] && to_check[5]==nbrs[5] && to_check[6]<=nbrs[6] && to_check[7]<=nbrs[7])
-			):
-				tile = 'tilevert'; rot.y = (i * 90); oriented = true
-
-	spawn(tile, Vector3(x*tile_size, Y, z*tile_size), rot)
-
-func rotate_mask(nbrs, rot):
-	var new_nbrs = nbrs.duplicate()
+	var found = false
 	
-	for _i in range(rot*2):
-		new_nbrs.append(new_nbrs[0])
-		new_nbrs.remove(0)
-	return new_nbrs
+	var value = 0
+	
+	if nbrs[0] > 0:
+		value += 8
+		found = true
+	if nbrs[1] > 0:
+		value += 4
+		found = true
+	if nbrs[2] > 0:
+		value += 2
+		found = true
+	if nbrs[3] > 0:
+		value += 1
+		found = true
+	
+	if !found:
+		if nbrs[0] < 0: value += 8
+		if nbrs[1] < 0: value += 4
+		if nbrs[2] < 0: value += 2
+		if nbrs[3] < 0: value += 1
+		
+		value = 15 - value
+		Y -= 1
+	
+	var tile = 'tile%s' % value
+
+	spawn(tile, Vector3(x*tile_size, Y, z*tile_size))
 
 func get_neighbors(x, z):
 	var Y = get_height(x, z)
-	return [get_height(x+1, z)-Y, get_height(x+1, z+1)-Y, get_height(x, z+1)-Y, get_height(x-1, z+1)-Y,
-	get_height(x-1, z)-Y, get_height(x-1, z-1)-Y, get_height(x, z-1)-Y, get_height(x+1, z-1)-Y,]
+	return [
+		get_height(x,z)-Y,
+		get_height(x+1,z)-Y,
+		get_height(x+1,z+1)-Y,
+		get_height(x,z+1)-Y
+		]
 
 func get_height(x, z):
 	if '%s-%s' % [x, z] in data:

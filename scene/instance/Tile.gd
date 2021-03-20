@@ -10,7 +10,7 @@ var mesh = {
 
 func _ready():
 	$Mesh.mesh = load(mesh['body'])
-	$Mesh.material_override = load("res://skin/global_material.tres")
+	$Mesh.material_override = load("res://skin/dirt_material.tres")
 	set_collision()
 
 func set_collision():

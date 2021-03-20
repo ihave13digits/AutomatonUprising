@@ -7,6 +7,9 @@ var player
 func _ready():
 	hud = $HUD
 	world = $World
+	ready_world()
+
+func ready_world():
 	world.generate_world_data()
 	
 	add_player(Vector3(0, 10, 0))
@@ -14,10 +17,7 @@ func _ready():
 	player.has_control = false
 	
 	_update_hud()
-	
-	for x in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
-		for z in range(-Data.settings['spawn_distance']['value'], Data.settings['spawn_distance']['value']):
-			world.generate_tile(x, z)
+	_update_chunks()
 
 func _update_chunks():
 	var p = player.get_pos()
@@ -61,8 +61,8 @@ func _update_hud(menu=''):
 func add_player(pos):
 	player = load(Data.instance['player']).instance()
 	player.translation = pos
-	#player.mesh['body'] = Data.object['player']['mesh'][0]
-	#player.set_held(Data.object['axestone']['mesh'][0])
+	player.mesh['body'] = Data.object['player']['mesh'][0]
+	#player.set_held(Data.object['treepine']['mesh'][0])
 	player.ready()
 	add_child(player)
 	player.connect('update_hud', self, '_update_hud')
