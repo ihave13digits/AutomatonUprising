@@ -58,6 +58,14 @@ func spawn_tile(t, pos, mtrl='soil0'):
 		add_child(I)
 		data[key]['tile'] = I
 
+func spawn_water(x, z):
+	var Y = -6.5
+	if get_height(x, z) < Y:
+		var inst = Data.object['water']['instance'][0]
+		var I = load(Data.instance[inst]).instance()
+		I.translation = Vector3(x, Y, z)
+		add_child(I)
+
 func spawn_object(t, pos, rot):
 	var key = '%s-%s' % [int(pos.x/tile_size), int(pos.z/tile_size)]
 	if data.has(key):
@@ -94,6 +102,7 @@ func generate_chunk(x, z):
 				var objects = Data.biome[water][heat]['spawn']
 				var object = randi() % objects.size()
 				spawn_object(objects[object], Vector3(sx, Y, sz), Vector3(0, randi()%360, 0))
+			spawn_water(sx, sz)
 			# End of fun stuff
 
 func destroy_tile(x, z):

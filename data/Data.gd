@@ -967,6 +967,12 @@ func get_vanilla():
 				'data' : {
 				}
 				},
+			'water' : {
+				'instance' : ['water'],
+				'mesh' : ["res://mesh/tile/water.dae"],
+				'data' : {
+				}
+				},
 			},
 
 
@@ -1040,6 +1046,7 @@ func get_vanilla():
 			'tool' : "res://scene/instance/Tool.tscn",
 			'weapon' : "res://scene/instance/Weapon.tscn",
 			'tile' : "res://scene/instance/Tile.tscn",
+			'water' : "res://scene/instance/Water.tscn",
 			'voxel' : "res://scene/instance/Voxel.tscn",
 			
 			'text' : "res://scene/ui/Text.tscn",
