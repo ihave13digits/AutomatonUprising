@@ -6,6 +6,7 @@ var object = {}
 var recipe = {}
 var physics = {}
 var texture = {}
+var material = {}
 var controls = {}
 var instance = {}
 var settings = {}
@@ -29,6 +30,7 @@ func load_game_data(mod_dir):
 	data['recipe'] = parse_json(file.get_line())
 	data['physics'] = parse_json(file.get_line())
 	data['texture'] = parse_json(file.get_line())
+	data['material'] = parse_json(file.get_line())
 	data['controls'] = parse_json(file.get_line())
 	data['instance'] = parse_json(file.get_line())
 	data['settings'] = parse_json(file.get_line())
@@ -44,6 +46,7 @@ func load_game_data(mod_dir):
 	load_mod(recipe, data['recipe'])
 	load_mod(physics, data['physics'])
 	load_mod(texture, data['texture'])
+	load_mod(material, data['material'])
 	load_mod(controls, data['controls'])
 	load_mod(instance, data['instance'])
 	load_mod(settings, data['settings'])
@@ -65,6 +68,7 @@ func store_vanilla():
 	f.store_line(to_json(get_vanilla()['recipe']))
 	f.store_line(to_json(get_vanilla()['physics']))
 	f.store_line(to_json(get_vanilla()['texture']))
+	f.store_line(to_json(get_vanilla()['material']))
 	f.store_line(to_json(get_vanilla()['controls']))
 	f.store_line(to_json(get_vanilla()['instance']))
 	f.store_line(to_json(get_vanilla()['settings']))
@@ -88,109 +92,158 @@ func get_vanilla():
 
 
 		"biome" : {
-			'glacial ocean' : {
-				'noise' : {'fissure' : -1.0, 'moisture' : 0.6, 'temperature' : -0.66},
-				'spawn' : {},
-				},
-			'ocean' : {
-				'noise' : {'fissure' : -1.0, 'moisture' : 0.6, 'temperature' : 0.0},
-				'spawn' : {},
-				},
-			'tropical ocean' : {
-				'noise' : {'fissure' : -1.0, 'moisture' : 0.6, 'temperature' : 0.66},
-				'spawn' : {},
-				},
-			
-			'beach' : {
-				'noise' : {'fissure' : 0.0, 'moisture' : 0.5, 'temperature' : 0.66},
-				'spawn' : {},
-				},
-			'coast' : {
-				'noise' : {'fissure' : 0.0, 'moisture' : 0.5, 'temperature' : 0.0},
-				'spawn' : {},
-				},
-			'shore' : {
-				'noise' : {'fissure' : 0.0, 'moisture' : 0.5, 'temperature' : -0.66},
-				'spawn' : {},
-				},
-			
-			'desert' : {
-				'noise' : {'fissure' : 0.1, 'moisture' : -0.5, 'temperature' : 0.66},
-				'spawn' : {},
-				},
-			'lowlands' : {
-				'noise' : {'fissure' : 0.1, 'moisture' : 0.0, 'temperature' : 0.0},
-				'spawn' : {},
-				},
-			'tundra' : {
-				'noise' : {'fissure' : 0.1, 'moisture' : 0.0, 'temperature' : -0.66},
-				'spawn' : {},
-				},
-			
-			'bog' : {
-				'noise' : {'fissure' : 0.25, 'moisture' : 0.25, 'temperature' : -0.66},
-				'spawn' : {},
-				},
-			'marsh' : {
-				'noise' : {'fissure' : 0.25, 'moisture' : 0.25, 'temperature' : 0.0},
-				'spawn' : {},
-				},
-			'swamp' : {
-				'noise' : {'fissure' : 0.25, 'moisture' : 0.25, 'temperature' : 0.66},
-				'spawn' : {},
-				},
-			
-			'grasslands' : {
-				'noise' : {'fissure' : 0.25, 'moisture' : 0.15, 'temperature' : 0.66},
-				'spawn' : {},
-				},
-			'meadow' : {
-				'noise' : {'fissure' : 0.25, 'moisture' : 0.05, 'temperature' : 0.0},
-				'spawn' : {},
-				},
-			'taiga' : {
-				'noise' : {'fissure' : 0.25, 'moisture' : 0.05, 'temperature' : -0.66},
-				'spawn' : {},
-				},
-			
-			'alpines' : {
-				'noise' : {'fissure' : 0.5, 'moisture' : 0.1, 'temperature' : -0.66},
-				'spawn' : {},
-				},
-			'forest' : {
-				'noise' : {'fissure' : 0.5, 'moisture' : 0.15, 'temperature' : 0.0},
-				'spawn' : {},
-				},
-			'jungle' : {
-				'noise' : {'fissure' : 0.5, 'moisture' : 0.2, 'temperature' : 0.66},
-				'spawn' : {},
-				},
-			
-			'dunes' : {
-				'noise' : {'fissure' : 0.75, 'moisture' : -0.5, 'temperature' : 0.66},
-				'spawn' : {},
-				},
-			'highlands' : {
-				'noise' : {'fissure' : 0.75, 'moisture' : 0.25, 'temperature' : -0.66},
-				'spawn' : {},
-				},
-			'hills' : {
-				'noise' : {'fissure' : 0.75, 'moisture' : 0.0, 'temperature' : 0.0},
-				'spawn' : {},
-				},
-			
-			'cliff' : {
-				'noise' : {'fissure' : 1.0, 'moisture' : -0.25, 'temperature' : 0.66},
-				'spawn' : {},
-				},
-			'mountain' : {
-				'noise' : {'fissure' : 1.0, 'moisture' : 0.0, 'temperature' : 0.0},
-				'spawn' : {},
-				},
-			'snowcap' : {
-				'noise' : {'fissure' : 1.0, 'moisture' : 0.25, 'temperature' : -0.66},
-				'spawn' : {},
-				}
+			'w0' : {
+				'h0' : {
+					'name' : 'Snowcap',
+					'height' : 1.0,
+					'density' : 25,
+					'spawn' : ['boulder', 'stone'],
+					},
+				'h1' : {
+					'name' : 'Mountain',
+					'height' : 1.0,
+					'density' : 50,
+					'spawn' : ['boulder', 'stone'],
+					},
+				'h2' : {
+					'name' : 'Cliff',
+					'height' : 1.0,
+					'density' : 5,
+					'spawn' : ['boulder', 'stone'],
+					}},
+			'w1' : {
+				'h0' : {
+					'name' : 'Highlands',
+					'height' : 0.75,
+					'density' : 25,
+					'spawn' : ['stone'],
+					},
+				'h1' : {
+					'name' : 'Hills',
+					'height' : 0.75,
+					'density' : 25,
+					'spawn' : ['stone'],
+					},
+				'h2' : {
+					'name' : 'Dunes',
+					'height' : 0.75,
+					'density' : 5,
+					'spawn' : [],
+					}},
+			'w2' : {
+				'h0' : {
+					'name' : 'Alpines',
+					'height' : 0.5,
+					'density' : 75,
+					'spawn' : ['treepine'],
+					},
+				'h1' : {
+					'name' : 'Forest',
+					'height' : 0.5,
+					'density' : 50,
+					'spawn' : ['treeash', 'treeoak'],
+					},
+				'2 ': {
+					'name' : 'Jungle',
+					'height' : 0.5,
+					'density' : 75,
+					'spawn' : ['treeash', 'treeoak'],
+					}},
+			'w3' : {
+				'h0' : {
+					'name' : 'Taiga',
+					'height' : 0.25,
+					'density' : 25,
+					'spawn' : ['stone'],
+					},
+				'h1' : {
+					'name' : 'Meadow',
+					'height' : 0.25,
+					'density' : 50,
+					'spawn' : ['amaranth', 'greenonion'],
+					},
+				'h2' : {
+					'name' : 'Grasslands',
+					'height' : 0.25,
+					'density' : 50,
+					'spawn' : ['greenonion'],
+					}},
+			'w4' : {
+				'h0' : {
+					'name' : 'Bog',
+					'height' : 0.25,
+					'density' : 25,
+					'spawn' : ['cattail'],
+					},
+				'h1' : {
+					'name' : 'Marsh',
+					'height' : 0.25,
+					'density' : 25,
+					'spawn' : ['cattail'],
+					},
+				'h2' : {
+					'name' : 'Swamp',
+					'height' : 0.25,
+					'density' : 25,
+					'spawn' : ['cattail'],
+					}},
+			'w5' : {
+				'h0' : {
+					'name' : 'Tundra',
+					'height' : 0.1,
+					'density' : 5,
+					'spawn' : [],
+					},
+				'h1' : {
+					'name' : 'Lowlands',
+					'height' : 0.1,
+					'density' : 25,
+					'spawn' : ['stone'],
+					},
+				'h2' : {
+					'name' : 'Desert',
+					'height' : 0.1,
+					'density' : 5,
+					'spawn' : [],
+					}},
+			'w6' : {
+				'h0' : {
+					'name' : 'Shore',
+					'height' : 0.0,
+					'density' : 5,
+					'spawn' : [],
+					},
+				'h1' : {
+					'name' : 'Coast',
+					'height' : 0.0,
+					'density' : 10,
+					'spawn' : [],
+					},
+				'h2' : {
+					'name' : 'Beach',
+					'height' : 0.0,
+					'density' : 25,
+					'spawn' : [],
+					}},
+			'w7' : {
+				'h0' : {
+					'name' : 'Glacial Ocean',
+					'height' : 0.0,
+					'density' : 0,
+					'spawn' : [],
+					},
+				'h1' : {
+					'name' : 'Ocean',
+					'height' : 0.0,
+					'density' : 10,
+					'spawn' : [],
+					},
+				'h2' : {
+					'name' : 'Tropical Ocean',
+					'height' : 0.0,
+					'density' : 25,
+					'spawn' : [],
+					}}
 			},
 
 
@@ -897,6 +950,24 @@ func get_vanilla():
 
 
 
+		"material" : {
+			'global' : "res://skin/global_material.tres",
+			'soil0' : "res://skin/soil_material0.tres",
+			'soil1' : "res://skin/soil_material1.tres",
+			'soil2' : "res://skin/soil_material2.tres",
+			'soil3' : "res://skin/soil_material3.tres",
+			'soil4' : "res://skin/soil_material4.tres",
+			'soil5' : "res://skin/soil_material5.tres",
+			'soil6' : "res://skin/soil_material6.tres",
+			'soil7' : "res://skin/soil_material7.tres",
+			'soil8' : "res://skin/soil_material8.tres",
+			'soil9' : "res://skin/soil_material9.tres",
+			'soil10' : "res://skin/soil_material10.tres",
+			'soil11' : "res://skin/soil_material11.tres",
+			},
+
+
+
 		"recipe" : {
 			"" : {
 				'give' : {},
@@ -907,10 +978,12 @@ func get_vanilla():
 
 		"physics" : {
 			"world_size" : 1,
-			"chunk_size" : 16,
+			"chunk_size" : 25,
 			"tile_size" : 1,
 			
-			"max_height" : 0.0,
+			"max_height" : 12.0,
+			"max_water" : 7.0,
+			"max_heat" : 2.0,
 			"gravity" : 0.5,
 			},
 

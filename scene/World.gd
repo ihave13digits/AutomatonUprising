@@ -1,24 +1,28 @@
 extends Spatial
 
 var max_height
+var max_water
+var max_heat
 var world_size
 var chunk_size
 var tile_size
 
-var noise_fissure = OpenSimplexNoise.new()
-var noise_moisture = OpenSimplexNoise.new()
-var noise_temperature = OpenSimplexNoise.new()
+var noise_height = OpenSimplexNoise.new()
+var noise_water = OpenSimplexNoise.new()
+var noise_heat = OpenSimplexNoise.new()
 
 var data = {}
 
 func _ready():
 	max_height = Data.physics['max_height']
+	max_water = Data.physics['max_water']
+	max_heat = Data.physics['max_heat']
 	world_size = Data.physics['world_size']
 	chunk_size = Data.physics['chunk_size']
 	tile_size = Data.physics['tile_size']
-	set_noise_values(noise_fissure, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
-	set_noise_values(noise_moisture, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
-	set_noise_values(noise_temperature, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
+	set_noise_values(noise_height, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
+	set_noise_values(noise_water, Data.settings['game_seed'].hash(), 64, 4, 5.0, 0.2)
+	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), 2048, 4, 2.0, 0.1)
 
 func set_noise_values(n, sd, pd, oc, la, pr):
 	n.seed = sd
@@ -27,7 +31,17 @@ func set_noise_values(n, sd, pd, oc, la, pr):
 	n.lacunarity = la
 	n.persistence = pr
 
-func spawn_tile(t, pos):
+func generate_world_data():
+	for x in range(-world_size*chunk_size, world_size*chunk_size):
+		for z in range(-world_size*chunk_size, world_size*chunk_size):
+			var key = '%s-%s' % [x, z]
+			data[key] = {}
+			data[key]['tile'] = null
+			data[key]['height'] = floor(noise_height.get_noise_2d(x, z) * max_height)
+			data[key]['water'] = abs(floor(noise_water.get_noise_2d(x, z) * max_water))
+			data[key]['heat'] = abs(floor(noise_heat.get_noise_2d(x, z) * max_heat))
+
+func spawn_tile(t, pos, mtrl='soil0'):
 	var key = '%s-%s' % [int(pos.x/tile_size), int(pos.z/tile_size)]
 	if data.has(key):
 		if data[key]['tile']:
@@ -40,6 +54,7 @@ func spawn_tile(t, pos):
 		I.mesh['body'] = Data.object[t]['mesh'][0]
 		I.id = t
 		I.active = true
+		I.set_material(mtrl)
 		add_child(I)
 		data[key]['tile'] = I
 
@@ -55,18 +70,6 @@ func spawn_object(t, pos, rot):
 		I.id = t
 		add_child(I)
 		#data[key]['tile'] = I
-
-func generate_world_data():
-	for x in range(-world_size*chunk_size, world_size*chunk_size):
-		for z in range(-world_size*chunk_size, world_size*chunk_size):
-			var key = '%s-%s' % [x, z]
-			data[key] = {}
-			data[key]['tile'] = null
-			data[key]['value'] = [
-			floor(noise_fissure.get_noise_2d(x, z) * max_height),
-			#noise_moisture.get_noise_2d(x, z),
-			#noise_temperature.get_noise_2d(x, z)
-			]
 
 func destroy_chunk(x, z):
 	var despawn = Data.physics['chunk_size']
@@ -84,23 +87,11 @@ func generate_chunk(x, z):
 			
 			# Just for fun
 			var Y = get_height(sx, sz)
-			var chance = randi() % 100
-			if chance < 5:
-				var objects = [
-				# Materials
-				'boulder','boulder','boulder',
-				'stone','stone','stone','stone','stone','stone','stone','stone','stone',
-				# Plants
-				#'amaranth',
-				'greenonion',
-				#'watercress',
-				'cattail',
-				#'purslane',
-				'bush','bush','bush',
-				'treeash',
-				'treeoak',
-				'treepine'
-				]
+			var chance = randi() % 1000
+			var water = "w%s" % str(get_water(sx, sz))
+			var heat = "h%s" % str(get_heat(sx, sz))
+			if chance < Data.biome[water][heat]['density']:
+				var objects = Data.biome[water][heat]['spawn']
 				var object = randi() % objects.size()
 				spawn_object(objects[object], Vector3(sx, Y, sz), Vector3(0, 0, 0))
 			# End of fun stuff
@@ -113,6 +104,7 @@ func destroy_tile(x, z):
 			data[key]['tile'] = null
 
 func generate_tile(x, z):
+	var W = get_water(x, z)
 	var Y = get_height(x, z)
 	var nbrs = get_neighbors(x, z)
 	var found = false
@@ -142,8 +134,9 @@ func generate_tile(x, z):
 		Y -= 1
 	
 	var tile = 'tile%s' % value
+	var mtrl = 'soil%s' % int((abs(Y) + (abs(W)*3)) / 4)
 
-	spawn_tile(tile, Vector3(x*tile_size, Y, z*tile_size))
+	spawn_tile(tile, Vector3(x*tile_size, Y, z*tile_size), mtrl)
 
 func update_tile(x, z, val):
 	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
@@ -151,9 +144,10 @@ func update_tile(x, z, val):
 	for j in range(-1, 2):
 		for i in range(-1, 2):
 			var check = '%s-%s' % [int(x+i/tile_size), int(z+j/tile_size)]
-			if abs(val+data[key]['value'][0] - data[check]['value'][0]) > 1:
-				return
-	data[key]['value'][0] += val
+			if data.has(check):
+				if abs(val+data[key]['height'] - data[check]['height']) > 1:
+					return
+	data[key]['height'] += val
 	
 	for j in range(-1, 2):
 		for i in range(-1, 2):
@@ -175,12 +169,23 @@ func get_neighbors(x, z):
 func get_height(x, z):
 	var key = '%s-%s' % [x, z]
 	if key in data:
-		var y = data[key]['value'][0]# * max_height
+		var y = data[key]['height']
 		return floor(y)
 	else:
 		return 0
 
-func get_biome(v, t):
-	for b in Data.biome:
-		if v > Data.biome[b]['noise'][t]:
-			return b
+func get_water(x, z):
+	var key = '%s-%s' % [x, z]
+	if key in data:
+		var y = data[key]['water']
+		return floor(y)
+	else:
+		return 0
+
+func get_heat(x, z):
+	var key = '%s-%s' % [x, z]
+	if key in data:
+		var y = data[key]['heat']
+		return floor(y)
+	else:
+		return 0

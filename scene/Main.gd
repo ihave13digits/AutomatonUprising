@@ -5,11 +5,12 @@ var world
 var player
 
 func _ready():
+	print(Data.biome)
 	hud = $HUD
 	world = $World
-	ready_world()
+	ready_game()
 
-func ready_world():
+func ready_game():
 	world.generate_world_data()
 	
 	add_player(Vector3(0, 10, 0))

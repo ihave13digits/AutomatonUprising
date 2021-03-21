@@ -10,8 +10,10 @@ var mesh = {
 
 func _ready():
 	$Mesh.mesh = load(mesh['body'])
-	$Mesh.material_override = load("res://skin/dirt_material.tres")
 	set_collision()
+
+func set_material(mtrl):
+	$Mesh.material_override = load(Data.material[mtrl])
 
 func set_collision():
 	var mdt = MeshDataTool.new()

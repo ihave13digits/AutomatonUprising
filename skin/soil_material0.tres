@@ -1,0 +1,5 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+params_diffuse_mode = 1
+albedo_color = Color( 0.796078, 0.772549, 0.552941, 1 )

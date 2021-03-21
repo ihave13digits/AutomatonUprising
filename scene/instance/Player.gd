@@ -108,22 +108,22 @@ func create():
 	if can['create']:
 		if cursor.get_collider() != null:
 			if cursor.get_collider().id.find('tile') != -1:
-				emit_signal("edit_chunk", cursor.get_collider().translation, -1)
+				emit_signal("edit_chunk", cursor.get_collider().translation, 1)
 			else:
 				get_parent().hud.display_message(cursor.get_collider().translation)
-	can['create'] = false
-	$Create.start()
+		can['create'] = false
+		$Create.start()
 
 func destroy():
 	if can['destroy']:
 		if cursor.get_collider() != null:
 			if cursor.get_collider().id.find('tile') != -1:
-				emit_signal("edit_chunk", cursor.get_collider().translation, 1)
+				emit_signal("edit_chunk", cursor.get_collider().translation, -1)
 			else:
 				get_parent().hud.display_message(cursor.get_collider().id)
 				cursor.get_collider().queue_free()
-	can['destroy'] = false
-	$Destroy.start()
+		can['destroy'] = false
+		$Destroy.start()
 
 func _physics_process(delta):
 	if !has_control or is_paused:
@@ -184,9 +184,9 @@ func _process(_delta):
 		velocity = $Y.get_transform().basis.x
 		#update_map_position()
 
-	if Input.is_action_pressed("create") and can['create']:
+	if Input.is_action_pressed("create"):
 		create()
-	if Input.is_action_pressed("destroy") and can['destroy']:
+	if Input.is_action_pressed("destroy"):
 		destroy()
 
 func _input(event):
