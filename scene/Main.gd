@@ -5,7 +5,6 @@ var world
 var player
 
 func _ready():
-	print(Data.biome)
 	hud = $HUD
 	world = $World
 	ready_game()

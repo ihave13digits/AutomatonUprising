@@ -65,11 +65,11 @@ func spawn_object(t, pos, rot):
 		var I = load(Data.instance[inst]).instance()
 		
 		I.translation = pos
-		I.rotation_degrees = rot
-		I.mesh['body'] = Data.object[t]['mesh'][0]
+		if t != "grass":
+			I.rotation_degrees = rot
+		I.mesh['body'] = Data.object[t]['mesh'][randi() % Data.object[t]['mesh'].size()]
 		I.id = t
 		add_child(I)
-		#data[key]['tile'] = I
 
 func destroy_chunk(x, z):
 	var despawn = Data.physics['chunk_size']
@@ -93,7 +93,7 @@ func generate_chunk(x, z):
 			if chance < Data.biome[water][heat]['density']:
 				var objects = Data.biome[water][heat]['spawn']
 				var object = randi() % objects.size()
-				spawn_object(objects[object], Vector3(sx, Y, sz), Vector3(0, 0, 0))
+				spawn_object(objects[object], Vector3(sx, Y, sz), Vector3(0, randi()%360, 0))
 			# End of fun stuff
 
 func destroy_tile(x, z):

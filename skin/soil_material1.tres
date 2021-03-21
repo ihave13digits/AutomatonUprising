@@ -2,4 +2,4 @@
 
 [resource]
 params_diffuse_mode = 1
-albedo_color = Color( 0.592157, 0.584314, 0.356863, 1 )
+albedo_color = Color( 0.875, 0.75, 0.6, 1 )

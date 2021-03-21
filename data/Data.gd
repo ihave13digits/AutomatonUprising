@@ -116,19 +116,19 @@ func get_vanilla():
 					'name' : 'Highlands',
 					'height' : 0.75,
 					'density' : 25,
-					'spawn' : ['stone'],
+					'spawn' : ['stone', 'bush', 'grass'],
 					},
 				'h1' : {
 					'name' : 'Hills',
 					'height' : 0.75,
 					'density' : 25,
-					'spawn' : ['stone'],
+					'spawn' : ['stone', 'bush', 'grass'],
 					},
 				'h2' : {
 					'name' : 'Dunes',
 					'height' : 0.75,
 					'density' : 5,
-					'spawn' : [],
+					'spawn' : ['cactus', 'bush'],
 					}},
 			'w2' : {
 				'h0' : {
@@ -147,7 +147,7 @@ func get_vanilla():
 					'name' : 'Jungle',
 					'height' : 0.5,
 					'density' : 75,
-					'spawn' : ['treeash', 'treeoak'],
+					'spawn' : ['treeash', 'treeoak', 'bush'],
 					}},
 			'w3' : {
 				'h0' : {
@@ -159,33 +159,33 @@ func get_vanilla():
 				'h1' : {
 					'name' : 'Meadow',
 					'height' : 0.25,
-					'density' : 50,
-					'spawn' : ['amaranth', 'greenonion'],
+					'density' : 100,
+					'spawn' : ['amaranth', 'greenonion', 'grass'],
 					},
 				'h2' : {
 					'name' : 'Grasslands',
 					'height' : 0.25,
-					'density' : 50,
-					'spawn' : ['greenonion'],
+					'density' : 100,
+					'spawn' : ['greenonion', 'grass'],
 					}},
 			'w4' : {
 				'h0' : {
 					'name' : 'Bog',
 					'height' : 0.25,
 					'density' : 25,
-					'spawn' : ['cattail'],
+					'spawn' : ['cattail', 'grass'],
 					},
 				'h1' : {
 					'name' : 'Marsh',
 					'height' : 0.25,
-					'density' : 25,
-					'spawn' : ['cattail'],
+					'density' : 50,
+					'spawn' : ['cattail', 'grass'],
 					},
 				'h2' : {
 					'name' : 'Swamp',
 					'height' : 0.25,
-					'density' : 25,
-					'spawn' : ['cattail'],
+					'density' : 50,
+					'spawn' : ['cattail', 'bush', 'grass'],
 					}},
 			'w5' : {
 				'h0' : {
@@ -198,13 +198,13 @@ func get_vanilla():
 					'name' : 'Lowlands',
 					'height' : 0.1,
 					'density' : 25,
-					'spawn' : ['stone'],
+					'spawn' : ['stone', 'grass'],
 					},
 				'h2' : {
 					'name' : 'Desert',
 					'height' : 0.1,
 					'density' : 5,
-					'spawn' : [],
+					'spawn' : ['cactus'],
 					}},
 			'w6' : {
 				'h0' : {
@@ -434,6 +434,20 @@ func get_vanilla():
 					'hp' : 0
 					}
 				},
+			'grass' : {
+				'instance' : ['cluster'],
+				'mesh' : ["res://mesh/plant/grass0.obj",
+				"res://mesh/plant/grass1.obj",
+				"res://mesh/plant/grass2.obj",
+				"res://mesh/plant/grass3.obj"],
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+			},
 			'greenonion' : {
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/food/greenonion.obj"],
@@ -591,6 +605,20 @@ func get_vanilla():
 					"res://mesh/plant/bush1.obj",
 					"res://mesh/plant/bush2.obj",
 					"res://mesh/plant/bush3.obj"],
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'cactus' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/cactus0.obj",
+				"res://mesh/plant/cactus1.obj",
+				"res://mesh/plant/cactus2.obj",
+				"res://mesh/plant/cactus3.obj"],
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
