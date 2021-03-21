@@ -17,3 +17,6 @@ var data = {
 func _ready():
 	$Mesh.mesh = load(mesh['body'])
 	$Mesh.material_override = load("res://skin/global_material.tres")
+	
+	var box = $Mesh.mesh.get_aabb()
+	$Box.shape.extents = Vector3(box.size.x/16, box.size.y/2, box.size.z/16)

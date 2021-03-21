@@ -1,5 +1,6 @@
 extends KinematicBody
 
+signal edit_chunk
 signal update_chunks
 signal update_cursor
 signal update_hud
@@ -87,19 +88,42 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
 func update_map_position():
-	if int(round(translation.x - (Data.settings['spawn_distance']['value']))) >= int(round(update_position.x)):
+	var d = Data.settings['spawn_distance']['value']
+	
+	if int(round(translation.x - (d))) >= int(round(update_position.x)):
 		update_position.x = int(round(translation.x))
 		emit_signal("update_chunks")
-	elif int(round(translation.x + (Data.settings['spawn_distance']['value']))) <= int(round(update_position.x)):
+	elif int(round(translation.x + (d))) <= int(round(update_position.x)):
 		update_position.x = int(round(translation.x))
 		emit_signal("update_chunks")
 
-	if int(round(translation.z - (Data.settings['spawn_distance']['value']))) >= int(round(update_position.z)):
+	if int(round(translation.z - (d))) >= int(round(update_position.z)):
 		update_position.z = int(round(translation.z))
 		emit_signal("update_chunks")
-	elif int(round(translation.z + (Data.settings['spawn_distance']['value']))) <= int(round(update_position.z)):
+	elif int(round(translation.z + (d))) <= int(round(update_position.z)):
 		update_position.z = int(round(translation.z))
 		emit_signal("update_chunks")
+
+func create():
+	if can['create']:
+		if cursor.get_collider() != null:
+			if cursor.get_collider().id.find('tile') != -1:
+				emit_signal("edit_chunk", cursor.get_collider().translation, -1)
+			else:
+				get_parent().hud.display_message(cursor.get_collider().translation)
+	can['create'] = false
+	$Create.start()
+
+func destroy():
+	if can['destroy']:
+		if cursor.get_collider() != null:
+			if cursor.get_collider().id.find('tile') != -1:
+				emit_signal("edit_chunk", cursor.get_collider().translation, 1)
+			else:
+				get_parent().hud.display_message(cursor.get_collider().id)
+				cursor.get_collider().queue_free()
+	can['destroy'] = false
+	$Destroy.start()
 
 func _physics_process(delta):
 	if !has_control or is_paused:
@@ -161,15 +185,9 @@ func _process(_delta):
 		#update_map_position()
 
 	if Input.is_action_pressed("create") and can['create']:
-		if cursor.get_collider() != null:
-			get_parent().hud.display_message(cursor.get_collider().translation)
-		can['create'] = false
-		$Create.start()
+		create()
 	if Input.is_action_pressed("destroy") and can['destroy']:
-		if cursor.get_collider() != null:
-			get_parent().hud.display_message(cursor.get_collider().id)
-		can['destroy'] = false
-		$Destroy.start()
+		destroy()
 
 func _input(event):
 	if !has_control or is_paused:

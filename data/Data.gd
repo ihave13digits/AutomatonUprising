@@ -906,11 +906,11 @@ func get_vanilla():
 
 
 		"physics" : {
-			"world_size" : 4,#64,
-			"chunk_size" : 8,
+			"world_size" : 1,
+			"chunk_size" : 16,
 			"tile_size" : 1,
 			
-			"max_height" : 12.0,
+			"max_height" : 0.0,
 			"gravity" : 0.5,
 			},
 
@@ -939,6 +939,7 @@ func get_vanilla():
 			'tool' : "res://scene/instance/Tool.tscn",
 			'weapon' : "res://scene/instance/Weapon.tscn",
 			'tile' : "res://scene/instance/Tile.tscn",
+			'voxel' : "res://scene/instance/Voxel.tscn",
 			
 			'text' : "res://scene/ui/Text.tscn",
 			'pause' : "res://scene/ui/PauseMenu.tscn",
@@ -954,7 +955,7 @@ func get_vanilla():
 			'font_name' : {'value' : '', 'min' : 0, 'max' : 128},
 			
 			'message_font' : {'value' : 16, 'min' : 16, 'max' : 16},
-			'spawn_distance' : {'value' : 16, 'min' : 1, 'max' : 32},
+			'spawn_distance' : {'value' : 1, 'min' : 1, 'max' : 32},
 			
 			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
 			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},

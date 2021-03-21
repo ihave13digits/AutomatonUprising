@@ -19,18 +19,22 @@ func ready_world():
 	_update_hud()
 	_update_chunks()
 
+func _modify_chunk(pos, val):
+	world.update_tile(pos.x, pos.z, val)
+
 func _update_chunks():
 	var p = player.get_pos()
-	var despawn = Data.settings['spawn_distance']['value']+1
+	var despawn = Data.settings['spawn_distance']['value']
 	var spawn = Data.settings['spawn_distance']['value']
 	
-	for dx in range(-despawn, despawn):
-		for dz in range(-despawn, despawn):
-			world.destroy_tile(floor((p.x)+dx), floor((p.z)+dz))
-			
-	for sx in range(-spawn, spawn):
-		for sz in range(-spawn, spawn):
-			world.generate_tile(floor((p.x)+sx), floor((p.z)+sz))
+	for dx in range(-despawn+p.x, despawn+p.x):
+		for dz in range(-despawn+p.z, despawn+p.z):
+			world.destroy_chunk(dx, dz)
+	
+	for dx in range(-spawn+p.x, spawn+p.x):
+		for dz in range(-despawn+p.z, despawn+p.z):
+			world.generate_chunk(dx, dz)
+
 
 func _update_cursor():
 	if player.cursor.get_collider() != null:
@@ -62,9 +66,10 @@ func add_player(pos):
 	player = load(Data.instance['player']).instance()
 	player.translation = pos
 	player.mesh['body'] = Data.object['player']['mesh'][0]
-	#player.set_held(Data.object['treepine']['mesh'][0])
+	#player.set_held(Data.object['pulsecannon']['mesh'][0])
 	player.ready()
 	add_child(player)
 	player.connect('update_hud', self, '_update_hud')
 	player.connect('update_cursor', self, '_update_cursor')
 	player.connect('update_chunks', self, '_update_chunks')
+	player.connect('edit_chunk', self, '_modify_chunk')
