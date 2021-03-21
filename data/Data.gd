@@ -1012,12 +1012,13 @@ func get_vanilla():
 
 		"physics" : {
 			"world_size" : 1,
-			"chunk_size" : 25,
+			"chunk_size" : 24,
 			"tile_size" : 1,
 			
 			"max_height" : 12.0,
 			"max_water" : 7.0,
 			"max_heat" : 2.0,
+			"sea_level" : -7.75,
 			"gravity" : 0.5,
 			},
 

@@ -59,12 +59,17 @@ func spawn_tile(t, pos, mtrl='soil0'):
 		data[key]['tile'] = I
 
 func spawn_water(x, z):
-	var Y = -6.5
-	if get_height(x, z) < Y:
-		var inst = Data.object['water']['instance'][0]
-		var I = load(Data.instance[inst]).instance()
-		I.translation = Vector3(x, Y, z)
-		add_child(I)
+	var Y = Data.physics['sea_level']
+	if get_height(x, z) > Y+1:
+		for i in range(4):
+			if get_distant_neighbors(x, z)[i] > Y:
+				return
+		return
+		
+	var inst = Data.object['water']['instance'][0]
+	var I = load(Data.instance[inst]).instance()
+	I.translation = Vector3(x, Y, z)
+	add_child(I)
 
 func spawn_object(t, pos, rot):
 	var key = '%s-%s' % [int(pos.x/tile_size), int(pos.z/tile_size)]
@@ -173,6 +178,25 @@ func get_neighbors(x, z):
 		get_height(x+1,z)-Y,
 		get_height(x+1,z+1)-Y,
 		get_height(x,z+1)-Y
+		]
+
+func get_distant_neighbors(x, z):
+	var Y = get_height(x, z)
+	return [
+		get_height(x-1,z)-Y,
+		get_height(x+1,z)-Y,
+		get_height(x,z-1)-Y,
+		get_height(x,z+1)-Y,
+		
+		get_height(x-2,z-2)-Y,
+		get_height(x+2,z-2)-Y,
+		get_height(x-2,z+2)-Y,
+		get_height(x+2,z+2)-Y,
+		
+		get_height(x-2,z)-Y,
+		get_height(x+2,z)-Y,
+		get_height(x,z-2)-Y,
+		get_height(x,z+2)-Y
 		]
 
 func get_height(x, z):
