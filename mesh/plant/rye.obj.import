@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rye.obj-78dbf91071c538e04065fbec09d1dabe.mesh"
+
+[deps]
+
+files=[ "res://.import/rye.obj-78dbf91071c538e04065fbec09d1dabe.mesh" ]
+
+source_file="res://mesh/plant/rye.obj"
+dest_files=[ "res://.import/rye.obj-78dbf91071c538e04065fbec09d1dabe.mesh", "res://.import/rye.obj-78dbf91071c538e04065fbec09d1dabe.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

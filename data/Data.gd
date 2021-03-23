@@ -95,154 +95,130 @@ func get_vanilla():
 			'w0' : {
 				'h0' : {
 					'name' : 'Snowcap',
-					'height' : 1.0,
-					'density' : 25,
+					'density' : 10,
 					'spawn' : ['boulder', 'stone'],
 					},
 				'h1' : {
 					'name' : 'Mountain',
-					'height' : 1.0,
-					'density' : 50,
+					'density' : 15,
 					'spawn' : ['boulder', 'stone'],
 					},
 				'h2' : {
 					'name' : 'Cliff',
-					'height' : 1.0,
 					'density' : 5,
 					'spawn' : ['boulder', 'stone'],
 					}},
 			'w1' : {
 				'h0' : {
 					'name' : 'Highlands',
-					'height' : 0.75,
-					'density' : 25,
+					'density' : 5,
 					'spawn' : ['stone', 'bush', 'grass'],
 					},
 				'h1' : {
 					'name' : 'Hills',
-					'height' : 0.75,
-					'density' : 25,
+					'density' : 5,
 					'spawn' : ['stone', 'bush', 'grass'],
 					},
 				'h2' : {
 					'name' : 'Dunes',
-					'height' : 0.75,
 					'density' : 5,
-					'spawn' : ['cactus', 'bush'],
+					'spawn' : ['aloe', 'cactus', 'bush'],
 					}},
 			'w2' : {
 				'h0' : {
 					'name' : 'Alpines',
-					'height' : 0.5,
 					'density' : 75,
-					'spawn' : ['treepine'],
+					'spawn' : ['treepine', 'pinecone'],
 					},
 				'h1' : {
 					'name' : 'Forest',
-					'height' : 0.5,
 					'density' : 50,
-					'spawn' : ['treeash', 'treeoak'],
+					'spawn' : ['treeash', 'treeoak', 'stump'],
 					},
 				'2 ': {
 					'name' : 'Jungle',
-					'height' : 0.5,
 					'density' : 75,
-					'spawn' : ['treeash', 'treeoak', 'bush'],
+					'spawn' : ['treeash', 'treeoak', 'bush', 'stump'],
 					}},
 			'w3' : {
 				'h0' : {
 					'name' : 'Taiga',
-					'height' : 0.25,
 					'density' : 25,
 					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Meadow',
-					'height' : 0.25,
 					'density' : 100,
-					'spawn' : ['amaranth', 'greenonion', 'grass'],
+					'spawn' : ['greenonion', 'grass', 'rye'],
 					},
 				'h2' : {
 					'name' : 'Grasslands',
-					'height' : 0.25,
 					'density' : 100,
-					'spawn' : ['greenonion', 'grass'],
+					'spawn' : ['greenonion', 'grass', 'rye', 'wheat'],
 					}},
 			'w4' : {
 				'h0' : {
 					'name' : 'Bog',
-					'height' : 0.25,
 					'density' : 25,
-					'spawn' : ['cattail', 'grass'],
+					'spawn' : ['cattail', 'grass', 'stump'],
 					},
 				'h1' : {
 					'name' : 'Marsh',
-					'height' : 0.25,
 					'density' : 50,
-					'spawn' : ['cattail', 'grass'],
+					'spawn' : ['cattail', 'grass', 'rye'],
 					},
 				'h2' : {
 					'name' : 'Swamp',
-					'height' : 0.25,
 					'density' : 50,
-					'spawn' : ['cattail', 'bush', 'grass'],
+					'spawn' : ['cattail', 'clover', 'grass', 'rye', 'stump'],
 					}},
 			'w5' : {
 				'h0' : {
 					'name' : 'Tundra',
-					'height' : 0.1,
 					'density' : 5,
-					'spawn' : [],
+					'spawn' : ['grass'],
 					},
 				'h1' : {
 					'name' : 'Lowlands',
-					'height' : 0.1,
 					'density' : 25,
 					'spawn' : ['stone', 'grass'],
 					},
 				'h2' : {
 					'name' : 'Desert',
-					'height' : 0.1,
 					'density' : 5,
-					'spawn' : ['cactus'],
+					'spawn' : ['aloe', 'cactus'],
 					}},
 			'w6' : {
 				'h0' : {
 					'name' : 'Shore',
-					'height' : 0.0,
 					'density' : 5,
-					'spawn' : [],
+					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Coast',
-					'height' : 0.0,
 					'density' : 10,
-					'spawn' : [],
+					'spawn' : ['stone'],
 					},
 				'h2' : {
 					'name' : 'Beach',
-					'height' : 0.0,
 					'density' : 25,
-					'spawn' : [],
+					'spawn' : ['stone'],
 					}},
 			'w7' : {
 				'h0' : {
 					'name' : 'Glacial Ocean',
-					'height' : 0.0,
 					'density' : 0,
-					'spawn' : [],
+					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Ocean',
-					'height' : 0.0,
 					'density' : 10,
-					'spawn' : [],
+					'spawn' : ['stone'],
 					},
 				'h2' : {
 					'name' : 'Tropical Ocean',
-					'height' : 0.0,
 					'density' : 25,
-					'spawn' : [],
+					'spawn' : ['stone'],
 					}}
 			},
 
@@ -250,22 +226,22 @@ func get_vanilla():
 
 		"object" : {
 			'dronecarrier' : {
-				'instance' : 'drone',
+				'instance' : ['drone'],
 				'mesh' : [],
 				'data' : {}
 			},
 			'dronefighter' : {
-				'instance' : 'drone',
+				'instance' : ['drone'],
 				'mesh' : [],
 				'data' : {}
 			},
 			'dronescout' : {
-				'instance' : 'drone',
+				'instance' : ['drone'],
 				'mesh' : [],
 				'data' : {}
 			},
 			'player' : {
-				'instance' : 'player',
+				'instance' : ['player'],
 				'mesh' : [''],
 				'data' : {}
 			},
@@ -291,6 +267,18 @@ func get_vanilla():
 #					'vitamin_c' : 0.0
 #				}
 #			},
+			'aloe' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/aloe.obj"],
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
 			'amaranth' : {
 				'instance' : ['food', 'plant'],
 				'mesh' : ["res://mesh/plant/amaranth.obj"],
@@ -314,6 +302,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
+					'density' : 0,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -402,13 +391,14 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
+					'density' : 0,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
 					}
 			},
 			'clover' : {
-				'instance' : ['food', 'plant'],
+				'instance' : ['cluster', 'food', 'plant'],
 				'mesh' : ["res://mesh/plant/clover.obj"],
 				'food' : {
 					'weight' : 85000.0,
@@ -429,6 +419,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
+					'density' : 25,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -443,6 +434,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
+					'density' : 25,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -470,6 +462,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
+					'density' : 0,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -497,6 +490,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
+					'density' : 0,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -522,8 +516,36 @@ func get_vanilla():
 					'vitamin_a' : 4.0,
 					'vitamin_c' : 3.0}
 			},
+			'rye' : {
+				'instance' : ['cluster', 'food', 'plant'],
+				'mesh' : ["res://mesh/plant/rye.obj"],
+				'food' : {
+					'weight' : 0.0,
+					'calorie' : 0.0,
+					'sat_fat' : 0.0,
+					'pol_fat' : 0.0,
+					'mon_fat' : 0.0,
+					'cholesterol' : 0.0,
+					'sodium' : 0.0,
+					'fiber' : 0.0,
+					'sugar' : 0.0,
+					'protein' : 0.0,
+					'calcium' : 0.0,
+					'potassium' : 0.0,
+					'iron' : 0.0,
+					'vitamin_a' : 0.0,
+					'vitamin_c' : 0.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 20,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
 			'watercress' : {
-				'instance' : ['food', 'plant'],
+				'instance' : ['cluster', 'food', 'plant'],
 				'mesh' : ["res://mesh/plant/watercress.obj"],
 				'food' : {
 					'weight' : 0.0,
@@ -544,6 +566,135 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
+					'density' : 10,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'wheat' : {
+				'instance' : ['cluster', 'food', 'plant'],
+				'mesh' : ["res://mesh/plant/wheat.obj"],
+				'food' : {
+					'weight' : 0.0,
+					'calorie' : 0.0,
+					'sat_fat' : 0.0,
+					'pol_fat' : 0.0,
+					'mon_fat' : 0.0,
+					'cholesterol' : 0.0,
+					'sodium' : 0.0,
+					'fiber' : 0.0,
+					'sugar' : 0.0,
+					'protein' : 0.0,
+					'calcium' : 0.0,
+					'potassium' : 0.0,
+					'iron' : 0.0,
+					'vitamin_a' : 0.0,
+					'vitamin_c' : 0.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 20,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+
+			'bush' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/bush0.obj",
+					"res://mesh/plant/bush1.obj",
+					"res://mesh/plant/bush2.obj",
+					"res://mesh/plant/bush3.obj"],
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'cactus' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/cactus0.obj",
+				"res://mesh/plant/cactus1.obj",
+				"res://mesh/plant/cactus2.obj",
+				"res://mesh/plant/cactus3.obj"],
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'cattail' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/cattail.obj"],
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'purslane' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/purslane.obj"],
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 10,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'treeash' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/tree-ash0.obj",
+					"res://mesh/plant/tree-ash1.obj",
+					"res://mesh/plant/tree-ash2.obj",
+					"res://mesh/plant/tree-ash3.obj"],
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'treeoak' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/tree-oak0.obj",
+					"res://mesh/plant/tree-oak1.obj",
+					"res://mesh/plant/tree-oak2.obj",
+					"res://mesh/plant/tree-oak3.obj"],
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'treepine' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/tree-pine0.obj",
+					"res://mesh/plant/tree-pine1.obj",
+					"res://mesh/plant/tree-pine2.obj",
+					"res://mesh/plant/tree-pine3.obj"],
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -571,7 +722,6 @@ func get_vanilla():
 					'vitamin_c' : 0.0},
 					'material' : {'weight' : 10.0}
 				},
-				
 			'boulder' : {
 				'instance' : ['material'],
 				'mesh' : ["res://mesh/material/boulder0.obj",
@@ -590,6 +740,11 @@ func get_vanilla():
 				'mesh' : ["res://mesh/material/pinecone.obj"],
 				'material' : {'weight' : 5000.0}
 				},
+			'stump' : {
+				'instance' : ['material'],
+				'mesh' : ["res://mesh/material/stump.obj"],
+				'material' : {'weight' : 10000000.0}
+				},
 			'stone' : {
 				'instance' : ['material'],
 				'mesh' : ["res://mesh/material/stone0.obj",
@@ -597,99 +752,6 @@ func get_vanilla():
 					"res://mesh/material/stone2.obj",
 					"res://mesh/material/stone3.obj"],
 				'material' : {'weight' : 100000.0}
-				},
-
-			'bush' : {
-				'instance' : ['plant'],
-				'mesh' : ["res://mesh/plant/bush0.obj",
-					"res://mesh/plant/bush1.obj",
-					"res://mesh/plant/bush2.obj",
-					"res://mesh/plant/bush3.obj"],
-				'plant' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
-				},
-			'cactus' : {
-				'instance' : ['plant'],
-				'mesh' : ["res://mesh/plant/cactus0.obj",
-				"res://mesh/plant/cactus1.obj",
-				"res://mesh/plant/cactus2.obj",
-				"res://mesh/plant/cactus3.obj"],
-				'plant' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
-				},
-			'cattail' : {
-				'instance' : ['plant'],
-				'mesh' : ["res://mesh/plant/cattail.obj"],
-				'plant' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
-				},
-			'purslane' : {
-				'instance' : ['plant'],
-				'mesh' : ["res://mesh/plant/purslane.obj"],
-				'plant' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
-				},
-			'treeash' : {
-				'instance' : ['plant'],
-				'mesh' : ["res://mesh/plant/tree-ash0.obj",
-					"res://mesh/plant/tree-ash1.obj",
-					"res://mesh/plant/tree-ash2.obj",
-					"res://mesh/plant/tree-ash3.obj"],
-				'data' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
-				},
-			'treeoak' : {
-				'instance' : ['plant'],
-				'mesh' : ["res://mesh/plant/tree-oak0.obj",
-					"res://mesh/plant/tree-oak1.obj",
-					"res://mesh/plant/tree-oak2.obj",
-					"res://mesh/plant/tree-oak3.obj"],
-				'data' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
-				},
-			'treepine' : {
-				'instance' : ['plant'],
-				'mesh' : ["res://mesh/plant/tree-pine0.obj",
-					"res://mesh/plant/tree-pine1.obj",
-					"res://mesh/plant/tree-pine2.obj",
-					"res://mesh/plant/tree-pine3.obj"],
-				'data' : {
-					'growthrate' : 0,
-					'lifespan' : 0,
-					'weight' : 0,
-					'HP' : 0,
-					'hp' : 0
-					}
 				},
 
 			'anvil' : {
@@ -1012,7 +1074,7 @@ func get_vanilla():
 
 		"physics" : {
 			"world_size" : 1,
-			"chunk_size" : 24,
+			"chunk_size" : 20,
 			"tile_size" : 1,
 			
 			"max_height" : 12.0,
@@ -1064,7 +1126,7 @@ func get_vanilla():
 			'font_name' : {'value' : '', 'min' : 0, 'max' : 128},
 			
 			'message_font' : {'value' : 16, 'min' : 16, 'max' : 16},
-			'spawn_distance' : {'value' : 1, 'min' : 1, 'max' : 32},
+			'spawn_distance' : {'value' : 2, 'min' : 1, 'max' : 32},
 			
 			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
 			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},

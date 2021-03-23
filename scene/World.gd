@@ -21,8 +21,8 @@ func _ready():
 	chunk_size = Data.physics['chunk_size']
 	tile_size = Data.physics['tile_size']
 	set_noise_values(noise_height, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
-	set_noise_values(noise_water, Data.settings['game_seed'].hash(), 64, 4, 5.0, 0.2)
-	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), 2048, 4, 2.0, 0.1)
+	set_noise_values(noise_water, Data.settings['game_seed'].hash(), 256, 4, 5.0, 0.2)
+	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), 512, 4, 2.0, 0.1)
 
 func set_noise_values(n, sd, pd, oc, la, pr):
 	n.seed = sd
@@ -65,7 +65,9 @@ func spawn_water(x, z):
 			if get_distant_neighbors(x, z)[i] > Y:
 				return
 		return
-		
+	if get_water(x, z) < 2:
+		return
+	
 	var inst = Data.object['water']['instance'][0]
 	var I = load(Data.instance[inst]).instance()
 	I.translation = Vector3(x, Y, z)
@@ -78,8 +80,12 @@ func spawn_object(t, pos, rot):
 		var I = load(Data.instance[inst]).instance()
 		
 		I.translation = pos
-		if t != "grass":
+		if Data.object[t]['instance'][0] != "cluster":
 			I.rotation_degrees = rot
+		
+		if Data.object[t]['instance'][0] == "cluster":
+			I.data['density'] = Data.object[t]['plant']['density']
+		
 		I.mesh['body'] = Data.object[t]['mesh'][randi() % Data.object[t]['mesh'].size()]
 		I.id = t
 		add_child(I)

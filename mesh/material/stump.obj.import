@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/stump.obj-a698296b4420f21a606aaf21b897c478.mesh"
+
+[deps]
+
+files=[ "res://.import/stump.obj-a698296b4420f21a606aaf21b897c478.mesh" ]
+
+source_file="res://mesh/material/stump.obj"
+dest_files=[ "res://.import/stump.obj-a698296b4420f21a606aaf21b897c478.mesh", "res://.import/stump.obj-a698296b4420f21a606aaf21b897c478.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

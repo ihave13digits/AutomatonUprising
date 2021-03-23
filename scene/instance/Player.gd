@@ -7,6 +7,7 @@ signal update_hud
 
 onready var cursor = $Y/X/Cam/Cursor
 
+var showing_grid = false
 var has_control = true
 var is_paused = false
 
@@ -21,6 +22,8 @@ var id = 'player'
 var can = {
 	'create' : true,
 	'destroy' : true,
+	'remove_object' : false,
+	'place_object' : false
 }
 
 var mesh = {
@@ -66,8 +69,8 @@ var nutrients = {
 
 func ready():
 	#$Mesh.mesh = load(mesh['body'])
+	$Y.translation.y = data['height'] - data['height'] * 0.1
 	$Y/X/Hand.translation.y -= data['height'] * 0.25
-	$Y.translation.y = data['height'] - data['height']*0.1
 	$Box.shape.height = data['height'] / 2
 	$Box.translation.y = data['height'] / 2
 
@@ -107,7 +110,7 @@ func update_map_position():
 func create():
 	if can['create']:
 		if cursor.get_collider() != null:
-			if cursor.get_collider().id.find('tile') != -1:
+			if cursor.get_collider().id.find('tile') != -1 && can['place_object']:
 				emit_signal("edit_chunk", cursor.get_collider().translation, 1)
 			else:
 				get_parent().hud.display_message(cursor.get_collider().translation)
@@ -117,11 +120,12 @@ func create():
 func destroy():
 	if can['destroy']:
 		if cursor.get_collider() != null:
-			if cursor.get_collider().id.find('tile') != -1:
+			if cursor.get_collider().id.find('tile') != -1 && can['remove_object']:
 				emit_signal("edit_chunk", cursor.get_collider().translation, -1)
 			else:
 				get_parent().hud.display_message(cursor.get_collider().id)
-				cursor.get_collider().queue_free()
+				if can['remove_object']:
+					cursor.get_collider().queue_free()
 		can['destroy'] = false
 		$Destroy.start()
 

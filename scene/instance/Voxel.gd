@@ -1,4 +1,6 @@
 extends StaticBody
 
+var id = ''
+
 func _ready():
-	$Mesh.material_override = load("res://skin/dirt_material.tres")
+	pass#$Mesh.material_override = load("res://skin/dirt_material.tres")

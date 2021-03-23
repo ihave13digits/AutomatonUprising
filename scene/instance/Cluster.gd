@@ -18,6 +18,7 @@ var data = {
 func _ready():
 	$Mesh.multimesh.mesh = load(mesh['body'])
 	$Mesh.material_override = load("res://skin/global_material.tres")
+	$Mesh.multimesh.instance_count = data['density']
 	
 	var half = int($Mesh.multimesh.instance_count/2)
 	

@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://skin/fire_material0.tres" type="Material" id=1]
+[ext_resource path="res://skin/fire_material2.tres" type="Material" id=2]
+[ext_resource path="res://skin/fire_material1.tres" type="Material" id=3]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 0.1, 0.15, 0.1 )
+direction = Vector3( 0.01, 0.01, 0 )
+spread = 180.0
+gravity = Vector3( 0, 20, 0 )
+initial_velocity = 1.0
+scale = 0.1
+scale_random = 1.0
+scale_curve = SubResource( 2 )
+
+[sub_resource type="CubeMesh" id=4]
+material = ExtResource( 1 )
+size = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="CubeMesh" id=5]
+material = ExtResource( 3 )
+size = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="CubeMesh" id=6]
+material = ExtResource( 2 )
+size = Vector3( 0.1, 0.1, 0.1 )
+
+[node name="Fire" type="Spatial"]
+
+[node name="Red" type="Particles" parent="."]
+cast_shadow = 0
+amount = 50
+lifetime = 0.25
+speed_scale = 0.25
+randomness = 1.0
+visibility_aabb = AABB( -1, -1, -1, 2, 2, 2 )
+draw_order = 1
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 4 )
+
+[node name="Orange" type="Particles" parent="."]
+cast_shadow = 0
+amount = 25
+lifetime = 0.25
+speed_scale = 0.25
+randomness = 1.0
+draw_order = 1
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="Yellow" type="Particles" parent="."]
+cast_shadow = 0
+amount = 10
+lifetime = 0.25
+speed_scale = 0.25
+randomness = 1.0
+draw_order = 1
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 6 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
