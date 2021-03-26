@@ -66,7 +66,7 @@ func add_player(pos):
 	player = load(Data.instance['player']).instance()
 	player.translation = pos
 	player.mesh['body'] = Data.object['player']['mesh'][0]
-	player.set_held(Data.object['pulsecannon']['mesh'][0])
+	#player.set_held(Data.object['pulsecannon']['mesh'][0])
 	player.ready()
 	add_child(player)
 	player.connect('update_hud', self, '_update_hud')

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sunflower.obj-bc1b89384be009b2d131264e2e2c1137.mesh"
+
+[deps]
+
+files=[ "res://.import/sunflower.obj-bc1b89384be009b2d131264e2e2c1137.mesh" ]
+
+source_file="res://mesh/plant/sunflower.obj"
+dest_files=[ "res://.import/sunflower.obj-bc1b89384be009b2d131264e2e2c1137.mesh", "res://.import/sunflower.obj-bc1b89384be009b2d131264e2e2c1137.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

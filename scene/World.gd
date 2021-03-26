@@ -20,9 +20,9 @@ func _ready():
 	world_size = Data.physics['world_size']
 	chunk_size = Data.physics['chunk_size']
 	tile_size = Data.physics['tile_size']
-	set_noise_values(noise_height, Data.settings['game_seed'].hash(), 32, 4, 2.0, 0.1)
-	set_noise_values(noise_water, Data.settings['game_seed'].hash(), 256, 4, 5.0, 0.2)
-	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), 512, 4, 2.0, 0.1)
+	set_noise_values(noise_height, Data.settings['game_seed'].hash(), Data.physics['height_scale'], 4, 2.0, 0.1)
+	set_noise_values(noise_water, Data.settings['game_seed'].hash(), Data.physics['water_scale'], 4, 5.0, 0.2)
+	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), Data.physics['heat_scale'], 4, 2.0, 0.1)
 
 func set_noise_values(n, sd, pd, oc, la, pr):
 	n.seed = sd
@@ -87,6 +87,8 @@ func spawn_object(t, pos, rot):
 			I.data['density'] = Data.object[t]['plant']['density']
 		
 		I.mesh['body'] = Data.object[t]['mesh'][randi() % Data.object[t]['mesh'].size()]
+		var s = ((randi() % 15) + 7.5) * 0.1
+		I.scale = Vector3(s, s, s)
 		I.id = t
 		add_child(I)
 

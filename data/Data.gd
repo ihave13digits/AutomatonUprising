@@ -132,12 +132,12 @@ func get_vanilla():
 					},
 				'h1' : {
 					'name' : 'Forest',
-					'density' : 50,
+					'density' : 25,
 					'spawn' : ['treeash', 'treeoak', 'stump'],
 					},
 				'2 ': {
 					'name' : 'Jungle',
-					'density' : 75,
+					'density' : 50,
 					'spawn' : ['treeash', 'treeoak', 'bush', 'stump'],
 					}},
 			'w3' : {
@@ -149,12 +149,12 @@ func get_vanilla():
 				'h1' : {
 					'name' : 'Meadow',
 					'density' : 100,
-					'spawn' : ['greenonion', 'grass', 'rye'],
+					'spawn' : ['greenonion', 'grass', 'rye', 'sunflower'],
 					},
 				'h2' : {
 					'name' : 'Grasslands',
 					'density' : 100,
-					'spawn' : ['greenonion', 'grass', 'rye', 'wheat'],
+					'spawn' : ['greenonion', 'grass', 'rye', 'wheat', 'sunflower'],
 					}},
 			'w4' : {
 				'h0' : {
@@ -655,6 +655,18 @@ func get_vanilla():
 					'hp' : 0
 					}
 				},
+			'sunflower' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/sunflower.obj"],
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
 			'treeash' : {
 				'instance' : ['plant'],
 				'mesh' : ["res://mesh/plant/tree-ash0.obj",
@@ -1076,6 +1088,10 @@ func get_vanilla():
 			"world_size" : 1,
 			"chunk_size" : 20,
 			"tile_size" : 1,
+			
+			"height_scale" : 32,
+			"water_scale" : 64,
+			"heat_scale" : 128,
 			
 			"max_height" : 12.0,
 			"max_water" : 7.0,
