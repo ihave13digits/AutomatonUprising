@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tree-aspen2.obj-336f4a5d0f268238024fee4302bfe96e.mesh"
+
+[deps]
+
+files=[ "res://.import/tree-aspen2.obj-336f4a5d0f268238024fee4302bfe96e.mesh" ]
+
+source_file="res://mesh/plant/tree-aspen2.obj"
+dest_files=[ "res://.import/tree-aspen2.obj-336f4a5d0f268238024fee4302bfe96e.mesh", "res://.import/tree-aspen2.obj-336f4a5d0f268238024fee4302bfe96e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

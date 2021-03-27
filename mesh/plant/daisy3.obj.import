@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/daisy3.obj-623effb002b7cb7532657f97c8d980c0.mesh"
+
+[deps]
+
+files=[ "res://.import/daisy3.obj-623effb002b7cb7532657f97c8d980c0.mesh" ]
+
+source_file="res://mesh/plant/daisy3.obj"
+dest_files=[ "res://.import/daisy3.obj-623effb002b7cb7532657f97c8d980c0.mesh", "res://.import/daisy3.obj-623effb002b7cb7532657f97c8d980c0.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

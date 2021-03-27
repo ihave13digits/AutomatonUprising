@@ -37,9 +37,14 @@ func generate_world_data():
 			var key = '%s-%s' % [x, z]
 			data[key] = {}
 			data[key]['tile'] = null
+			data[key]['debris'] = null
+			data[key]['object'] = null
+			data[key]['liquid'] = null
 			data[key]['height'] = floor(noise_height.get_noise_2d(x, z) * max_height)
 			data[key]['water'] = abs(floor(noise_water.get_noise_2d(x, z) * max_water))
 			data[key]['heat'] = abs(floor(noise_heat.get_noise_2d(x, z) * max_heat))
+
+# Spawning
 
 func spawn_tile(t, pos, mtrl='soil0'):
 	var key = '%s-%s' % [int(pos.x/tile_size), int(pos.z/tile_size)]
@@ -59,48 +64,81 @@ func spawn_tile(t, pos, mtrl='soil0'):
 		data[key]['tile'] = I
 
 func spawn_water(x, z):
+	var key = '%s-%s' % [x, z]
+	if data.has(key):
+		if data[key]['liquid']:
+			if is_instance_valid(data[key]['liquid']):
+				return
+	
 	var Y = Data.physics['sea_level']
+	if get_water(x, z) < 2:
+		return
 	if get_height(x, z) > Y+1:
 		for i in range(4):
 			if get_distant_neighbors(x, z)[i] > Y:
 				return
-		return
-	if get_water(x, z) < 2:
-		return
 	
 	var inst = Data.object['water']['instance'][0]
 	var I = load(Data.instance[inst]).instance()
 	I.translation = Vector3(x, Y, z)
 	add_child(I)
+	data[key]['liquid'] = I
+
+func spawn_debris(x, z):
+	var key = '%s-%s' % [x, z]
+	if data.has(key):
+		if data[key]['debris']:
+			if is_instance_valid(data[key]['debris']):
+				return
+		
+		var water = "w%s" % str(get_water(x, z))
+		var heat = "h%s" % str(get_heat(x, z))
+		if Data.biome[water][heat]['debris'] != '':
+			var d = Data.biome[water][heat]['debris']
+			var inst = Data.object[d]['instance'][0]
+			var I = load(Data.instance[inst]).instance()
+			var Y = get_height(x, z)
+			
+			I.translation = Vector3(x, Y, z)
+			I.data['density'] = Data.object[d]['plant']['density']
+			I.mesh['body'] = Data.object[d]['mesh'][randi() % Data.object[d]['mesh'].size()]
+			I.id = d
+			add_child(I)
+			data[key]['debris'] = I
 
 func spawn_object(t, pos, rot):
 	var key = '%s-%s' % [int(pos.x/tile_size), int(pos.z/tile_size)]
 	if data.has(key):
+		if data[key]['object']:
+			if is_instance_valid(data[key]['object']):
+				return
+		
 		var inst = Data.object[t]['instance'][0]
 		var I = load(Data.instance[inst]).instance()
+		var s = ((randi() % 50) + 50) * 0.01
 		
 		I.translation = pos
-		if Data.object[t]['instance'][0] != "cluster":
-			I.rotation_degrees = rot
-		
-		if Data.object[t]['instance'][0] == "cluster":
-			I.data['density'] = Data.object[t]['plant']['density']
-		
+		I.rotation_degrees = rot
 		I.mesh['body'] = Data.object[t]['mesh'][randi() % Data.object[t]['mesh'].size()]
-		var s = ((randi() % 15) + 7.5) * 0.1
 		I.scale = Vector3(s, s, s)
 		I.id = t
 		add_child(I)
+		data[key]['object'] = I
+
+# Chunks
 
 func destroy_chunk(x, z):
-	var despawn = Data.physics['chunk_size']
+	var despawn = int(Data.physics['chunk_size']/2)
 	
 	for dx in range(-despawn+x, despawn+x):
 		for dz in range(-despawn+z, despawn+z):
-			destroy_tile(dx, z+dz)
+			destroy_tile(dx, dz)
+			destroy_water(dx, dz)
+			destroy_object(dx, dz)
+			destroy_debris(dx, dz)
 
 func generate_chunk(x, z):
-	var spawn = Data.physics['chunk_size']
+	var spawn = int(Data.physics['chunk_size']/2)
 	
 	for sx in range(-spawn+x, spawn+x):
 		for sz in range(-spawn+z, spawn+z):
@@ -111,12 +149,37 @@ func generate_chunk(x, z):
 			var chance = randi() % 1000
 			var water = "w%s" % str(get_water(sx, sz))
 			var heat = "h%s" % str(get_heat(sx, sz))
+			
 			if chance < Data.biome[water][heat]['density']:
 				var objects = Data.biome[water][heat]['spawn']
 				var object = randi() % objects.size()
 				spawn_object(objects[object], Vector3(sx, Y, sz), Vector3(0, randi()%360, 0))
 			spawn_water(sx, sz)
+			spawn_debris(sx, sz)
 			# End of fun stuff
+
+# Terrain
+
+func destroy_object(x, z):
+	var key = '%s-%s' % [x, z]
+	if data.has(key):
+		if is_instance_valid(data[key]['object']):
+			data[key]['object'].queue_free()
+			data[key]['object'] = null
+
+func destroy_debris(x, z):
+	var key = '%s-%s' % [x, z]
+	if data.has(key):
+		if is_instance_valid(data[key]['debris']):
+			data[key]['debris'].queue_free()
+			data[key]['debris'] = null
+
+func destroy_water(x, z):
+	var key = '%s-%s' % [x, z]
+	if data.has(key):
+		if is_instance_valid(data[key]['water']):
+			data[key]['water'].queue_free()
+			data[key]['water'] = null
 
 func destroy_tile(x, z):
 	var key = '%s-%s' % [x, z]
@@ -157,6 +220,8 @@ func generate_tile(x, z):
 	
 	var tile = 'tile%s' % value
 	var mtrl = 'soil%s' % int((abs(Y) + (abs(W)*3)) / 4)
+	if Y < Data.physics['bedrock_level']:
+		mtrl = 'stone'
 
 	spawn_tile(tile, Vector3(x*tile_size, Y, z*tile_size), mtrl)
 
@@ -179,6 +244,8 @@ func update_tile(x, z, val):
 		for i in range(-1, 2):
 			generate_tile(x+i, z+j)
 
+# Neighbor Cells
+
 func get_neighbors(x, z):
 	var Y = get_height(x, z)
 	return [
@@ -191,21 +258,12 @@ func get_neighbors(x, z):
 func get_distant_neighbors(x, z):
 	var Y = get_height(x, z)
 	return [
-		get_height(x-1,z)-Y,
-		get_height(x+1,z)-Y,
-		get_height(x,z-1)-Y,
-		get_height(x,z+1)-Y,
-		
-		get_height(x-2,z-2)-Y,
-		get_height(x+2,z-2)-Y,
-		get_height(x-2,z+2)-Y,
-		get_height(x+2,z+2)-Y,
-		
-		get_height(x-2,z)-Y,
-		get_height(x+2,z)-Y,
-		get_height(x,z-2)-Y,
-		get_height(x,z+2)-Y
+		get_height(x-1,z)-Y, get_height(x+1,z)-Y, get_height(x,z-1)-Y, get_height(x,z+1)-Y,
+		get_height(x-2,z-2)-Y, get_height(x+2,z-2)-Y, get_height(x-2,z+2)-Y, get_height(x+2,z+2)-Y,
+		get_height(x-2,z)-Y, get_height(x+2,z)-Y, get_height(x,z-2)-Y, get_height(x,z+2)-Y
 		]
+
+# Noise
 
 func get_height(x, z):
 	var key = '%s-%s' % [x, z]

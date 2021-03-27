@@ -96,128 +96,152 @@ func get_vanilla():
 				'h0' : {
 					'name' : 'Snowcap',
 					'density' : 10,
+					'debris' : '',
 					'spawn' : ['boulder', 'stone'],
 					},
 				'h1' : {
 					'name' : 'Mountain',
 					'density' : 15,
+					'debris' : '',
 					'spawn' : ['boulder', 'stone'],
 					},
 				'h2' : {
 					'name' : 'Cliff',
 					'density' : 5,
+					'debris' : '',
 					'spawn' : ['boulder', 'stone'],
 					}},
 			'w1' : {
 				'h0' : {
 					'name' : 'Highlands',
 					'density' : 5,
-					'spawn' : ['stone', 'bush', 'grass'],
+					'debris' : 'grass',
+					'spawn' : ['stone', 'bush'],
 					},
 				'h1' : {
 					'name' : 'Hills',
 					'density' : 5,
-					'spawn' : ['stone', 'bush', 'grass'],
+					'debris' : 'grass',
+					'spawn' : ['stone', 'bush'],
 					},
 				'h2' : {
 					'name' : 'Dunes',
 					'density' : 5,
+					'debris' : '',
 					'spawn' : ['aloe', 'cactus', 'bush'],
 					}},
 			'w2' : {
 				'h0' : {
 					'name' : 'Alpines',
 					'density' : 75,
+					'debris' : 'pinestraw',
 					'spawn' : ['treepine', 'pinecone'],
 					},
 				'h1' : {
 					'name' : 'Forest',
 					'density' : 25,
-					'spawn' : ['treeash', 'treeoak', 'stump'],
+					'debris' : 'leaves',
+					'spawn' : ['treeash', 'treeaspen', 'treeoak', 'stump'],
 					},
-				'2 ': {
+				'h2': {
 					'name' : 'Jungle',
 					'density' : 50,
+					'debris' : 'leaves',
 					'spawn' : ['treeash', 'treeoak', 'bush', 'stump'],
 					}},
 			'w3' : {
 				'h0' : {
 					'name' : 'Taiga',
 					'density' : 25,
+					'debris' : 'grass',
 					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Meadow',
 					'density' : 100,
-					'spawn' : ['greenonion', 'grass', 'rye', 'sunflower'],
+					'debris' : 'grass',
+					'spawn' : ['greenonion', 'grass', 'rye', 'sunflower', 'daisy'],
 					},
 				'h2' : {
 					'name' : 'Grasslands',
 					'density' : 100,
-					'spawn' : ['greenonion', 'grass', 'rye', 'wheat', 'sunflower'],
+					'debris' : 'grass',
+					'spawn' : ['greenonion', 'grass', 'rye', 'wheat', 'sunflower', 'daisy'],
 					}},
 			'w4' : {
 				'h0' : {
 					'name' : 'Bog',
 					'density' : 25,
+					'debris' : 'grass',
 					'spawn' : ['cattail', 'grass', 'stump'],
 					},
 				'h1' : {
 					'name' : 'Marsh',
 					'density' : 50,
+					'debris' : 'grass',
 					'spawn' : ['cattail', 'grass', 'rye'],
 					},
 				'h2' : {
 					'name' : 'Swamp',
 					'density' : 50,
+					'debris' : 'grass',
 					'spawn' : ['cattail', 'clover', 'grass', 'rye', 'stump'],
 					}},
 			'w5' : {
 				'h0' : {
 					'name' : 'Tundra',
 					'density' : 5,
-					'spawn' : ['grass'],
+					'debris' : 'grass',
+					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Lowlands',
 					'density' : 25,
+					'debris' : 'grass',
 					'spawn' : ['stone', 'grass'],
 					},
 				'h2' : {
 					'name' : 'Desert',
 					'density' : 5,
+					'debris' : '',
 					'spawn' : ['aloe', 'cactus'],
 					}},
 			'w6' : {
 				'h0' : {
 					'name' : 'Shore',
 					'density' : 5,
+					'debris' : '',
 					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Coast',
 					'density' : 10,
+					'debris' : '',
 					'spawn' : ['stone'],
 					},
 				'h2' : {
 					'name' : 'Beach',
 					'density' : 25,
+					'debris' : '',
 					'spawn' : ['stone'],
 					}},
 			'w7' : {
 				'h0' : {
 					'name' : 'Glacial Ocean',
 					'density' : 0,
+					'debris' : '',
 					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Ocean',
 					'density' : 10,
+					'debris' : '',
 					'spawn' : ['stone'],
 					},
 				'h2' : {
 					'name' : 'Tropical Ocean',
 					'density' : 25,
+					'debris' : '',
 					'spawn' : ['stone'],
 					}}
 			},
@@ -434,7 +458,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
-					'density' : 25,
+					'density' : 50,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -643,6 +667,21 @@ func get_vanilla():
 					'hp' : 0
 					}
 				},
+			'daisy' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/daisy0.obj",
+					"res://mesh/plant/daisy1.obj",
+					"res://mesh/plant/daisy2.obj",
+					"res://mesh/plant/daisy3.obj"],
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
 			'purslane' : {
 				'instance' : ['plant'],
 				'mesh' : ["res://mesh/plant/purslane.obj"],
@@ -673,6 +712,21 @@ func get_vanilla():
 					"res://mesh/plant/tree-ash1.obj",
 					"res://mesh/plant/tree-ash2.obj",
 					"res://mesh/plant/tree-ash3.obj"],
+				'data' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 0,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
+			'treeaspen' : {
+				'instance' : ['plant'],
+				'mesh' : ["res://mesh/plant/tree-aspen0.obj",
+					"res://mesh/plant/tree-aspen1.obj",
+					"res://mesh/plant/tree-aspen2.obj",
+					"res://mesh/plant/tree-aspen3.obj"],
 				'data' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
@@ -747,10 +801,36 @@ func get_vanilla():
 				'mesh' : ["res://mesh/material/hive.obj"],
 				'material' : {'weight' : 10000.0}
 				},
+			'leaves' : {
+				'instance' : ['cluster'],
+				'mesh' : ["res://mesh/material/leaves.obj"],
+				'material' : {'weight' : 0.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 10,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
+				},
 			'pinecone' : {
 				'instance' : ['material'],
 				'mesh' : ["res://mesh/material/pinecone.obj"],
 				'material' : {'weight' : 5000.0}
+				},
+			'pinestraw' : {
+				'instance' : ['cluster'],
+				'mesh' : ["res://mesh/material/pinestraw.obj"],
+				'material' : {'weight' : 0.0},
+				'plant' : {
+					'growthrate' : 0,
+					'lifespan' : 0,
+					'density' : 10,
+					'weight' : 0,
+					'HP' : 0,
+					'hp' : 0
+					}
 				},
 			'stump' : {
 				'instance' : ['material'],
@@ -1072,6 +1152,7 @@ func get_vanilla():
 			'soil9' : "res://skin/soil_material9.tres",
 			'soil10' : "res://skin/soil_material10.tres",
 			'soil11' : "res://skin/soil_material11.tres",
+			"stone" : "res://skin/stone_material.tres",
 			},
 
 
@@ -1085,8 +1166,8 @@ func get_vanilla():
 
 
 		"physics" : {
-			"world_size" : 1,
-			"chunk_size" : 20,
+			"world_size" : 32,
+			"chunk_size" : 4,
 			"tile_size" : 1,
 			
 			"height_scale" : 32,
@@ -1096,7 +1177,8 @@ func get_vanilla():
 			"max_height" : 12.0,
 			"max_water" : 7.0,
 			"max_heat" : 2.0,
-			"sea_level" : -7.75,
+			"sea_level" : -5.75,
+			"bedrock_level" : -10.0,
 			"gravity" : 0.5,
 			},
 
@@ -1111,7 +1193,7 @@ func get_vanilla():
 			'move_backward' : 'S',
 			'move_left' : 'A',
 			'move_right' : 'D',
-		},
+			},
 
 
 

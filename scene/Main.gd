@@ -24,7 +24,7 @@ func _modify_chunk(pos, val):
 
 func _update_chunks():
 	var p = player.get_pos()
-	var despawn = Data.settings['spawn_distance']['value']
+	var despawn = Data.settings['spawn_distance']['value']+4
 	var spawn = Data.settings['spawn_distance']['value']
 	
 	for dx in range(-despawn+p.x, despawn+p.x):
@@ -32,7 +32,7 @@ func _update_chunks():
 			world.destroy_chunk(dx, dz)
 	
 	for dx in range(-spawn+p.x, spawn+p.x):
-		for dz in range(-despawn+p.z, despawn+p.z):
+		for dz in range(-spawn+p.z, spawn+p.z):
 			world.generate_chunk(dx, dz)
 
 

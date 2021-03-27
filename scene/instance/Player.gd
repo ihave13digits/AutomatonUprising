@@ -177,16 +177,16 @@ func _process(_delta):
 	
 	if Input.is_action_pressed("move_forward"):
 		velocity = -$Y.get_transform().basis.z
-		#update_map_position()
+		update_map_position()
 	if Input.is_action_pressed("move_backward"):
 		velocity = $Y.get_transform().basis.z
-		#update_map_position()
+		update_map_position()
 	if Input.is_action_pressed("move_left"):
 		velocity = -$Y.get_transform().basis.x
-		#update_map_position()
+		update_map_position()
 	if Input.is_action_pressed("move_right"):
 		velocity = $Y.get_transform().basis.x
-		#update_map_position()
+		update_map_position()
 
 	if Input.is_action_pressed("create"):
 		create()

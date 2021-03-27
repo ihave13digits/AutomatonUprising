@@ -19,4 +19,5 @@ func _ready():
 	$Mesh.material_override = load("res://skin/global_material.tres")
 	
 	var box = $Mesh.mesh.get_aabb()
-	$Box.shape.extents = Vector3(box.size.x/16, box.size.y/2, box.size.z/16)
+	$Box.shape.extents = Vector3(box.size.x/2, box.size.y/2, box.size.z/2)
+	$Box.translation = Vector3(0, box.size.y/2, 0)
