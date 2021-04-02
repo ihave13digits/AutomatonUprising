@@ -76,9 +76,9 @@ func ready():
 
 func get_pos():
 	return Vector3(
-		translation.x/Data.physics['tile_size'],
-		translation.y/Data.physics['tile_size'],
-		translation.z/Data.physics['tile_size'])
+		floor(translation.x/Data.physics['tile_size']),
+		floor(translation.y/Data.physics['tile_size']),
+		floor(translation.z/Data.physics['tile_size']))
 
 func set_held(obj=null):
 	if !obj:
@@ -91,19 +91,19 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
 func update_map_position():
-	var d = Data.settings['spawn_distance']['value']
+	var d = Data.settings['spawn_distance']['value']/2
 	
 	if int(round(translation.x - (d))) >= int(round(update_position.x)):
 		update_position.x = int(round(translation.x))
 		emit_signal("update_chunks")
-	elif int(round(translation.x + (d))) <= int(round(update_position.x)):
+	if int(round(translation.x + (d))) <= int(round(update_position.x)):
 		update_position.x = int(round(translation.x))
 		emit_signal("update_chunks")
 
 	if int(round(translation.z - (d))) >= int(round(update_position.z)):
 		update_position.z = int(round(translation.z))
 		emit_signal("update_chunks")
-	elif int(round(translation.z + (d))) <= int(round(update_position.z)):
+	if int(round(translation.z + (d))) <= int(round(update_position.z)):
 		update_position.z = int(round(translation.z))
 		emit_signal("update_chunks")
 

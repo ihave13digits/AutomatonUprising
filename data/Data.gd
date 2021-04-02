@@ -1177,7 +1177,7 @@ func get_vanilla():
 			"max_height" : 12.0,
 			"max_water" : 7.0,
 			"max_heat" : 2.0,
-			"sea_level" : -5.75,
+			"sea_level" : -0.75,
 			"bedrock_level" : -10.0,
 			"gravity" : 0.5,
 			},
