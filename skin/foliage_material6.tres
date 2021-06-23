@@ -1,0 +1,8 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://image/texture/foliage_1.png" type="Texture" id=1]
+
+[resource]
+params_diffuse_mode = 1
+albedo_color = Color( 0.25, 0.125, 0.0625, 1 )
+albedo_texture = ExtResource( 1 )

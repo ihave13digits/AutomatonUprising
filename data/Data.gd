@@ -97,18 +97,21 @@ func get_vanilla():
 					'name' : 'Snowcap',
 					'density' : 10,
 					'debris' : '',
+					'soil' : 'stone',
 					'spawn' : ['boulder', 'stone'],
 					},
 				'h1' : {
 					'name' : 'Mountain',
 					'density' : 15,
 					'debris' : '',
+					'soil' : 'stone',
 					'spawn' : ['boulder', 'stone'],
 					},
 				'h2' : {
 					'name' : 'Cliff',
 					'density' : 5,
 					'debris' : '',
+					'soil' : 'stone',
 					'spawn' : ['boulder', 'stone'],
 					}},
 			'w1' : {
@@ -116,18 +119,21 @@ func get_vanilla():
 					'name' : 'Highlands',
 					'density' : 5,
 					'debris' : 'grass',
+					'soil' : 'soil',
 					'spawn' : ['stone', 'bush'],
 					},
 				'h1' : {
 					'name' : 'Hills',
 					'density' : 5,
 					'debris' : 'grass',
+					'soil' : 'soil',
 					'spawn' : ['stone', 'bush'],
 					},
 				'h2' : {
 					'name' : 'Dunes',
 					'density' : 5,
 					'debris' : '',
+					'soil' : 'sand',
 					'spawn' : ['aloe', 'cactus', 'bush'],
 					}},
 			'w2' : {
@@ -135,18 +141,21 @@ func get_vanilla():
 					'name' : 'Alpines',
 					'density' : 75,
 					'debris' : 'pinestraw',
+					'soil' : 'foliage',
 					'spawn' : ['treepine', 'pinecone'],
 					},
 				'h1' : {
 					'name' : 'Forest',
 					'density' : 25,
 					'debris' : 'leaves',
+					'soil' : 'foliage',
 					'spawn' : ['treeash', 'treeaspen', 'treeoak', 'stump'],
 					},
 				'h2': {
 					'name' : 'Jungle',
 					'density' : 50,
 					'debris' : 'leaves',
+					'soil' : 'foliage',
 					'spawn' : ['treeash', 'treeoak', 'bush', 'stump'],
 					}},
 			'w3' : {
@@ -154,18 +163,21 @@ func get_vanilla():
 					'name' : 'Taiga',
 					'density' : 25,
 					'debris' : 'grass',
+					'soil' : 'soil',
 					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Meadow',
 					'density' : 100,
 					'debris' : 'grass',
+					'soil' : 'soil',
 					'spawn' : ['greenonion', 'grass', 'rye', 'sunflower', 'daisy'],
 					},
 				'h2' : {
 					'name' : 'Grasslands',
 					'density' : 100,
 					'debris' : 'grass',
+					'soil' : 'soil',
 					'spawn' : ['greenonion', 'grass', 'rye', 'wheat', 'sunflower', 'daisy'],
 					}},
 			'w4' : {
@@ -173,18 +185,21 @@ func get_vanilla():
 					'name' : 'Bog',
 					'density' : 25,
 					'debris' : 'grass',
+					'soil' : 'foliage',
 					'spawn' : ['cattail', 'grass', 'stump'],
 					},
 				'h1' : {
 					'name' : 'Marsh',
 					'density' : 50,
 					'debris' : 'grass',
+					'soil' : 'foliage',
 					'spawn' : ['cattail', 'grass', 'rye'],
 					},
 				'h2' : {
 					'name' : 'Swamp',
 					'density' : 50,
 					'debris' : 'grass',
+					'soil' : 'foliage',
 					'spawn' : ['cattail', 'clover', 'grass', 'rye', 'stump'],
 					}},
 			'w5' : {
@@ -192,18 +207,21 @@ func get_vanilla():
 					'name' : 'Tundra',
 					'density' : 5,
 					'debris' : 'grass',
+					'soil' : 'soil',
 					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Lowlands',
 					'density' : 25,
 					'debris' : 'grass',
+					'soil' : 'soil',
 					'spawn' : ['stone', 'grass'],
 					},
 				'h2' : {
 					'name' : 'Desert',
 					'density' : 5,
 					'debris' : '',
+					'soil' : 'sand',
 					'spawn' : ['aloe', 'cactus'],
 					}},
 			'w6' : {
@@ -211,18 +229,21 @@ func get_vanilla():
 					'name' : 'Shore',
 					'density' : 5,
 					'debris' : '',
+					'soil' : 'sand',
 					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Coast',
 					'density' : 10,
 					'debris' : '',
+					'soil' : 'sand',
 					'spawn' : ['stone'],
 					},
 				'h2' : {
 					'name' : 'Beach',
 					'density' : 25,
 					'debris' : '',
+					'soil' : 'sand',
 					'spawn' : ['stone'],
 					}},
 			'w7' : {
@@ -230,18 +251,21 @@ func get_vanilla():
 					'name' : 'Glacial Ocean',
 					'density' : 0,
 					'debris' : '',
+					'soil' : 'sand',
 					'spawn' : ['stone'],
 					},
 				'h1' : {
 					'name' : 'Ocean',
 					'density' : 10,
 					'debris' : '',
+					'soil' : 'sand',
 					'spawn' : ['stone'],
 					},
 				'h2' : {
 					'name' : 'Tropical Ocean',
 					'density' : 25,
 					'debris' : '',
+					'soil' : 'sand',
 					'spawn' : ['stone'],
 					}}
 			},
@@ -443,7 +467,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
-					'density' : 25,
+					'density' : 15,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -458,7 +482,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
-					'density' : 50,
+					'density' : 25,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -562,7 +586,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
-					'density' : 20,
+					'density' : 10,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -590,7 +614,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
-					'density' : 10,
+					'density' : 5,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -618,7 +642,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
-					'density' : 20,
+					'density' : 10,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -688,7 +712,7 @@ func get_vanilla():
 				'plant' : {
 					'growthrate' : 0,
 					'lifespan' : 0,
-					'density' : 10,
+					'density' : 5,
 					'weight' : 0,
 					'HP' : 0,
 					'hp' : 0
@@ -1140,6 +1164,22 @@ func get_vanilla():
 
 		"material" : {
 			'global' : "res://skin/global_material.tres",
+			'foliage0' : "res://skin/foliage_material0.tres",
+			'foliage1' : "res://skin/foliage_material1.tres",
+			'foliage2' : "res://skin/foliage_material2.tres",
+			'foliage3' : "res://skin/foliage_material3.tres",
+			'foliage4' : "res://skin/foliage_material4.tres",
+			'foliage5' : "res://skin/foliage_material5.tres",
+			'foliage6' : "res://skin/foliage_material6.tres",
+			'foliage7' : "res://skin/foliage_material7.tres",
+			'sand0' : "res://skin/sand_material0.tres",
+			'sand1' : "res://skin/sand_material1.tres",
+			'sand2' : "res://skin/sand_material2.tres",
+			'sand3' : "res://skin/sand_material3.tres",
+			'sand4' : "res://skin/sand_material4.tres",
+			'sand5' : "res://skin/sand_material5.tres",
+			'sand6' : "res://skin/sand_material6.tres",
+			'sand7' : "res://skin/sand_material7.tres",
 			'soil0' : "res://skin/soil_material0.tres",
 			'soil1' : "res://skin/soil_material1.tres",
 			'soil2' : "res://skin/soil_material2.tres",
@@ -1148,11 +1188,14 @@ func get_vanilla():
 			'soil5' : "res://skin/soil_material5.tres",
 			'soil6' : "res://skin/soil_material6.tres",
 			'soil7' : "res://skin/soil_material7.tres",
-			'soil8' : "res://skin/soil_material8.tres",
-			'soil9' : "res://skin/soil_material9.tres",
-			'soil10' : "res://skin/soil_material10.tres",
-			'soil11' : "res://skin/soil_material11.tres",
-			"stone" : "res://skin/stone_material.tres",
+			'stone0' : "res://skin/stone_material0.tres",
+			'stone1' : "res://skin/stone_material1.tres",
+			'stone2' : "res://skin/stone_material2.tres",
+			'stone3' : "res://skin/stone_material3.tres",
+			'stone4' : "res://skin/stone_material4.tres",
+			'stone5' : "res://skin/stone_material5.tres",
+			'stone6' : "res://skin/stone_material6.tres",
+			'stone7' : "res://skin/stone_material7.tres",
 			},
 
 
@@ -1166,7 +1209,7 @@ func get_vanilla():
 
 
 		"physics" : {
-			"world_size" : 32,
+			"world_size" : 64,
 			"chunk_size" : 4,
 			"tile_size" : 1,
 			
@@ -1177,7 +1220,7 @@ func get_vanilla():
 			"max_height" : 12.0,
 			"max_water" : 7.0,
 			"max_heat" : 2.0,
-			"sea_level" : -0.75,
+			"sea_level" : -7.75,
 			"bedrock_level" : -10.0,
 			"gravity" : 0.5,
 			},
@@ -1224,7 +1267,7 @@ func get_vanilla():
 			'font_name' : {'value' : '', 'min' : 0, 'max' : 128},
 			
 			'message_font' : {'value' : 16, 'min' : 16, 'max' : 16},
-			'spawn_distance' : {'value' : 2, 'min' : 1, 'max' : 32},
+			'spawn_distance' : {'value' : 4, 'min' : 1, 'max' : 32},
 			
 			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
 			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},

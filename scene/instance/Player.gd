@@ -22,8 +22,8 @@ var id = 'player'
 var can = {
 	'create' : true,
 	'destroy' : true,
-	'remove_object' : false,
-	'place_object' : false
+	'remove_object' : true,
+	'place_object' : true
 }
 
 var mesh = {
@@ -80,6 +80,15 @@ func get_pos():
 		floor(translation.y/Data.physics['tile_size']),
 		floor(translation.z/Data.physics['tile_size']))
 
+func in_bounds():
+	var limit = Data.physics['world_size']*Data.physics['chunk_size']
+	if (translation.x > -limit && translation.x < limit && translation.z > -limit && translation.z < limit):
+		return true
+	velocity = $Y.get_transform().basis.z*2
+	velocity = move_and_slide(velocity, Vector3.UP, false, 4, 0.78, true)
+	get_parent().hud.display_message("You've Reached The Map Boundary")
+	return false
+
 func set_held(obj=null):
 	if !obj:
 		$Y/X/Hand.visible = false
@@ -90,21 +99,29 @@ func set_held(obj=null):
 	$Y/X/Hand/Mesh.mesh = load(mesh['hand'])
 	$Y/X/Hand/Mesh.material_override = load("res://skin/global_material.tres")
 
+func add_item(i):
+	if inventory.has(i):
+		inventory[i] += 1
+	else:
+		inventory[i] = 1
+
+func use_item(i):
+	if inventory.has(i):
+		if inventory[i] >= 1:
+			inventory[i] -= 1
+		else:
+			inventory.erase(i)
+
 func update_map_position():
-	var d = Data.settings['spawn_distance']['value']/2
+	var d = int((Data.physics['chunk_size']/2)*(Data.settings['spawn_distance']['value']/2))
 	
-	if int(round(translation.x - (d))) >= int(round(update_position.x)):
-		update_position.x = int(round(translation.x))
-		emit_signal("update_chunks")
-	if int(round(translation.x + (d))) <= int(round(update_position.x)):
-		update_position.x = int(round(translation.x))
+	var dx = update_position.x - translation.x
+	var dz = update_position.z - translation.z
+	
+	if dx >= d || dx <= -d:
 		emit_signal("update_chunks")
 
-	if int(round(translation.z - (d))) >= int(round(update_position.z)):
-		update_position.z = int(round(translation.z))
-		emit_signal("update_chunks")
-	if int(round(translation.z + (d))) <= int(round(update_position.z)):
-		update_position.z = int(round(translation.z))
+	if dz >= d || dz <= -d:
 		emit_signal("update_chunks")
 
 func create():
@@ -125,6 +142,7 @@ func destroy():
 			else:
 				get_parent().hud.display_message(cursor.get_collider().id)
 				if can['remove_object']:
+					add_item(cursor.get_collider().id)
 					cursor.get_collider().queue_free()
 		can['destroy'] = false
 		$Destroy.start()
@@ -175,16 +193,16 @@ func _process(_delta):
 	if Input.is_action_just_released("run"):
 		data['boost'] = 1.0
 	
-	if Input.is_action_pressed("move_forward"):
+	if Input.is_action_pressed("move_forward") && in_bounds():
 		velocity = -$Y.get_transform().basis.z
 		update_map_position()
-	if Input.is_action_pressed("move_backward"):
+	if Input.is_action_pressed("move_backward") && in_bounds():
 		velocity = $Y.get_transform().basis.z
 		update_map_position()
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_left") && in_bounds():
 		velocity = -$Y.get_transform().basis.x
 		update_map_position()
-	if Input.is_action_pressed("move_right"):
+	if Input.is_action_pressed("move_right") && in_bounds():
 		velocity = $Y.get_transform().basis.x
 		update_map_position()
 

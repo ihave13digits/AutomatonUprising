@@ -23,6 +23,13 @@ config/icon="res://image/ui/icon.png"
 
 Data="*res://data/Data.gd"
 
+[display]
+
+window/size/width=256
+window/size/height=144
+window/size/test_width=1024
+window/size/test_height=600
+
 [input]
 
 ui_accept={

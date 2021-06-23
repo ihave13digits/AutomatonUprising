@@ -30,5 +30,9 @@ func _on_MusicVolume_value_changed(value):
 func _on_Done_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_parent().get_parent().player.has_control = true
+	# HUD Opacity
 	get_parent().get_parent()._update_hud()
+	# Spawn Distance
+	get_parent().get_parent()._update_chunks()
+	get_parent().get_parent()._update_environment()
 	queue_free()

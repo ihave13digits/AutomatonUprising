@@ -11,9 +11,8 @@ var noise_height = OpenSimplexNoise.new()
 var noise_water = OpenSimplexNoise.new()
 var noise_heat = OpenSimplexNoise.new()
 
-var tiles = {
-	'' : '',
-}
+var kill_queue = []
+var load_queue = []
 
 var data = {}
 var objs = {}
@@ -26,9 +25,9 @@ func _ready():
 	chunk_size = Data.physics['chunk_size']
 	tile_size = Data.physics['tile_size']
 
-	set_noise_values(noise_height, Data.settings['game_seed'].hash(), Data.physics['height_scale'], 4, 2.0, 0.1)
-	set_noise_values(noise_water, Data.settings['game_seed'].hash(), Data.physics['water_scale'], 4, 5.0, 0.2)
-	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), Data.physics['heat_scale'], 4, 2.0, 0.1)
+	set_noise_values(noise_height, Data.settings['game_seed'].hash(), Data.physics['height_scale'], 6, 2.0, 0.1)
+	set_noise_values(noise_water, Data.settings['game_seed'].hash(), Data.physics['water_scale'], 3, 2.0, 0.2)
+	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), Data.physics['heat_scale'], 1, 2.0, 0.3)
 
 func set_noise_values(n, sd, pd, oc, la, pr):
 	n.seed = sd
@@ -55,35 +54,57 @@ func generate_world_data():
 
 # Chunks
 
+func destroy_far_chunk(x, z):
+	var despawn = int(Data.physics['chunk_size']/2)
+	for dx in range(-despawn+x, despawn+x+1):
+		for dz in range(-despawn+z, despawn+z+1):
+			destroy(Vector2(dx, dz), 'tile')
+
+func generate_far_chunk(x, z):
+	var spawn = int(Data.physics['chunk_size']/2)
+	for sx in range(-spawn+x, spawn+x+1):
+		for sz in range(-spawn+z, spawn+z+1):
+			generate_tile(sx, sz)
+
+func update_chunks():
+	if kill_queue.size() > 0:
+		destroy_chunk(kill_queue[0].x, kill_queue[0].y)
+		kill_queue.pop_front()
+	
+	if load_queue.size() > 0:
+		generate_chunk(load_queue[0].x, load_queue[0].y)
+		load_queue.pop_front()
+
 func destroy_chunk(x, z):
 	var despawn = int(Data.physics['chunk_size']/2)
-	for dx in range(-despawn+x, despawn+x):
-		for dz in range(-despawn+z, despawn+z):
-			destroy_tile(Vector2(dx, dz))
-			destroy_liquid(Vector2(dx, dz))
-			destroy_object(Vector2(dx, dz))
-			destroy_debris(Vector2(dx, dz))
+	for dx in range(-despawn+x, despawn+x+1):
+		for dz in range(-despawn+z, despawn+z+1):
+			destroy(Vector2(dx, dz), 'tile')
+			destroy(Vector2(dx, dz), 'liquid')
+			#destroy(Vector2(dx, dz), 'debris')
+			destroy(Vector2(dx, dz), 'object')
 
 func generate_chunk(x, z):
 	var spawn = int(Data.physics['chunk_size']/2)
-	for sx in range(-spawn+x, spawn+x):
-		for sz in range(-spawn+z, spawn+z):
+	for sx in range(-spawn+x, spawn+x+1):
+		for sz in range(-spawn+z, spawn+z+1):
 			generate_tile(sx, sz)
+			spawn_liquid(x, z)
+			#spawn_debris(x, z)
+			
 			var chance = randi() % 1000
 			var water = "w%s" % str(get_water(x, z))
 			var heat = "h%s" % str(get_heat(x, z))
-	
+
 			if chance < Data.biome[water][heat]['density']:
 				var objects = Data.biome[water][heat]['spawn']
 				var object = randi() % objects.size()
 				var Y = get_height(x, z)
 				spawn_object(objects[object], Vector3(x, Y, z), Vector3(0, randi()%360, 0))
-			spawn_liquid(x, z)
-			spawn_debris(x, z)
 
 # Spawning
 
-func spawn_tile(t, pos, mtrl='soil0'):
+func spawn_tile(t, pos, mtrl='sand0'):
 	var key = '%s-%s' % [int(pos.x/tile_size), int(pos.z/tile_size)]
 	if objs.has(key):
 		if objs[key]['tile']:
@@ -163,68 +184,23 @@ func spawn_object(t, pos, rot):
 
 # Terrain
 
-func destroy_debris(P):
+func destroy(P, T):
 	var key = '%s-%s' % [P.x, P.y]
 	if objs.has(key):
-		if is_instance_valid(objs[key]['debris']):
-			objs[key]['debris'].queue_free()
-			objs[key]['debris'] = null
-
-func destroy_object(P):
-	var key = '%s-%s' % [P.x, P.y]
-	if objs.has(key):
-		if is_instance_valid(objs[key]['object']):
-			objs[key]['object'].queue_free()
-			objs[key]['object'] = null
-
-func destroy_liquid(P):
-	var key = '%s-%s' % [P.x, P.y]
-	if objs.has(key):
-		if is_instance_valid(objs[key]['liquid']):
-			objs[key]['liquid'].queue_free()
-			objs[key]['liquid'] = null
-
-func destroy_tile(P):
-	var key = '%s-%s' % [P.x, P.y]
-	if objs.has(key):
-		if is_instance_valid(objs[key]['tile']):
-			objs[key]['tile'].queue_free()
-			objs[key]['tile'] = null
+		if is_instance_valid(objs[key][T]):
+			objs[key][T].queue_free()
+			objs[key][T] = null
 
 func generate_tile(x, z):
+	var H = get_heat(x, z)
 	var W = get_water(x, z)
-	var Y = get_height(x, z)
-#	var nbrs = get_neighbors(x, z)
-#	var found = false
-#
-#	var value = 0
-#
-#	if nbrs[0] == 1:
-#		value += 8
-#		found = true
-#	if nbrs[1] == 1:
-#		value += 4
-#		found = true
-#	if nbrs[2] == 1:
-#		value += 2
-#		found = true
-#	if nbrs[3] == 1:
-#		value += 1
-#		found = true
-#
-#	if !found:
-#		if nbrs[0] == -1: value += 8
-#		if nbrs[1] == -1: value += 4
-#		if nbrs[2] == -1: value += 2
-#		if nbrs[3] == -1: value += 1
-#
-#		value = 15 - value
-#		Y -= 1
-	
 	var value = get_cell_value(x, z)
 	var tile = 'tile%s' % value[0]
-	Y -= value[1]
-	var mtrl = 'soil%s' % int((abs(Y) + (abs(W)*3)) / 4)
+	var Y = get_height(x, z) - value[1]
+	var soil_type = 'soil'
+	if Data.biome["w%s" % W]["h%s" % H]['soil'] != '':
+		soil_type = Data.biome["w%s" % W]["h%s" % H]['soil']
+	var mtrl = '%s%s' % [soil_type, int((abs(Y) + (abs(W)*3)) / 4)]
 	if Y < Data.physics['bedrock_level']:
 		mtrl = 'stone'
 
@@ -243,7 +219,7 @@ func update_tile(x, z, val):
 	
 	for j in range(-1, 2):
 		for i in range(-1, 2):
-			destroy_tile(Vector2(x+i, z+j))
+			destroy(Vector2(x+i, z+j), 'tile')
 	
 	for j in range(-1, 2):
 		for i in range(-1, 2):
