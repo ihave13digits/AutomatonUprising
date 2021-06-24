@@ -3,5 +3,5 @@
 [resource]
 flags_transparent = true
 params_diffuse_mode = 1
-albedo_color = Color( 0, 0.188235, 0.25098, 0.25098 )
+albedo_color = Color( 0, 0.188235, 0.25098, 0.501961 )
 roughness = 0.75

@@ -1213,14 +1213,14 @@ func get_vanilla():
 			"chunk_size" : 4,
 			"tile_size" : 1,
 			
-			"height_scale" : 32,
-			"water_scale" : 64,
-			"heat_scale" : 128,
+			"height_scale" : 64,
+			"water_scale" : 128,
+			"heat_scale" : 256,
 			
 			"max_height" : 12.0,
 			"max_water" : 7.0,
 			"max_heat" : 2.0,
-			"sea_level" : -7.75,
+			"sea_level" : -9.75,
 			"bedrock_level" : -10.0,
 			"gravity" : 0.5,
 			},
@@ -1267,7 +1267,7 @@ func get_vanilla():
 			'font_name' : {'value' : '', 'min' : 0, 'max' : 128},
 			
 			'message_font' : {'value' : 16, 'min' : 16, 'max' : 16},
-			'spawn_distance' : {'value' : 4, 'min' : 1, 'max' : 64},
+			'spawn_distance' : {'value' : 1, 'min' : 1, 'max' : 64},
 			
 			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
 			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},

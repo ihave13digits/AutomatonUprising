@@ -7,6 +7,7 @@ var world_size
 var chunk_size
 var tile_size
 
+var noise_bump = OpenSimplexNoise.new()
 var noise_height = OpenSimplexNoise.new()
 var noise_water = OpenSimplexNoise.new()
 var noise_heat = OpenSimplexNoise.new()
@@ -25,6 +26,7 @@ func _ready():
 	chunk_size = Data.physics['chunk_size']
 	tile_size = Data.physics['tile_size']
 
+	set_noise_values(noise_bump, Data.settings['game_seed'].hash(), Data.physics['height_scale']*0.5, 6, 2.0, 0.1)
 	set_noise_values(noise_height, Data.settings['game_seed'].hash(), Data.physics['height_scale'], 6, 2.0, 0.1)
 	set_noise_values(noise_water, Data.settings['game_seed'].hash(), Data.physics['water_scale'], 3, 2.0, 0.2)
 	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), Data.physics['heat_scale'], 1, 2.0, 0.3)
@@ -48,7 +50,9 @@ func generate_world_data():
 			objs[key]['object'] = null
 			objs[key]['liquid'] = null
 			
-			data[key]['height'] = floor(noise_height.get_noise_2d(x, z) * max_height)
+			var _h = floor((noise_height.get_noise_2d(x, z) * max_height)+(noise_bump.get_noise_2d(x, z) * max_height)/2)
+			
+			data[key]['height'] = _h
 			data[key]['water'] = abs(floor(noise_water.get_noise_2d(x, z) * max_water))
 			data[key]['heat'] = abs(floor(noise_heat.get_noise_2d(x, z) * max_heat))
 
@@ -93,6 +97,11 @@ func destroy_chunk(x, z):
 
 func generate_chunk(x, z):
 	var spawn = int(Data.physics['chunk_size']/2)
+	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
+	if objs.has(key):
+		if objs[key]['tile']:
+			if is_instance_valid(objs[key]['tile']):
+				return
 	for sx in range(-spawn+x, spawn+x+1):
 		for sz in range(-spawn+z, spawn+z+1):
 			generate_tile(sx, sz)
@@ -208,8 +217,6 @@ func generate_tile(x, z):
 	if Data.biome["w%s" % W]["h%s" % H]['soil'] != '':
 		soil_type = Data.biome["w%s" % W]["h%s" % H]['soil']
 	var mtrl = '%s%s' % [soil_type, int((abs(Y) + (abs(W)*3)) / 4)]
-	if Y < Data.physics['bedrock_level']:
-		mtrl = 'stone'
 
 	spawn_tile(tile, Vector3(x*tile_size, Y, z*tile_size), mtrl)
 
