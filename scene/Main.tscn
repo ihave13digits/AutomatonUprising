@@ -35,6 +35,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 shape = SubResource( 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
+shadow_enabled = true
+shadow_reverse_cull_face = true
 
 [editable path="HUD"]
 

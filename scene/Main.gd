@@ -37,15 +37,6 @@ func ready_game():
 	player.has_control = false
 	
 	_update_hud()
-	
-#	var spawn = Data.settings['spawn_distance']['value']
-#	var chunk = Data.physics['chunk_size']
-#	var cp = Vector2(int(player.get_pos().x/chunk), int(player.get_pos().z/chunk))
-#
-#	for x in range(-spawn, spawn+1):
-#		for z in range(-spawn, spawn+1):
-#			#world.load_queue.append(Vector2(x+(player.translation.x/Data.physics['chunk_size']), z+(player.translation.z/Data.physics['chunk_size'])))
-#			world.generate_chunk(x+cp.x, z+cp.y)
 	_update_spawn_distance(Data.settings['spawn_distance']['value'])
 	_update_environment()
 
@@ -72,10 +63,15 @@ func _update_sky():
 	env.environment.fog_color = Color(_l*0.9, _l*0.95, _l, 0.5)
 	env.environment.fog_sun_color = Color(l*0.6, l*0.3, l*0.1)
 	
+	env.environment.background_sky.sky_top_color = Color(_l*0.7, _l*0.75, _l*1.0)
+	
+	env.environment.background_sky.sky_horizon_color = Color(_l*1.0, _l*0.7, _l*0.75)
+	env.environment.background_sky.ground_horizon_color = Color(_l*1.0, _l*0.7, _l*0.75)
+	
 	env.environment.ambient_light_energy = lighting
 	sun.light_energy = _l
-	env.environment.background_sky.sky_curve = _l#lighting*0.08
-	env.environment.background_sky.ground_curve = _l#lighting*0.08
+	env.environment.background_sky.sky_curve = 1.25-_l#lighting*0.08
+	env.environment.background_sky.ground_curve = 1.25-_l#lighting*0.08
 
 func _update_spawn_distance(spawn_compare):
 	var spawn = Data.settings['spawn_distance']['value']
@@ -120,26 +116,26 @@ func _update_chunks():
 	var up = Vector2(int(player.update_position.x/chunk), int(player.update_position.z/chunk))
 	var d = up-cp
 	
-	if d.x == -1:
+	if d.x <= -1:
 		for i in range(-spawn, spawn+1):
 			world.load_queue.append(Vector2(cp.x+spawn, i+cp.y))
-		for i in range(-spawn, spawn+1):
+		for i in range(-(spawn+1), spawn+2):
 			world.kill_queue.append(Vector2(up.x-spawn, i+up.y))
-	if d.x == 1:
+	if d.x >= 1:
 		for i in range(-spawn, spawn+1):
 			world.load_queue.append(Vector2(cp.x-spawn, i+cp.y))
-		for i in range(-spawn, spawn+1):
+		for i in range(-(spawn+1), spawn+2):
 			world.kill_queue.append(Vector2(up.x+spawn, i+up.y))
 	
-	if d.y == -1:
+	if d.y <= -1:
 		for i in range(-spawn, spawn+1):
 			world.load_queue.append(Vector2(i+cp.x, cp.y+spawn))
-		for i in range(-spawn, spawn+1):
+		for i in range(-(spawn+1), spawn+2):
 			world.kill_queue.append(Vector2(i+up.x, up.y-spawn))
-	if d.y == 1:
+	if d.y >= 1:
 		for i in range(-spawn, spawn+1):
 			world.load_queue.append(Vector2(i+cp.x, cp.y-spawn))
-		for i in range(-spawn, spawn+1):
+		for i in range(-(spawn+1), spawn+2):
 			world.kill_queue.append(Vector2(i+up.x, up.y+spawn))
 	
 	player.update_position.x = int(round(player.translation.x))

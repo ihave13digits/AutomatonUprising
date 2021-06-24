@@ -139,14 +139,14 @@ func get_vanilla():
 			'w2' : {
 				'h0' : {
 					'name' : 'Alpines',
-					'density' : 30,
+					'density' : 10,
 					'debris' : 'pinestraw',
 					'soil' : 'foliage',
 					'spawn' : ['treepine', 'pinecone'],
 					},
 				'h1' : {
 					'name' : 'Forest',
-					'density' : 15,
+					'density' : 5,
 					'debris' : 'leaves',
 					'soil' : 'foliage',
 					'spawn' : ['treeash', 'treeaspen', 'treeoak', 'stump'],
@@ -186,7 +186,7 @@ func get_vanilla():
 					'density' : 25,
 					'debris' : 'grass',
 					'soil' : 'foliage',
-					'spawn' : ['cattail', 'grass', 'stump'],
+					'spawn' : ['cattail', 'grass', 'stump', 'stump', 'stump', 'stump', 'stump'],
 					},
 				'h1' : {
 					'name' : 'Marsh',
@@ -200,7 +200,7 @@ func get_vanilla():
 					'density' : 50,
 					'debris' : 'grass',
 					'soil' : 'foliage',
-					'spawn' : ['cattail', 'clover', 'grass', 'rye', 'stump'],
+					'spawn' : ['cattail', 'clover', 'grass', 'rye', 'stump', 'stump', 'stump', 'stump', 'stump'],
 					}},
 			'w5' : {
 				'h0' : {
@@ -1213,7 +1213,7 @@ func get_vanilla():
 			"chunk_size" : 4,
 			"tile_size" : 1,
 			
-			"height_scale" : 64,
+			"height_scale" : 128,
 			"water_scale" : 128,
 			"heat_scale" : 256,
 			

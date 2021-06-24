@@ -1,7 +1,7 @@
 [gd_resource type="Environment" load_steps=2 format=2]
 
 [sub_resource type="ProceduralSky" id=1]
-radiance_size = 3
+radiance_size = 0
 sky_horizon_color = Color( 0.980392, 0.839216, 0.839216, 1 )
 sky_curve = 1.0
 sky_energy = 1.25
@@ -11,7 +11,7 @@ ground_curve = 0.08
 ground_energy = 1.25
 sun_latitude = 90.0
 sun_angle_max = 360.0
-sun_curve = 0.0196146
+sun_curve = 0.01
 texture_size = 0
 
 [resource]

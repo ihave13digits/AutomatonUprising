@@ -9,6 +9,8 @@ var mesh = {
 }
 
 func _ready():
+#	var s = Data.physics['tile_size']
+#	scale = Vector3(s, s, s)
 	$Mesh.mesh = load(mesh['body'])
 	set_collision()
 
