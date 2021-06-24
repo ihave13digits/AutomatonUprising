@@ -113,14 +113,12 @@ func use_item(i):
 			inventory.erase(i)
 
 func update_map_position():
-	var d = int((Data.physics['chunk_size']/2)*(Data.settings['spawn_distance']['value']/2))
-	
+	var d = Data.physics['chunk_size']#int(Data.physics['chunk_size']*(Data.settings['spawn_distance']['value']/2))
 	var dx = update_position.x - translation.x
 	var dz = update_position.z - translation.z
 	
 	if dx >= d || dx <= -d:
 		emit_signal("update_chunks")
-
 	if dz >= d || dz <= -d:
 		emit_signal("update_chunks")
 

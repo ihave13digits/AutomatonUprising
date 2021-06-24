@@ -23,7 +23,6 @@ margin_bottom = 64.0
 [node name="World" parent="." instance=ExtResource( 3 )]
 
 [node name="SafetyNet" type="StaticBody" parent="."]
-visible = false
 collision_layer = 3
 collision_mask = 3
 

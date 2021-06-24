@@ -1267,7 +1267,7 @@ func get_vanilla():
 			'font_name' : {'value' : '', 'min' : 0, 'max' : 128},
 			
 			'message_font' : {'value' : 16, 'min' : 16, 'max' : 16},
-			'spawn_distance' : {'value' : 4, 'min' : 1, 'max' : 32},
+			'spawn_distance' : {'value' : 4, 'min' : 1, 'max' : 64},
 			
 			'mouse_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},
 			'wheel_sensitivity' : {'value' : 0.25, 'min' : 0.0, 'max' : 0.0},

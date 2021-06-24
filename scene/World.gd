@@ -68,12 +68,18 @@ func generate_far_chunk(x, z):
 
 func update_chunks():
 	if kill_queue.size() > 0:
-		destroy_chunk(kill_queue[0].x, kill_queue[0].y)
+		destroy_chunk(kill_queue[0].x*Data.physics['chunk_size'], kill_queue[0].y*Data.physics['chunk_size'])
 		kill_queue.pop_front()
-	
+
 	if load_queue.size() > 0:
-		generate_chunk(load_queue[0].x, load_queue[0].y)
+		generate_chunk(load_queue[0].x*Data.physics['chunk_size'], load_queue[0].y*Data.physics['chunk_size'])
 		load_queue.pop_front()
+		return
+
+	if kill_queue.size() == 0 && load_queue.size() == 0:
+		if get_parent().loading:
+			get_parent().hud.display_message("Chunks Loaded")
+		get_parent().loading = false
 
 func destroy_chunk(x, z):
 	var despawn = int(Data.physics['chunk_size']/2)

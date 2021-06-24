@@ -1,5 +1,7 @@
 extends Control
 
+var spawn_compare
+
 func _ready():
 	$MouseSensitivity.value = Data.settings['mouse_sensitivity']['value']
 	$WheelSensitivity.value = Data.settings['wheel_sensitivity']['value']
@@ -7,6 +9,7 @@ func _ready():
 	$HUDOpacity.value = Data.settings['hud_opacity']['value']
 	$EffectsVolume.value = Data.settings['effects_volume']['value']
 	$MusicVolume.value = Data.settings['music_volume']['value']
+	spawn_compare = Data.settings['spawn_distance']['value']
 
 func _on_MouseSensitivity_value_changed(value):
 	Data.settings['mouse_sensitivity']['value'] = value
@@ -15,7 +18,7 @@ func _on_WheelSensitivity_value_changed(value):
 	Data.settings['wheel_sensitivity']['value'] = value
 
 func _on_SpawnDistance_value_changed(value):
-	Data.settings['spawn_distance']['value'] = value
+	spawn_compare = value
 
 func _on_HUDOpacity_value_changed(value):
 	Data.settings['hud_opacity']['value'] = value
@@ -33,6 +36,6 @@ func _on_Done_pressed():
 	# HUD Opacity
 	get_parent().get_parent()._update_hud()
 	# Spawn Distance
-	get_parent().get_parent()._update_chunks()
-	get_parent().get_parent()._update_environment()
+	if spawn_compare != Data.settings['spawn_distance']['value']:
+		get_parent().get_parent()._update_spawn_distance(spawn_compare)
 	queue_free()

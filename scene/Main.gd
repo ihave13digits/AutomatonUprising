@@ -6,8 +6,9 @@ var sun
 var world
 var player
 
+var loading = false
 var day = true
-var time_scale = 10.1
+var time_scale = 1.1
 var lighting = 1.0
 
 func _ready():
@@ -38,7 +39,12 @@ func ready_game():
 	player.has_control = false
 	
 	_update_hud()
-	_update_chunks()
+	
+	var spawn = int(Data.settings['spawn_distance']['value'])
+	for x in range(-spawn, spawn+1):
+		for z in range(-spawn, spawn+1):
+			world.load_queue.append(Vector2(x+(player.translation.x/Data.physics['chunk_size']), z+(player.translation.z/Data.physics['chunk_size'])))
+	#_update_chunks()
 
 func _update_lighting(delta):
 	sun.rotation_degrees.x += time_scale*delta
@@ -64,6 +70,21 @@ func _update_sky():
 	
 	env.environment.ambient_light_energy = lighting
 	sun.light_energy = lighting*lighting
+	env.environment.background_sky.sky_curve = lighting#*0.08
+	env.environment.background_sky.ground_curve = lighting#*0.08
+
+func _update_spawn_distance(spawn_compare):
+	var spawn = Data.settings['spawn_distance']['value']
+	var chunk = Data.physics['chunk_size']
+	var cp = Vector2(int(player.get_pos().x/chunk), int(player.get_pos().z/chunk))
+	var up = Vector2(int(player.update_position.x/chunk), int(player.update_position.z/chunk))
+	
+	for x in range(-spawn, spawn+1):
+		for z in range(-spawn, spawn+1):
+			world.load_queue.append(Vector2(x+cp.x, z+cp.y))
+	Data.settings['spawn_distance']['value'] = spawn_compare
+	_update_chunks()
+	_update_environment()
 
 func _update_environment():
 	var distance = Data.physics['chunk_size']*Data.settings['spawn_distance']['value']
@@ -75,22 +96,37 @@ func _modify_chunk(pos, val):
 	world.update_tile(pos.x, pos.z, val)
 
 func _update_chunks():
-	var p = player.get_pos()
-	var up =  player.update_position
-	var spawn = int(Data.settings['spawn_distance']['value'])
+	var spawn = Data.settings['spawn_distance']['value']
+	var chunk = Data.physics['chunk_size']
+	var cp = Vector2(int(player.get_pos().x/chunk), int(player.get_pos().z/chunk))
+	var up = Vector2(int(player.update_position.x/chunk), int(player.update_position.z/chunk))
+	var d = up-cp
 	
-	for dx in range(-spawn+up.x, spawn+up.x+1):
-		for dz in range(-spawn+up.z, spawn+up.z+1):
-			var v = Vector2(dx, dz)
-			world.kill_queue.append(v)
+	if d.x == -1:
+		for i in range(-spawn, spawn+1):
+			world.load_queue.append(Vector2(cp.x+spawn, i+cp.y))
+		for i in range(-spawn-1, spawn+2):
+			world.kill_queue.append(Vector2(up.x-spawn, i+up.y))
+	if d.x == 1:
+		for i in range(-spawn, spawn+1):
+			world.load_queue.append(Vector2(cp.x-spawn, i+cp.y))
+		for i in range(-spawn-1, spawn+2):
+			world.kill_queue.append(Vector2(up.x+spawn, i+up.y))
 	
-	for dx in range(-spawn+p.x, spawn+p.x+1):
-		for dz in range(-spawn+p.z, spawn+p.z+1):
-			var v = Vector2(dx, dz)
-			world.load_queue.append(v)
+	if d.y == -1:
+		for i in range(-spawn, spawn+1):
+			world.load_queue.append(Vector2(i+cp.x, cp.y+spawn))
+		for i in range(-spawn-1, spawn+2):
+			world.kill_queue.append(Vector2(i+up.x, up.y-spawn))
+	if d.y == 1:
+		for i in range(-spawn, spawn+1):
+			world.load_queue.append(Vector2(i+cp.x, cp.y-spawn))
+		for i in range(-spawn-1, spawn+2):
+			world.kill_queue.append(Vector2(i+up.x, up.y+spawn))
 	
 	player.update_position.x = int(round(player.translation.x))
 	player.update_position.z = int(round(player.translation.z))
+	loading = true
 
 func _update_cursor():
 	if player.cursor.get_collider() != null:
