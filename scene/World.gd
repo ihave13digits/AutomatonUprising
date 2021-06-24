@@ -79,6 +79,7 @@ func update_chunks():
 	if kill_queue.size() == 0 && load_queue.size() == 0:
 		if get_parent().loading:
 			get_parent().hud.display_message("Chunks Loaded")
+			get_parent().player.has_control = true
 		get_parent().loading = false
 
 func destroy_chunk(x, z):
@@ -95,18 +96,18 @@ func generate_chunk(x, z):
 	for sx in range(-spawn+x, spawn+x+1):
 		for sz in range(-spawn+z, spawn+z+1):
 			generate_tile(sx, sz)
-			spawn_liquid(x, z)
-			#spawn_debris(x, z)
+			spawn_liquid(sx, sz)
+			#spawn_debris(sx, sz)
 			
-			var chance = randi() % 1000
-			var water = "w%s" % str(get_water(x, z))
-			var heat = "h%s" % str(get_heat(x, z))
+			var chance = randi() % 100
+			var water = "w%s" % str(get_water(sx, sz))
+			var heat = "h%s" % str(get_heat(sx, sz))
 
 			if chance < Data.biome[water][heat]['density']:
 				var objects = Data.biome[water][heat]['spawn']
 				var object = randi() % objects.size()
-				var Y = get_height(x, z)
-				spawn_object(objects[object], Vector3(x, Y, z), Vector3(0, randi()%360, 0))
+				var Y = get_height(sx, sz)
+				spawn_object(objects[object], Vector3(sx, Y, sz), Vector3(0, randi()%360, 0))
 
 # Spawning
 
@@ -134,7 +135,7 @@ func spawn_liquid(x, z):
 			if is_instance_valid(objs[key]['liquid']):
 				return
 		var Y = Data.physics['sea_level']
-		if get_water(x, z) < 2:
+		if get_water(x, z) < 3:
 			return
 		if get_height(x, z) > Y+1:
 			for i in range(4):

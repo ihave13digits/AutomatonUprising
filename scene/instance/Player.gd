@@ -23,7 +23,7 @@ var can = {
 	'create' : true,
 	'destroy' : true,
 	'remove_object' : true,
-	'place_object' : true
+	'place_object' : true,
 }
 
 var mesh = {

@@ -36,11 +36,6 @@ shape = SubResource( 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 
-[node name="SkyTick" type="Timer" parent="."]
-wait_time = 0.25
-autostart = true
-[connection signal="timeout" from="SkyTick" to="." method="_on_SkyTick_timeout"]
-
 [editable path="HUD"]
 
 [editable path="World"]

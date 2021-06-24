@@ -139,21 +139,21 @@ func get_vanilla():
 			'w2' : {
 				'h0' : {
 					'name' : 'Alpines',
-					'density' : 75,
+					'density' : 30,
 					'debris' : 'pinestraw',
 					'soil' : 'foliage',
 					'spawn' : ['treepine', 'pinecone'],
 					},
 				'h1' : {
 					'name' : 'Forest',
-					'density' : 25,
+					'density' : 15,
 					'debris' : 'leaves',
 					'soil' : 'foliage',
 					'spawn' : ['treeash', 'treeaspen', 'treeoak', 'stump'],
 					},
 				'h2': {
 					'name' : 'Jungle',
-					'density' : 50,
+					'density' : 20,
 					'debris' : 'leaves',
 					'soil' : 'foliage',
 					'spawn' : ['treeash', 'treeoak', 'bush', 'stump'],
@@ -168,14 +168,14 @@ func get_vanilla():
 					},
 				'h1' : {
 					'name' : 'Meadow',
-					'density' : 100,
+					'density' : 10,
 					'debris' : 'grass',
 					'soil' : 'soil',
 					'spawn' : ['greenonion', 'grass', 'rye', 'sunflower', 'daisy'],
 					},
 				'h2' : {
 					'name' : 'Grasslands',
-					'density' : 100,
+					'density' : 10,
 					'debris' : 'grass',
 					'soil' : 'soil',
 					'spawn' : ['greenonion', 'grass', 'rye', 'wheat', 'sunflower', 'daisy'],
@@ -249,7 +249,7 @@ func get_vanilla():
 			'w7' : {
 				'h0' : {
 					'name' : 'Glacial Ocean',
-					'density' : 0,
+					'density' : 10,
 					'debris' : '',
 					'soil' : 'sand',
 					'spawn' : ['stone'],
