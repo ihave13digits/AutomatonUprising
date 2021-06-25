@@ -100,8 +100,8 @@ func _update_spawn_distance(spawn_compare):
 		Data.settings['spawn_distance']['value'] -= 1
 		for x in range(-spawn, spawn+1):
 			for z in range(-spawn, spawn+1):
-				#world.kill_queue.append(Vector2(x+cp.x, z+cp.y))
-				world.destroy_chunk(x+cp.x, z+cp.y)
+				world.kill_queue.append(Vector2(x+cp.x, z+cp.y))
+				#world.destroy_chunk(x+cp.x, z+cp.y)
 		
 		for x in range(-spawn_compare, spawn_compare+1):
 			for z in range(-spawn_compare, spawn_compare+1):

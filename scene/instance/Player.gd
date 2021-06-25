@@ -6,6 +6,7 @@ signal update_cursor
 signal update_hud
 
 onready var cursor = $Y/X/Cam/Cursor
+onready var standing_on = $StandingOn
 
 var showing_grid = false
 var has_control = true
@@ -135,6 +136,8 @@ func create():
 func destroy():
 	if can['destroy']:
 		if cursor.get_collider() != null:
+			if cursor.get_collider().id == "safety net":
+				return
 			if cursor.get_collider().id.find('tile') != -1 && can['remove_object']:
 				emit_signal("edit_chunk", cursor.get_collider().translation, -1)
 			else:
@@ -149,6 +152,9 @@ func _physics_process(delta):
 	if !has_control or is_paused:
 		return
 
+	if standing_on.get_collider() != null:
+		if standing_on.get_collider().id.find('safety'):
+			translation.y = Data.physics['max_height']
 	velocity -= Vector3(0, Data.physics['gravity'], 0)
 	if velocity.length() > 0.01:
 		velocity /= velocity.length()

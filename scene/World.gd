@@ -14,6 +14,8 @@ var noise_heat = OpenSimplexNoise.new()
 
 var kill_queue = []
 var load_queue = []
+var tile_kill_queue = []
+var tile_load_queue = []
 
 var data = {}
 var objs = {}
@@ -58,6 +60,108 @@ func generate_world_data():
 
 # Chunks
 
+func update_queue():
+	if tile_kill_queue.size() > 0:
+		destroy_cell(tile_kill_queue[0].x, tile_kill_queue[0].y)
+		tile_kill_queue.pop_front()
+		#return
+	
+	if tile_load_queue.size() > 0:
+		generate_cell(tile_load_queue[0].x, tile_load_queue[0].y)
+		tile_load_queue.pop_front()
+
+func update_chunks():
+	if kill_queue.size() > 0:
+		destroy_chunk(kill_queue[0].x*Data.physics['chunk_size'], kill_queue[0].y*Data.physics['chunk_size'])
+		kill_queue.pop_front()
+		return
+	
+	if load_queue.size() > 0:
+		generate_chunk(load_queue[0].x*Data.physics['chunk_size'], load_queue[0].y*Data.physics['chunk_size'])
+		load_queue.pop_front()
+
+	if tile_kill_queue.size() == 0 && tile_load_queue.size() == 0:
+		if get_parent().loading:
+			get_parent().hud.display_message("Chunks Loaded")
+			get_parent().player.has_control = true
+		get_parent().loading = false
+	update_queue()
+
+func destroy_cell(x, z):
+	destroy(Vector2(x, z), 'tile')
+	destroy(Vector2(x, z), 'liquid')
+	#destroy(Vector2(x, z), 'debris')
+	destroy(Vector2(x, z), 'object')
+
+func generate_cell(x, z):
+	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
+	if objs.has(key):
+		if objs[key]['tile']:
+			if is_instance_valid(objs[key]['tile']):
+				return
+	generate_tile(x, z)
+	spawn_liquid(x, z)
+	#spawn_debris(x, z)
+	
+	var chance = randi() % 100
+	var water = "w%s" % str(get_water(x, z))
+	var heat = "h%s" % str(get_heat(x, z))
+
+	if chance < Data.biome[water][heat]['density']:
+		var objects = Data.biome[water][heat]['spawn']
+		var object = randi() % objects.size()
+		var Y = get_height(x, z)
+		spawn_object(objects[object], Vector3(x, Y, z), Vector3(0, randi()%360, 0))
+
+func destroy_chunk(x, z):
+	var despawn = int(Data.physics['chunk_size']/2)
+	for dx in range(-despawn+x, despawn+x+1):
+		for dz in range(-despawn+z, despawn+z+1):
+			tile_kill_queue.append(Vector2(dx, dz))
+
+func generate_chunk(x, z):
+	var spawn = int(Data.physics['chunk_size']/2)
+	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
+	if objs.has(key):
+		if objs[key]['tile']:
+			if is_instance_valid(objs[key]['tile']):
+				return
+	for sx in range(-spawn+x, spawn+x+1):
+		for sz in range(-spawn+z, spawn+z+1):
+			tile_load_queue.push_front(Vector2(sx, sz))
+
+func _destroy_chunk(x, z):
+	var despawn = int(Data.physics['chunk_size']/2)
+	for dx in range(-despawn+x, despawn+x+1):
+		for dz in range(-despawn+z, despawn+z+1):
+			destroy(Vector2(dx, dz), 'tile')
+			destroy(Vector2(dx, dz), 'liquid')
+			destroy(Vector2(dx, dz), 'debris')
+			destroy(Vector2(dx, dz), 'object')
+
+func _generate_chunk(x, z):
+	var spawn = int(Data.physics['chunk_size']/2)
+	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
+	if objs.has(key):
+		if objs[key]['tile']:
+			if is_instance_valid(objs[key]['tile']):
+				return
+	for sx in range(-spawn+x, spawn+x+1):
+		for sz in range(-spawn+z, spawn+z+1):
+			generate_tile(sx, sz)
+			spawn_liquid(sx, sz)
+			spawn_debris(sx, sz)
+			
+			var chance = randi() % 100
+			var water = "w%s" % str(get_water(sx, sz))
+			var heat = "h%s" % str(get_heat(sx, sz))
+
+			if chance < Data.biome[water][heat]['density']:
+				var objects = Data.biome[water][heat]['spawn']
+				var object = randi() % objects.size()
+				var Y = get_height(sx, sz)
+				spawn_object(objects[object], Vector3(sx, Y, sz), Vector3(0, randi()%360, 0))
+
 func destroy_far_chunk(x, z):
 	var despawn = int(Data.physics['chunk_size']/2)
 	for dx in range(-despawn+x, despawn+x+1):
@@ -69,55 +173,6 @@ func generate_far_chunk(x, z):
 	for sx in range(-spawn+x, spawn+x+1):
 		for sz in range(-spawn+z, spawn+z+1):
 			generate_tile(sx, sz)
-
-
-func update_chunks():
-        if load_queue.size() > 0:
-		generate_chunk(load_queue[0].x*Data.physics['chunk_size'], load_queue[0].y*Data.physics['chunk_size'])
-		load_queue.pop_front()
-		return
-
-	if kill_queue.size() > 0:
-		destroy_chunk(kill_queue[0].x*Data.physics['chunk_size'], kill_queue[0].y*Data.physics['chunk_size'])
-		kill_queue.pop_front()
-
-	if kill_queue.size() == 0 && load_queue.size() == 0:
-		if get_parent().loading:
-			get_parent().hud.display_message("Chunks Loaded")
-			get_parent().player.has_control = true
-		get_parent().loading = false
-
-func destroy_chunk(x, z):
-	var despawn = int(Data.physics['chunk_size']/2)
-	for dx in range(-despawn+x, despawn+x+1):
-		for dz in range(-despawn+z, despawn+z+1):
-			destroy(Vector2(dx, dz), 'tile')
-			destroy(Vector2(dx, dz), 'liquid')
-			#destroy(Vector2(dx, dz), 'debris')
-			destroy(Vector2(dx, dz), 'object')
-
-func generate_chunk(x, z):
-	var spawn = int(Data.physics['chunk_size']/2)
-	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
-	if objs.has(key):
-		if objs[key]['tile']:
-			if is_instance_valid(objs[key]['tile']):
-				return
-	for sx in range(-spawn+x, spawn+x+1):
-		for sz in range(-spawn+z, spawn+z+1):
-			generate_tile(sx, sz)
-			spawn_liquid(sx, sz)
-			#spawn_debris(sx, sz)
-			
-			var chance = randi() % 100
-			var water = "w%s" % str(get_water(sx, sz))
-			var heat = "h%s" % str(get_heat(sx, sz))
-
-			if chance < Data.biome[water][heat]['density']:
-				var objects = Data.biome[water][heat]['spawn']
-				var object = randi() % objects.size()
-				var Y = get_height(sx, sz)
-				spawn_object(objects[object], Vector3(sx, Y, sz), Vector3(0, randi()%360, 0))
 
 # Spawning
 
