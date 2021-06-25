@@ -71,7 +71,7 @@ func generate_far_chunk(x, z):
 			generate_tile(sx, sz)
 
 func update_chunks():
-	if kill_queue.size() > 0:
+	if kill_queue.size() > 0 && load_queue.size() == 0:
 		destroy_chunk(kill_queue[0].x*Data.physics['chunk_size'], kill_queue[0].y*Data.physics['chunk_size'])
 		kill_queue.pop_front()
 
