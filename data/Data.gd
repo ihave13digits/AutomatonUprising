@@ -1210,6 +1210,7 @@ func get_vanilla():
 
 		"physics" : {
 			"world_size" : 64,
+			"chonk_size" : 32,
 			"chunk_size" : 4,
 			"tile_size" : 1,
 			

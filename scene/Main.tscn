@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/Main.gd" type="Script" id=1]
 [ext_resource path="res://scene/ui/HUD.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://mesh/tile/0.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://skin/soil_material0.tres" type="Material" id=5]
 [ext_resource path="res://scene/SafetyNet.gd" type="Script" id=6]
+[ext_resource path="res://skin/grid_selection_material.tres" type="Material" id=7]
+[ext_resource path="res://mesh/tile/cube.obj" type="ArrayMesh" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 0.5, 0.5 )
@@ -39,6 +41,10 @@ shape = SubResource( 1 )
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 shadow_enabled = true
 shadow_reverse_cull_face = true
+
+[node name="PreviewMesh" type="MeshInstance" parent="."]
+mesh = ExtResource( 8 )
+material/0 = ExtResource( 7 )
 
 [editable path="HUD"]
 

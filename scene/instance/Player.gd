@@ -114,14 +114,18 @@ func use_item(i):
 			inventory.erase(i)
 
 func update_map_position():
-	var d = Data.physics['chunk_size']#int(Data.physics['chunk_size']*(Data.settings['spawn_distance']['value']/2))
+	var d = Data.physics['chunk_size']
 	var dx = update_position.x - translation.x
 	var dz = update_position.z - translation.z
 	
-	if dx >= d || dx <= -d:
+	if dx >= d-1 || dx <= -(d-1):
 		emit_signal("update_chunks")
-	if dz >= d || dz <= -d:
+	if dz >= d-1 || dz <= -(d-1):
 		emit_signal("update_chunks")
+	
+	if standing_on.get_collider() != null:
+		if standing_on.get_collider().id.find('safety') == 6:
+			translation.y = Data.physics['max_height']
 
 func create():
 	if can['create']:
@@ -149,12 +153,9 @@ func destroy():
 		$Destroy.start()
 
 func _physics_process(delta):
-	if !has_control or is_paused:
+	if !has_control || is_paused:
 		return
 
-	if standing_on.get_collider() != null:
-		if standing_on.get_collider().id.find('safety'):
-			translation.y = Data.physics['max_height']
 	velocity -= Vector3(0, Data.physics['gravity'], 0)
 	if velocity.length() > 0.01:
 		velocity /= velocity.length()
@@ -163,6 +164,11 @@ func _physics_process(delta):
 		motion = move_and_slide(motion, Vector3.UP, false, 4, 0.78, true)
 
 func _process(_delta):
+	if cursor.get_collider() != null:
+		var obj = cursor.get_collider()
+		get_parent().preview_mesh.mesh = load(obj.mesh['body'])
+		get_parent().preview_mesh.material_override = load("res://skin/grid_selection_material.tres")
+		get_parent().preview_mesh.transform = obj.transform
 	if Input.is_action_just_pressed("menu"):
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

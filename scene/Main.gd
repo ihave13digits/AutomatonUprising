@@ -6,6 +6,8 @@ var sun
 var world
 var player
 
+onready var preview_mesh = $PreviewMesh
+
 var loading = false
 var day = true
 
@@ -36,11 +38,17 @@ func ready_game():
 	world.generate_world_data()
 	
 	add_player(Vector3(0, Data.physics['max_height'], 0))
-	player.update_position = player.translation
+	player.update_map_position()
+	world.main_distance = Vector2(player.translation.x, player.translation.z)
 	player.has_control = false
 	
 	_update_hud()
-	_update_spawn_distance(Data.settings['spawn_distance']['value'])
+	#_update_spawn_distance(Data.settings['spawn_distance']['value'])
+	#if spawn_compare == spawn:
+	var spawn = Data.settings['spawn_distance']['value']
+	for x in range(-spawn, spawn+1):
+		for z in range(-spawn, spawn+1):
+			world.generate_chunk(x*Data.physics['chunk_size'], z*Data.physics['chunk_size'])
 	_update_environment()
 
 func _update_lighting(delta):
@@ -133,26 +141,33 @@ func _update_chunks():
 	
 	if d.x <= -1:
 		for i in range(-spawn, spawn+1):
-			world.load_queue.append(Vector2(cp.x+spawn, i+cp.y))
+			world.load_queue.push_front(Vector2(cp.x+spawn, i+cp.y))
+			world.load_distance.push_front(cp)
 		for i in range(-(spawn+1), spawn+2):
-			world.kill_queue.append(Vector2(up.x-spawn, i+up.y))
+			world.kill_queue.push_back(Vector2(up.x-spawn, i+up.y))
+			world.kill_queue.push_back(Vector2(up.x-spawn-1, i+up.y))
 	if d.x >= 1:
 		for i in range(-spawn, spawn+1):
-			world.load_queue.append(Vector2(cp.x-spawn, i+cp.y))
+			world.load_queue.push_front(Vector2(cp.x-spawn, i+cp.y))
 		for i in range(-(spawn+1), spawn+2):
-			world.kill_queue.append(Vector2(up.x+spawn, i+up.y))
+			world.kill_queue.push_back(Vector2(up.x+spawn, i+up.y))
+			world.kill_queue.push_back(Vector2(up.x+spawn+1, i+up.y))
 	
 	if d.y <= -1:
 		for i in range(-spawn, spawn+1):
-			world.load_queue.append(Vector2(i+cp.x, cp.y+spawn))
+			world.load_queue.push_front(Vector2(i+cp.x, cp.y+spawn))
 		for i in range(-(spawn+1), spawn+2):
-			world.kill_queue.append(Vector2(i+up.x, up.y-spawn))
+			world.kill_queue.push_back(Vector2(i+up.x, up.y-spawn))
+			world.kill_queue.push_back(Vector2(i+up.x, up.y-spawn-1))
 	if d.y >= 1:
 		for i in range(-spawn, spawn+1):
-			world.load_queue.append(Vector2(i+cp.x, cp.y-spawn))
+			world.load_queue.push_front(Vector2(i+cp.x, cp.y-spawn))
 		for i in range(-(spawn+1), spawn+2):
-			world.kill_queue.append(Vector2(i+up.x, up.y+spawn))
-		
+			world.kill_queue.push_back(Vector2(i+up.x, up.y+spawn))
+			world.kill_queue.push_back(Vector2(i+up.x, up.y+spawn+1))
+	
+	world.main_distance = cp
+	
 	player.update_position.x = int(round(player.translation.x))
 	player.update_position.z = int(round(player.translation.z))
 	loading = true
