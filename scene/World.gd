@@ -217,7 +217,6 @@ func generate_tile(x, z):
 	if Data.biome["w%s" % W]["h%s" % H]['soil'] != '':
 		soil_type = Data.biome["w%s" % W]["h%s" % H]['soil']
 	var mtrl = '%s%s' % [soil_type, int((abs(Y) + (abs(W)*3)) / 4)]
-
 	spawn_tile(tile, Vector3(x*tile_size, Y, z*tile_size), mtrl)
 
 func update_tile(x, z, val):
@@ -242,6 +241,10 @@ func update_tile(x, z, val):
 # Neighbor Cells
 
 func get_cell_value(x, z):
+	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
+	if objs.has(key):
+		if objs[key].has('value'):
+			return objs[key]['value']
 	var Y = get_height(x, z)
 	
 	var a = (get_height(x,z)-Y)*8
@@ -255,11 +258,12 @@ func get_cell_value(x, z):
 	d = clamp(d, -1, 1)
 	
 	var sum = a+b+c+d
-	
+	var rtrn = [15-abs(sum), 1]
 	if sum > 0:
-		return [abs(sum), 0]
-	else:
-		return [15-abs(sum), 1]
+		rtrn = [abs(sum), 0]
+	if objs.has(key):
+		objs[key]['value'] = rtrn
+	return rtrn
 
 func get_neighbors(x, z):
 	var Y = get_height(x, z)
@@ -295,6 +299,9 @@ func get_water(x, z):
 		return floor(y)
 	else:
 		return 0
+
+func get_humidity(x, z):
+	return noise_water.get_noise_2d(x, z)
 
 func get_heat(x, z):
 	var key = '%s-%s' % [x, z]

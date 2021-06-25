@@ -8,7 +8,10 @@ var player
 
 var loading = false
 var day = true
-var time_scale = 10.5
+
+var spawn_distance = 1
+
+var time_scale = 0.5
 var lighting = 1.0
 
 func _ready():
@@ -78,28 +81,40 @@ func _update_spawn_distance(spawn_compare):
 	var chunk = Data.physics['chunk_size']
 	var cp = Vector2(int(player.get_pos().x/chunk), int(player.get_pos().z/chunk))
 	
-	if spawn_compare >= Data.settings['spawn_distance']['value']:
-		for x in range(-spawn_compare, spawn_compare+1):
-			for z in range(-spawn_compare, spawn_compare+1):
+	if spawn_compare == spawn:
+		for x in range(-spawn, spawn+1):
+			for z in range(-spawn, spawn+1):
 				world.load_queue.append(Vector2(x+cp.x, z+cp.y))
 	
-	if spawn_compare < Data.settings['spawn_distance']['value']:
-		for x in range(-spawn-1, spawn+2):
-			for z in range(-spawn-1, spawn+2):
+	
+	elif spawn_compare > spawn:
+		Data.settings['spawn_distance']['value'] += 1
+		spawn += 1
+		for x in range(-spawn, spawn+1):
+			for z in range(-spawn, spawn+1):
+				world.load_queue.append(Vector2(x+cp.x, z+cp.y))
+		_update_spawn_distance(spawn_compare)
+	
+	elif spawn_compare < spawn:
+		print("%s %s" % [spawn_compare, spawn])
+		Data.settings['spawn_distance']['value'] -= 1
+		for x in range(-spawn, spawn+1):
+			for z in range(-spawn, spawn+1):
+				#world.kill_queue.append(Vector2(x+cp.x, z+cp.y))
 				world.destroy_chunk(x+cp.x, z+cp.y)
 		
 		for x in range(-spawn_compare, spawn_compare+1):
 			for z in range(-spawn_compare, spawn_compare+1):
 				world.load_queue.append(Vector2(x+cp.x, z+cp.y))
+		_update_spawn_distance(spawn_compare)
 		player.has_control = false
 	
-	Data.settings['spawn_distance']['value'] = spawn_compare
+	
 	loading = true
-	_update_environment()
 
 func _update_environment():
-	var p = player.get_pos()
-	var W = float(world.get_water(p.x, p.z)/Data.physics['max_water'])*2.0
+	var W = (1-world.get_humidity(player.translation.x, player.translation.z))/2
+	W = (1-W*W)*5
 	var distance = Data.physics['chunk_size']*Data.settings['spawn_distance']['value']
 	env.environment.fog_depth_end = distance*0.9*W
 	env.environment.fog_depth_begin = distance*0.1*W
@@ -137,7 +152,7 @@ func _update_chunks():
 			world.load_queue.append(Vector2(i+cp.x, cp.y-spawn))
 		for i in range(-(spawn+1), spawn+2):
 			world.kill_queue.append(Vector2(i+up.x, up.y+spawn))
-	
+		
 	player.update_position.x = int(round(player.translation.x))
 	player.update_position.z = int(round(player.translation.z))
 	loading = true
