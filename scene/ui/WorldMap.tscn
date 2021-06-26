@@ -1,20 +1,31 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scene/ui/WorldMap.gd" type="Script" id=1]
 [ext_resource path="res://scene/ui/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/noise_height.tres" type="OpenSimplexNoise" id=3]
+[ext_resource path="res://data/noise_heat.tres" type="OpenSimplexNoise" id=4]
+[ext_resource path="res://data/noise_water.tres" type="OpenSimplexNoise" id=6]
+[ext_resource path="res://skin/heightmap_shader.tres" type="Shader" id=7]
+[ext_resource path="res://skin/heatmap_shader.tres" type="Shader" id=8]
+[ext_resource path="res://skin/watermap_shader.tres" type="Shader" id=9]
 
-[sub_resource type="OpenSimplexNoise" id=1]
-persistence = 0.0
-lacunarity = 0.1
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 7 )
 
 [sub_resource type="NoiseTexture" id=2]
-noise = SubResource( 1 )
+noise = ExtResource( 3 )
 
-[sub_resource type="NoiseTexture" id=3]
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 8 )
 
-[sub_resource type="NoiseTexture" id=4]
+[sub_resource type="NoiseTexture" id=6]
+noise = ExtResource( 4 )
 
-[sub_resource type="NoiseTexture" id=5]
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 9 )
+
+[sub_resource type="NoiseTexture" id=8]
+noise = ExtResource( 6 )
 
 [node name="WorldMap" type="Control"]
 anchor_right = 1.0
@@ -25,6 +36,7 @@ __meta__ = {
 }
 
 [node name="Height" type="TextureRect" parent="."]
+material = SubResource( 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -38,23 +50,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bump" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.501961 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -256.0
-margin_top = -256.0
-margin_right = 256.0
-margin_bottom = 256.0
-texture = SubResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Heat" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 0, 0.25098 )
+modulate = Color( 1, 0.501961, 0, 0.25098 )
+material = SubResource( 5 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -63,13 +61,14 @@ margin_left = -256.0
 margin_top = -256.0
 margin_right = 256.0
 margin_bottom = 256.0
-texture = SubResource( 4 )
+texture = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Water" type="TextureRect" parent="."]
-modulate = Color( 0, 1, 0.501961, 0.25098 )
+modulate = Color( 0, 0.501961, 1, 0.25098 )
+material = SubResource( 7 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -78,7 +77,7 @@ margin_left = -256.0
 margin_top = -256.0
 margin_right = 256.0
 margin_bottom = 256.0
-texture = SubResource( 5 )
+texture = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

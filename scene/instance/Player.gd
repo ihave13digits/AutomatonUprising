@@ -165,11 +165,6 @@ func _physics_process(delta):
 		motion = move_and_slide(motion, Vector3.UP, false, 4, 0.78, true)
 
 func _process(_delta):
-	if cursor.get_collider() != null:
-		var obj = cursor.get_collider()
-		get_parent().preview_mesh.mesh = load(obj.mesh['body'])
-		get_parent().preview_mesh.material_override = load("res://skin/grid_selection_material.tres")
-		get_parent().preview_mesh.transform = obj.transform
 	if Input.is_action_just_pressed("menu"):
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -227,6 +222,13 @@ func _input(event):
 		return
 
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if cursor.get_collider() != null:
+			var obj = cursor.get_collider()
+			get_parent().preview_mesh.mesh = load(obj.mesh['body'])
+			get_parent().preview_mesh.material_override = load("res://skin/grid_selection_material.tres")
+			get_parent().preview_mesh.transform = obj.transform
+		else:
+			get_parent().preview_mesh.mesh = null
 		_yaw -= event.relative.x * Data.settings['mouse_sensitivity']['value']
 		_pitch += event.relative.y * Data.settings['mouse_sensitivity']['value']
 		if _pitch > Data.settings['max_pitch']['value']:

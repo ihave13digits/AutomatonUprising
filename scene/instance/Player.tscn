@@ -55,6 +55,7 @@ wait_time = 0.25
 wait_time = 0.25
 
 [node name="Horizon" type="MeshInstance" parent="."]
+visible = false
 mesh = ExtResource( 3 )
 material/0 = SubResource( 2 )
 [connection signal="timeout" from="Create" to="." method="_on_Create_timeout"]

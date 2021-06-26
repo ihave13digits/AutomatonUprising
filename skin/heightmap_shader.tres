@@ -1,0 +1,155 @@
+[gd_resource type="VisualShader" load_steps=16 format=2]
+
+[ext_resource path="res://data/noise_height.tres" type="OpenSimplexNoise" id=1]
+[ext_resource path="res://data/noise_bump.tres" type="OpenSimplexNoise" id=2]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=1]
+default_input_values = [ 0, 0.0, 1, 12.0 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=2]
+output_port_for_preview = 0
+default_input_values = [ 0, 0.0, 1, 12.0 ]
+operator = 3
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=3]
+function = 15
+
+[sub_resource type="NoiseTexture" id=7]
+noise = ExtResource( 2 )
+
+[sub_resource type="VisualShaderNodeTexture" id=8]
+output_port_for_preview = 0
+texture = SubResource( 7 )
+
+[sub_resource type="VisualShaderNodeScalarOp" id=9]
+default_input_values = [ 0, 0.0, 1, 12.0 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=10]
+function = 15
+
+[sub_resource type="VisualShaderNodeScalarOp" id=11]
+output_port_for_preview = 0
+default_input_values = [ 0, 0.0, 1, 12.0 ]
+operator = 3
+
+[sub_resource type="VisualShaderNodeScalarOp" id=12]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeScalarOp" id=13]
+default_input_values = [ 0, 0.0, 1, 2.0 ]
+operator = 3
+
+[sub_resource type="NoiseTexture" id=4]
+noise = ExtResource( 1 )
+
+[sub_resource type="VisualShaderNodeTexture" id=5]
+texture = SubResource( 4 )
+
+[sub_resource type="VisualShaderNodeInput" id=6]
+input_name = "uv"
+
+[resource]
+code = "shader_type canvas_item;
+uniform sampler2D tex_frg_14;uniform sampler2D tex_frg_8;
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:9
+	vec3 n_out9p0;
+	n_out9p0 = vec3(UV,0.0);
+
+// Texture:14
+	vec3 n_out14p0;
+	float n_out14p1;
+	vec4 tex_frg_14_read = texture( tex_frg_14 , n_out9p0.xy );
+	n_out14p0 = tex_frg_14_read.rgb;
+	n_out14p1 = tex_frg_14_read.a;
+
+// ScalarOp:15
+	float n_in15p1 = 12.00000;
+	float n_out15p0;
+	n_out15p0 = dot(n_out14p0,vec3(0.333333,0.333333,0.333333)) * n_in15p1;
+
+// ScalarFunc:16
+	float n_out16p0;
+	n_out16p0 = round(n_out15p0);
+
+// ScalarOp:17
+	float n_in17p1 = 12.00000;
+	float n_out17p0;
+	n_out17p0 = n_out16p0 / n_in17p1;
+
+// Texture:8
+	vec3 n_out8p0;
+	float n_out8p1;
+	vec4 tex_frg_8_read = texture( tex_frg_8 , n_out9p0.xy );
+	n_out8p0 = tex_frg_8_read.rgb;
+	n_out8p1 = tex_frg_8_read.a;
+
+// ScalarOp:10
+	float n_in10p1 = 12.00000;
+	float n_out10p0;
+	n_out10p0 = dot(n_out8p0,vec3(0.333333,0.333333,0.333333)) * n_in10p1;
+
+// ScalarFunc:13
+	float n_out13p0;
+	n_out13p0 = round(n_out10p0);
+
+// ScalarOp:12
+	float n_in12p1 = 12.00000;
+	float n_out12p0;
+	n_out12p0 = n_out13p0 / n_in12p1;
+
+// ScalarOp:18
+	float n_out18p0;
+	n_out18p0 = n_out17p0 + n_out12p0;
+
+// ScalarOp:19
+	float n_in19p1 = 2.00000;
+	float n_out19p0;
+	n_out19p0 = n_out18p0 / n_in19p1;
+
+// Output:0
+	COLOR.rgb = vec3(n_out19p0);
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 98.9719, 120.298 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 600, 200 )
+nodes/fragment/8/node = SubResource( 5 )
+nodes/fragment/8/position = Vector2( -600, 200 )
+nodes/fragment/9/node = SubResource( 6 )
+nodes/fragment/9/position = Vector2( -800, 200 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( -400, 200 )
+nodes/fragment/12/node = SubResource( 2 )
+nodes/fragment/12/position = Vector2( 0, 200 )
+nodes/fragment/13/node = SubResource( 3 )
+nodes/fragment/13/position = Vector2( -200, 200 )
+nodes/fragment/14/node = SubResource( 8 )
+nodes/fragment/14/position = Vector2( -600, -140 )
+nodes/fragment/15/node = SubResource( 9 )
+nodes/fragment/15/position = Vector2( -400, 80 )
+nodes/fragment/16/node = SubResource( 10 )
+nodes/fragment/16/position = Vector2( -200, 120 )
+nodes/fragment/17/node = SubResource( 11 )
+nodes/fragment/17/position = Vector2( 0, -20 )
+nodes/fragment/18/node = SubResource( 12 )
+nodes/fragment/18/position = Vector2( 200, 100 )
+nodes/fragment/19/node = SubResource( 13 )
+nodes/fragment/19/position = Vector2( 400, 200 )
+nodes/fragment/connections = PoolIntArray( 9, 0, 8, 0, 10, 0, 13, 0, 13, 0, 12, 0, 9, 0, 14, 0, 8, 0, 10, 0, 14, 0, 15, 0, 15, 0, 16, 0, 16, 0, 17, 0, 17, 0, 18, 0, 12, 0, 18, 1, 18, 0, 19, 0, 19, 0, 0, 0 )

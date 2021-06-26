@@ -2,6 +2,7 @@ extends Node
 
 var time = {}
 var biome = {}
+var noise = {}
 var object = {}
 var recipe = {}
 var physics = {}
@@ -15,6 +16,7 @@ var allowance = {}
 func _ready():
 	store_vanilla()
 	load_game_data("user://vanilla.json")
+	print(noise)
 
 func load_game_data(mod_dir):
 	var data = {}
@@ -26,6 +28,7 @@ func load_game_data(mod_dir):
 	file.open(mod_dir, File.READ)
 	data['time'] = parse_json(file.get_line())
 	data['biome'] = parse_json(file.get_line())
+	data['noise'] = parse_json(file.get_line())
 	data['object'] = parse_json(file.get_line())
 	data['recipe'] = parse_json(file.get_line())
 	data['physics'] = parse_json(file.get_line())
@@ -42,6 +45,7 @@ func load_game_data(mod_dir):
 	
 	load_mod(time, data['time'])
 	load_mod(biome, data['biome'])
+	load_mod(noise, data['noise'])
 	load_mod(object, data['object'])
 	load_mod(recipe, data['recipe'])
 	load_mod(physics, data['physics'])
@@ -64,6 +68,7 @@ func store_vanilla():
 	f.open("user://vanilla.json", File.WRITE)
 	f.store_line(to_json(get_vanilla()['time']))
 	f.store_line(to_json(get_vanilla()['biome']))
+	f.store_line(to_json(get_vanilla()['noise']))
 	f.store_line(to_json(get_vanilla()['object']))
 	f.store_line(to_json(get_vanilla()['recipe']))
 	f.store_line(to_json(get_vanilla()['physics']))
@@ -1199,6 +1204,14 @@ func get_vanilla():
 			},
 
 
+		"noise" : {
+			"height" : "res://data/noise_height.tres",
+			"bump" : "res://data/noise_bump.tres",
+			"heat" : "res://data/noise_heat.tres",
+			"water" : "res://data/noise_water.tres",
+			},
+
+
 
 		"recipe" : {
 			"" : {
@@ -1214,23 +1227,23 @@ func get_vanilla():
 			"chunk_size" : 4,
 			"tile_size" : 1,
 			
-			"bump_scale" : 64,
-			"height_scale" : 128,
+			"bump_scale" : 32,
+			"height_scale" : 256,
 			"water_scale" : 128,
 			"heat_scale" : 256,
 			
 			"bump_rough" : 6,
 			"height_rough" : 6,
-			"water_rough" : 3,
-			"heat_rough" : 1,
+			"water_rough" : 6,
+			"heat_rough" : 6,
 			
 			"bump_gap" : 2.0,
-			"height_gap" : 2.0,
-			"water_gap" : 2.0,
-			"heat_gap" : 2.0,
+			"height_gap" : 4.0,
+			"water_gap" : 3.0,
+			"heat_gap" : 4.0,
 			
-			"bump_fade" : 0.1,
-			"height_fade" : 0.1,
+			"bump_fade" : 0.5,
+			"height_fade" : 0.25,
 			"water_fade" : 0.2,
 			"heat_fade" : 0.3,
 			

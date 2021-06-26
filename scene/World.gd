@@ -8,10 +8,10 @@ var chonk_size
 var chunk_size
 var tile_size
 
-var noise_bump = OpenSimplexNoise.new()
-var noise_height = OpenSimplexNoise.new()
-var noise_water = OpenSimplexNoise.new()
-var noise_heat = OpenSimplexNoise.new()
+var noise_bump
+var noise_height
+var noise_water
+var noise_heat
 
 var kill_queue = []
 var load_queue = []
@@ -26,6 +26,11 @@ var data = {}
 var objs = {}
 
 func _ready():
+	noise_bump = load(Data.noise['bump'])
+	noise_height = load(Data.noise['height'])
+	noise_water = load(Data.noise['water'])
+	noise_heat = load(Data.noise['heat'])
+	
 	max_height = Data.physics['max_height']
 	max_water = Data.physics['max_water']
 	max_heat = Data.physics['max_heat']
