@@ -41,6 +41,8 @@ func ready_game():
 	player.update_map_position()
 	world.main_distance = Vector2(player.translation.x, player.translation.z)
 	player.has_control = false
+	var s = Data.settings['spawn_distance']['value']*Data.physics['chunk_size']*2
+	player.horizon.scale = Vector3(s, s, s)
 	
 	_update_hud()
 	#_update_spawn_distance(Data.settings['spawn_distance']['value'])
@@ -117,7 +119,8 @@ func _update_spawn_distance(spawn_compare):
 		_update_spawn_distance(spawn_compare)
 		player.has_control = false
 	
-	
+	var s = Data.settings['spawn_distance']['value']*Data.physics['chunk_size']*4
+	player.horizon.scale = Vector3(s, s*4, s)
 	loading = true
 
 func _update_environment():

@@ -1,0 +1,243 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scene/ui/WorldMap.gd" type="Script" id=1]
+[ext_resource path="res://scene/ui/Button.tscn" type="PackedScene" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+persistence = 0.0
+lacunarity = 0.1
+
+[sub_resource type="NoiseTexture" id=2]
+noise = SubResource( 1 )
+
+[sub_resource type="NoiseTexture" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+
+[sub_resource type="NoiseTexture" id=5]
+
+[node name="WorldMap" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Height" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 256.0
+margin_bottom = 256.0
+texture = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bump" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 256.0
+margin_bottom = 256.0
+texture = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heat" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 0, 0.25098 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 256.0
+margin_bottom = 256.0
+texture = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Water" type="TextureRect" parent="."]
+modulate = Color( 0, 1, 0.501961, 0.25098 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 256.0
+margin_bottom = 256.0
+texture = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -29.5
+margin_top = -30.0
+margin_right = 29.5
+margin_bottom = -16.0
+text = "Generate"
+
+[node name="HeightValue" type="HSlider" parent="."]
+margin_left = 96.0
+margin_top = 48.0
+margin_right = 224.0
+margin_bottom = 64.0
+max_value = 1.0
+step = 0.001
+
+[node name="BumpValue" type="HSlider" parent="."]
+margin_left = 96.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 96.0
+max_value = 1.0
+step = 0.001
+
+[node name="HeatValue" type="HSlider" parent="."]
+margin_left = 96.0
+margin_top = 112.0
+margin_right = 224.0
+margin_bottom = 128.0
+max_value = 1.0
+step = 0.001
+
+[node name="WaterValue" type="HSlider" parent="."]
+margin_left = 96.0
+margin_top = 144.0
+margin_right = 224.0
+margin_bottom = 160.0
+max_value = 1.0
+step = 0.001
+
+[node name="HeightRough" type="HSlider" parent="."]
+margin_left = 96.0
+margin_top = 440.0
+margin_right = 224.0
+margin_bottom = 456.0
+max_value = 1.0
+step = 0.001
+
+[node name="BumpRough" type="HSlider" parent="."]
+margin_left = 96.0
+margin_top = 472.0
+margin_right = 224.0
+margin_bottom = 488.0
+max_value = 1.0
+step = 0.001
+
+[node name="HeatRough" type="HSlider" parent="."]
+margin_left = 96.0
+margin_top = 504.0
+margin_right = 224.0
+margin_bottom = 520.0
+max_value = 1.0
+step = 0.001
+
+[node name="WaterRough" type="HSlider" parent="."]
+margin_left = 96.0
+margin_top = 536.0
+margin_right = 224.0
+margin_bottom = 552.0
+max_value = 1.0
+step = 0.001
+
+[node name="HeightGap" type="HSlider" parent="."]
+margin_left = 800.0
+margin_top = 48.0
+margin_right = 928.0
+margin_bottom = 64.0
+max_value = 1.0
+step = 0.001
+
+[node name="BumpGap" type="HSlider" parent="."]
+margin_left = 800.0
+margin_top = 80.0
+margin_right = 928.0
+margin_bottom = 96.0
+max_value = 1.0
+step = 0.001
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeatGap" type="HSlider" parent="."]
+margin_left = 800.0
+margin_top = 112.0
+margin_right = 928.0
+margin_bottom = 128.0
+max_value = 1.0
+step = 0.001
+
+[node name="WaterGap" type="HSlider" parent="."]
+margin_left = 800.0
+margin_top = 144.0
+margin_right = 928.0
+margin_bottom = 160.0
+max_value = 1.0
+step = 0.001
+
+[node name="HeightFade" type="HSlider" parent="."]
+margin_left = 800.0
+margin_top = 440.0
+margin_right = 928.0
+margin_bottom = 456.0
+max_value = 1.0
+step = 0.001
+
+[node name="BumpFade" type="HSlider" parent="."]
+margin_left = 800.0
+margin_top = 472.0
+margin_right = 928.0
+margin_bottom = 488.0
+max_value = 1.0
+step = 0.001
+
+[node name="HeatFade" type="HSlider" parent="."]
+margin_left = 800.0
+margin_top = 504.0
+margin_right = 928.0
+margin_bottom = 520.0
+max_value = 1.0
+step = 0.001
+
+[node name="WaterFade" type="HSlider" parent="."]
+margin_left = 800.0
+margin_top = 536.0
+margin_right = 928.0
+margin_bottom = 552.0
+max_value = 1.0
+step = 0.001
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="value_changed" from="HeightValue" to="." method="_on_HeightValue_value_changed"]
+[connection signal="value_changed" from="BumpValue" to="." method="_on_BumpValue_value_changed"]
+[connection signal="value_changed" from="HeatValue" to="." method="_on_HeatValue_value_changed"]
+[connection signal="value_changed" from="WaterValue" to="." method="_on_WaterValue_value_changed"]
+[connection signal="value_changed" from="HeightRough" to="." method="_on_HeightRough_value_changed"]
+[connection signal="value_changed" from="BumpRough" to="." method="_on_BumpRough_value_changed"]
+[connection signal="value_changed" from="HeatRough" to="." method="_on_HeatRough_value_changed"]
+[connection signal="value_changed" from="WaterRough" to="." method="_on_WaterRough_value_changed"]
+[connection signal="value_changed" from="HeightGap" to="." method="_on_HeightGap_value_changed"]
+[connection signal="value_changed" from="BumpGap" to="." method="_on_BumpGap_value_changed"]
+[connection signal="value_changed" from="HeatGap" to="." method="_on_HeatGap_value_changed"]
+[connection signal="value_changed" from="WaterGap" to="." method="_on_WaterGap_value_changed"]
+[connection signal="value_changed" from="HeightFade" to="." method="_on_HeightFade_value_changed"]
+[connection signal="value_changed" from="BumpFade" to="." method="_on_BumpFade_value_changed"]
+[connection signal="value_changed" from="HeatFade" to="." method="_on_HeatFade_value_changed"]
+[connection signal="value_changed" from="WaterFade" to="." method="_on_WaterFade_value_changed"]

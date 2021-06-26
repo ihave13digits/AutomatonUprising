@@ -34,10 +34,34 @@ func _ready():
 	chunk_size = Data.physics['chunk_size']
 	tile_size = Data.physics['tile_size']
 
-	set_noise_values(noise_bump, Data.settings['game_seed'].hash(), Data.physics['height_scale']*0.5, 6, 2.0, 0.1)
-	set_noise_values(noise_height, Data.settings['game_seed'].hash(), Data.physics['height_scale'], 6, 2.0, 0.1)
-	set_noise_values(noise_water, Data.settings['game_seed'].hash(), Data.physics['water_scale'], 3, 2.0, 0.2)
-	set_noise_values(noise_heat, Data.settings['game_seed'].hash(), Data.physics['heat_scale'], 1, 2.0, 0.3)
+	set_noise_values(
+		noise_bump,
+		Data.settings['game_seed']['value'].hash(),
+		Data.physics['bump_scale'],
+		Data.physics['bump_rough'],
+		Data.physics['bump_gap'],
+		Data.physics['bump_fade'])
+	set_noise_values(
+		noise_height,
+		Data.settings['game_seed']['value'].hash(),
+		Data.physics['height_scale'],
+		Data.physics['height_rough'],
+		Data.physics['height_gap'],
+		Data.physics['height_fade'])
+	set_noise_values(
+		noise_heat,
+		Data.settings['game_seed']['value'].hash(),
+		Data.physics['heat_scale'],
+		Data.physics['heat_rough'],
+		Data.physics['heat_gap'],
+		Data.physics['heat_fade'])
+	set_noise_values(
+		noise_water,
+		Data.settings['game_seed']['value'].hash(),
+		Data.physics['water_scale'],
+		Data.physics['water_rough'],
+		Data.physics['water_gap'],
+		Data.physics['water_fade'])
 
 func set_noise_values(n, sd, pd, oc, la, pr):
 	n.seed = sd
@@ -100,9 +124,6 @@ func update_queue():
 		tile_load_queue.pop_front()
 
 func update_chunks():
-	
-	var spawn = Data.settings['spawn_distance']['value']
-	
 	if kill_queue.size() > 0:
 		destroy_chunk(kill_queue[0].x*Data.physics['chunk_size'], kill_queue[0].y*Data.physics['chunk_size'])
 		kill_queue.pop_front()

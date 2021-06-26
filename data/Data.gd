@@ -1214,9 +1214,25 @@ func get_vanilla():
 			"chunk_size" : 4,
 			"tile_size" : 1,
 			
+			"bump_scale" : 64,
 			"height_scale" : 128,
 			"water_scale" : 128,
 			"heat_scale" : 256,
+			
+			"bump_rough" : 6,
+			"height_rough" : 6,
+			"water_rough" : 3,
+			"heat_rough" : 1,
+			
+			"bump_gap" : 2.0,
+			"height_gap" : 2.0,
+			"water_gap" : 2.0,
+			"heat_gap" : 2.0,
+			
+			"bump_fade" : 0.1,
+			"height_fade" : 0.1,
+			"water_fade" : 0.2,
+			"heat_fade" : 0.3,
 			
 			"max_height" : 12.0,
 			"max_water" : 7.0,

@@ -5,6 +5,7 @@ signal update_chunks
 signal update_cursor
 signal update_hud
 
+onready var horizon = $Horizon
 onready var cursor = $Y/X/Cam/Cursor
 onready var standing_on = $StandingOn
 
