@@ -123,10 +123,6 @@ func update_map_position():
 		emit_signal("update_chunks")
 	if dz >= d-1 || dz <= -(d-1):
 		emit_signal("update_chunks")
-	
-	if standing_on.get_collider() != null:
-		if standing_on.get_collider().id.find('safety') == 6:
-			translation.y = Data.physics['max_height']
 
 func create():
 	if can['create']:
@@ -223,12 +219,16 @@ func _input(event):
 
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if cursor.get_collider() != null:
-			var obj = cursor.get_collider()
-			get_parent().preview_mesh.mesh = load(obj.mesh['body'])
-			get_parent().preview_mesh.material_override = load("res://skin/grid_selection_material.tres")
-			get_parent().preview_mesh.transform = obj.transform
+			if cursor.get_collider().id != "safety net":
+				var obj = cursor.get_collider()
+				get_parent().preview_mesh.mesh = load(obj.mesh['body'])
+				get_parent().preview_mesh.material_override = load("res://skin/grid_selection_material.tres")
+				get_parent().preview_mesh.transform = obj.transform
 		else:
 			get_parent().preview_mesh.mesh = null
+		if standing_on.get_collider() != null:
+			if standing_on.get_collider().id == 'safety net':
+				translation.y = Data.physics['max_height']
 		_yaw -= event.relative.x * Data.settings['mouse_sensitivity']['value']
 		_pitch += event.relative.y * Data.settings['mouse_sensitivity']['value']
 		if _pitch > Data.settings['max_pitch']['value']:

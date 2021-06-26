@@ -23,7 +23,7 @@ func _ready():
 	env = WorldEnvironment.new()
 	env.set_environment(load("res://default_env.tres"))
 	sun.rotation_degrees.x = 0
-	$SafetyNet.translation.y = -Data.physics['max_height']
+	$SafetyNet.translation.y = -11-Data.physics['max_height']
 	var size = Data.physics['world_size']*Data.physics['chunk_size']*Data.physics['tile_size']*2
 	$SafetyNet.scale = Vector3(size, size, size)
 	ready_game()
@@ -145,7 +145,6 @@ func _update_chunks():
 	if d.x <= -1:
 		for i in range(-spawn, spawn+1):
 			world.load_queue.push_front(Vector2(cp.x+spawn, i+cp.y))
-			world.load_distance.push_front(cp)
 		for i in range(-(spawn+1), spawn+2):
 			world.kill_queue.push_back(Vector2(up.x-spawn, i+up.y))
 			world.kill_queue.push_back(Vector2(up.x-spawn-1, i+up.y))

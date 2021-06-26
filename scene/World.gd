@@ -16,7 +16,6 @@ var noise_heat
 var kill_queue = []
 var load_queue = []
 
-var load_distance = []
 var main_distance = Vector2()
 
 var tile_kill_queue = []
@@ -119,10 +118,10 @@ func load_data(d):
 # Chunks
 
 func update_queue():
-	if tile_kill_queue.size() > 0:
-		destroy_cell(tile_kill_queue[0].x, tile_kill_queue[0].y)
-		tile_kill_queue.pop_front()
-		#return
+#	if tile_kill_queue.size() > 0:
+#		destroy_cell(tile_kill_queue[0].x, tile_kill_queue[0].y)
+#		tile_kill_queue.pop_front()
+#		return
 	
 	if tile_load_queue.size() > 0:
 		generate_cell(tile_load_queue[0].x, tile_load_queue[0].y)
@@ -134,11 +133,18 @@ func update_chunks():
 		kill_queue.pop_front()
 		return
 	
-	if load_queue.size() > 0:
-#		if load_distance.size():
-#			var dx = abs(main_distance.x-load_distance[0].x)
-#			var dz = abs(main_distance.y-load_distance[0].y)
-#			if dx <= spawn && dz <= spawn:
+	var queue = load_queue.size()
+	
+	if queue > 0:
+#		var cull = load_queue[queue-1]
+#		#var dx = abs(cull.x - main_distance.x)
+#		#var dz = abs(cull.y - main_distance.y)
+#		var dx = abs(main_distance.x-cull.x)
+#		var dz = abs(main_distance.y-cull.y)
+#		var spawn = Data.settings['spawn_distance']['value']
+#		print("%s is %s - %s = %s and %s - %s = %s"%[queue, main_distance.x, cull.x, dx, main_distance.y, cull.y, dz])
+#		if dx > spawn || dz > spawn:
+#			load_queue.pop_back()
 		generate_chunk(load_queue[0].x*Data.physics['chunk_size'], load_queue[0].y*Data.physics['chunk_size'])
 		load_queue.pop_front()
 
@@ -179,7 +185,8 @@ func destroy_chunk(x, z):
 	var despawn = int(Data.physics['chunk_size']/2)
 	for dx in range(-despawn+x, despawn+x+1):
 		for dz in range(-despawn+z, despawn+z+1):
-			tile_kill_queue.push_back(Vector2(dx, dz))
+			destroy_cell(dx, dz)
+			#tile_kill_queue.push_back(Vector2(dx, dz))
 
 func generate_chunk(x, z):
 	var spawn = int(Data.physics['chunk_size']/2)
@@ -190,7 +197,8 @@ func generate_chunk(x, z):
 				return
 	for sx in range(-spawn+x, spawn+x+1):
 		for sz in range(-spawn+z, spawn+z+1):
-			tile_load_queue.push_front(Vector2(sx, sz))
+			generate_cell(sx, sz)
+			#tile_load_queue.push_front(Vector2(sx, sz))
 
 func _destroy_chunk(x, z):
 	var despawn = int(Data.physics['chunk_size']/2)
