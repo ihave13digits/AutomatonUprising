@@ -86,11 +86,30 @@ func generate_world_data():
 			objs[key]['object'] = null
 			objs[key]['liquid'] = null
 			
-			var _h = floor((noise_height.get_noise_2d(x, z) * max_height)+(noise_bump.get_noise_2d(x, z) * max_height)/2)
-			
-			data[key]['height'] = _h
 			data[key]['water'] = abs(floor(noise_water.get_noise_2d(x, z) * max_water))
 			data[key]['heat'] = abs(floor(noise_heat.get_noise_2d(x, z) * max_heat))
+			
+			var water = "w%s" % str(get_water(x, z))
+			var heat = "h%s" % str(get_heat(x, z))
+			var value = Data.biome[water][heat]['height']
+			var _h = floor(
+				((noise_height.get_noise_2d(x, z) * max_height)+
+				(noise_bump.get_noise_2d(x, z) * max_height)/2)+
+				Data.physics['max_height']*value)
+			data[key]['height'] = _h
+	
+	for x in range(-world_size*chunk_size, world_size*chunk_size):
+		for z in range(-world_size*chunk_size, world_size*chunk_size):
+			var count = 0
+			var total = 0
+			for i in range(-1, 2):
+				for j in range(-1, 2):
+					var key = '%s-%s'%[x+i, z+j]
+					if data.has(key):
+						total += data[key]['height']
+						count += 1
+			var value = total/count
+			data['%s-%s'%[x, z]]['height'] = value
 
 # File I/O
 
@@ -163,6 +182,8 @@ func destroy_cell(x, z):
 
 func generate_cell(x, z):
 	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
+	if !data.has(key):
+		return
 	if objs.has(key):
 		if objs[key]['tile']:
 			if is_instance_valid(objs[key]['tile']):
@@ -246,7 +267,7 @@ func generate_far_chunk(x, z):
 
 # Spawning
 
-func spawn_tile(t, pos, mtrl='sand0'):
+func spawn_tile(t, pos, wall, mtrl='sand0'):
 	var key = '%s-%s' % [int(pos.x/tile_size), int(pos.z/tile_size)]
 	if objs[key]['tile']:
 		if is_instance_valid(objs[key]['tile']):
@@ -254,6 +275,7 @@ func spawn_tile(t, pos, mtrl='sand0'):
 
 	var inst = Data.object[t]['instance'][0]
 	var I = load(Data.instance[inst]).instance()
+	I.wall_active = wall
 	I.translation = pos
 	I.mesh['body'] = Data.object[t]['mesh'][0]
 	I.id = t
@@ -340,17 +362,17 @@ func generate_tile(x, z, update = false):
 	if Data.biome["w%s" % W]["h%s" % H]['soil'] != '':
 		soil_type = Data.biome["w%s" % W]["h%s" % H]['soil']
 	var mtrl = '%s%s' % [soil_type, int((abs(Y) + (abs(W)*3)) / 4)]
-	spawn_tile(tile, Vector3(x*tile_size, Y, z*tile_size), mtrl)
+	spawn_tile(tile, Vector3(x*tile_size, Y, z*tile_size), value[2], mtrl)
 
 func update_tile(x, z, val):
 	var key = '%s-%s' % [int(x/tile_size), int(z/tile_size)]
 	
-	for j in range(-1, 2):
-		for i in range(-1, 2):
-			var check = '%s-%s' % [int(x+i/tile_size), int(z+j/tile_size)]
-			if data.has(check):
-				if abs(val+data[key]['height'] - data[check]['height']) > 1:
-					return
+#	for j in range(-1, 2):
+#		for i in range(-1, 2):
+#			var check = '%s-%s' % [int(x+i/tile_size), int(z+j/tile_size)]
+#			if data.has(check):
+#				if abs(val+data[key]['height'] - data[check]['height']) > 1:
+#					return
 	data[key]['height'] += val
 	
 	for j in range(-1, 2):
@@ -374,7 +396,11 @@ func get_cell_value(x, z, update = false):
 	var a = (get_height(x,z)-Y)*8
 	var b = (get_height(x+1,z)-Y)*4
 	var c = (get_height(x+1,z+1)-Y)*2
-	var d = (get_height(x,z+1)-Y)*1
+	var d = (get_height(x,z+1)-Y)
+	
+	var wall = false
+	if a>8 || b>4 || c>2 || d>1 || a<0 || b<0 || c<0 || d<0:
+		wall = true
 	
 	a = clamp(a, -8, 8)
 	b = clamp(b, -4, 4)
@@ -382,9 +408,9 @@ func get_cell_value(x, z, update = false):
 	d = clamp(d, -1, 1)
 	
 	var sum = a+b+c+d
-	var rtrn = [15-abs(sum), 1]
+	var rtrn = [15-abs(sum), 1, wall]
 	if sum > 0:
-		rtrn = [abs(sum), 0]
+		rtrn = [abs(sum), 0, wall]
 	if objs.has(key):
 		objs[key]['value'] = rtrn
 	return rtrn

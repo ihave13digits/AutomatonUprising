@@ -3,12 +3,12 @@
 [ext_resource path="res://data/noise_heat.tres" type="OpenSimplexNoise" id=1]
 
 [sub_resource type="VisualShaderNodeScalarOp" id=1]
-default_input_values = [ 0, 0.0, 1, 3.0 ]
+default_input_values = [ 0, 0.0, 1, 5.0 ]
 operator = 2
 
 [sub_resource type="VisualShaderNodeScalarOp" id=2]
 output_port_for_preview = 0
-default_input_values = [ 0, 0.0, 1, 3.0 ]
+default_input_values = [ 0, 0.0, 1, 5.0 ]
 operator = 3
 
 [sub_resource type="VisualShaderNodeScalarFunc" id=3]
@@ -46,7 +46,7 @@ void fragment() {
 	n_out8p1 = tex_frg_8_read.a;
 
 // ScalarOp:10
-	float n_in10p1 = 3.00000;
+	float n_in10p1 = 5.00000;
 	float n_out10p0;
 	n_out10p0 = dot(n_out8p0,vec3(0.333333,0.333333,0.333333)) * n_in10p1;
 
@@ -55,7 +55,7 @@ void fragment() {
 	n_out13p0 = round(n_out10p0);
 
 // ScalarOp:12
-	float n_in12p1 = 3.00000;
+	float n_in12p1 = 5.00000;
 	float n_out12p0;
 	n_out12p0 = n_out13p0 / n_in12p1;
 
@@ -69,7 +69,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -362.48, 137.192 )
+graph_offset = Vector2( -312, 134 )
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2( 400, 200 )

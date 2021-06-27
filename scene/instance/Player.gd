@@ -173,6 +173,10 @@ func _process(_delta):
 	if !has_control or is_paused:
 		return
 	
+	get_parent().hud.game_info.set_text(0, str(translation.x))
+	get_parent().hud.game_info.set_text(1, str(translation.y))
+	get_parent().hud.game_info.set_text(2, str(translation.z))
+	
 	if Input.is_action_pressed("jump"):
 		if is_on_floor():
 			var tween = get_node("Tween")
@@ -228,7 +232,7 @@ func _input(event):
 			get_parent().preview_mesh.mesh = null
 		if standing_on.get_collider() != null:
 			if standing_on.get_collider().id == 'safety net':
-				translation.y = Data.physics['max_height']
+				translation.y = get_parent().world.get_height(get_pos().x, get_pos().z)
 		_yaw -= event.relative.x * Data.settings['mouse_sensitivity']['value']
 		_pitch += event.relative.y * Data.settings['mouse_sensitivity']['value']
 		if _pitch > Data.settings['max_pitch']['value']:

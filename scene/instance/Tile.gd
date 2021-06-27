@@ -3,14 +3,17 @@ extends StaticBody
 var id = ''
 
 var active = false
+var wall_active = true
 
 var mesh = {
 	'body' : "",
+	'wall' : ""
 }
 
 func _ready():
 #	var s = Data.physics['tile_size']
 #	scale = Vector3(s, s, s)
+	mesh['wall'] = Data.object['tile']['mesh']
 	$Mesh.mesh = load(mesh['body'])
 	set_collision()
 
@@ -28,3 +31,8 @@ func set_collision():
 	
 	$Box.shape = ConvexPolygonShape.new()
 	$Box.shape.set_points(point_array)
+	
+	if wall_active:
+		$Wall.mesh = load("res://mesh/tile/pillar.obj")
+	else:
+		$Wall.mesh = null

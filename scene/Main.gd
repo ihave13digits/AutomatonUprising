@@ -33,6 +33,12 @@ func _physics_process(delta):
 	_update_environment()
 	_update_sky()
 	world.update_chunks()
+	
+	var x = player.get_pos().x
+	var z = player.get_pos().z
+	var water = "w%s" % str(world.get_water(x, z))
+	var heat = "h%s" % str(world.get_heat(x, z))
+	hud.game_info.set_text(3, Data.biome[water][heat]['name'])
 
 func ready_game():
 	world.generate_world_data()
